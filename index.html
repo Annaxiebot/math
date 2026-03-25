@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Math Quest - Learn & Practice!</title>
+    <title>Mickey's Math Quest - Grade 6</title>
     <style>
         * {
             margin: 0;
@@ -14,34 +14,37 @@
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #FF0000 0%, #000000 100%);
             min-height: 100vh;
             padding: 2vmin;
             overflow-x: hidden;
         }
         
         .container {
-            background: white;
+            background: #FFF8DC;
             border-radius: 3vmin;
             padding: 4vmin;
-            box-shadow: 0 2vmin 6vmin rgba(0,0,0,0.3);
+            box-shadow: 0 2vmin 6vmin rgba(0,0,0,0.5);
             max-width: 1400px;
             margin: 0 auto;
+            border: 1vmin solid #FFD700;
         }
         
         h1 {
-            color: #667eea;
+            color: #FF0000;
             font-size: clamp(2rem, 6vmin, 4rem);
             margin-bottom: 1vmin;
             text-align: center;
             font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
         
         .subtitle {
-            color: #666;
+            color: #333;
             margin-bottom: 3vmin;
             font-size: clamp(1rem, 2.5vmin, 1.5rem);
             text-align: center;
+            font-weight: bold;
         }
         
         .score-board {
@@ -49,9 +52,10 @@
             justify-content: space-around;
             margin-bottom: 3vmin;
             padding: 3vmin;
-            background: #f0f4ff;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
             border-radius: 2vmin;
             gap: 2vmin;
+            border: 0.5vmin solid #FF0000;
         }
         
         .score-item {
@@ -60,28 +64,30 @@
         }
         
         .score-label {
-            color: #666;
+            color: #000;
             font-size: clamp(0.9rem, 2vmin, 1.2rem);
             margin-bottom: 1vmin;
+            font-weight: bold;
         }
         
         .score-value {
             font-size: clamp(1.5rem, 5vmin, 3rem);
             font-weight: bold;
-            color: #667eea;
+            color: #FF0000;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
         }
         
         .explanation-box {
-            background: #fff9e6;
+            background: white;
             padding: 3vmin;
             border-radius: 2vmin;
             margin-bottom: 3vmin;
-            border: 0.5vmin solid #ffd700;
+            border: 0.5vmin solid #FF0000;
         }
         
         .concept-title {
             font-size: clamp(1.2rem, 3.5vmin, 2rem);
-            color: #764ba2;
+            color: #FF0000;
             margin-bottom: 2vmin;
             font-weight: bold;
         }
@@ -89,55 +95,47 @@
         .concept-text {
             font-size: clamp(1rem, 2.5vmin, 1.4rem);
             color: #333;
-            line-height: 1.5;
+            line-height: 1.6;
             margin-bottom: 2vmin;
         }
         
-        .visual-demo {
-            background: white;
-            padding: 3vmin;
-            border-radius: 2vmin;
+        .formula-box {
+            background: #FFD700;
+            padding: 2vmin;
+            border-radius: 1.5vmin;
             margin: 2vmin 0;
+            font-size: clamp(1.1rem, 3vmin, 1.6rem);
+            font-weight: bold;
             text-align: center;
+            border: 0.3vmin solid #FF0000;
+            color: #000;
         }
         
-        .visual-demo p {
-            font-size: clamp(1rem, 2.5vmin, 1.3rem);
-            margin: 1vmin 0;
-        }
-        
-        .blocks {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1vmin;
+        .steps {
+            background: #f0f0f0;
+            padding: 2vmin;
+            border-radius: 1.5vmin;
             margin: 2vmin 0;
         }
         
-        .block {
-            width: clamp(25px, 4vmin, 50px);
-            height: clamp(25px, 4vmin, 50px);
-            background: #667eea;
-            border-radius: 1vmin;
-            display: inline-block;
-            transition: all 0.3s;
-        }
-        
-        .block.removing {
-            background: #ffcccb;
-            opacity: 0.3;
+        .step {
+            font-size: clamp(1rem, 2.5vmin, 1.3rem);
+            padding: 1vmin;
+            margin: 1vmin 0;
+            color: #333;
+            line-height: 1.5;
         }
         
         .question-box {
-            background: #e8f5e9;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
             padding: 4vmin;
             border-radius: 2vmin;
             margin-bottom: 3vmin;
-            font-size: clamp(2rem, 8vmin, 5rem);
+            font-size: clamp(1.8rem, 6vmin, 4rem);
             font-weight: bold;
-            color: #333;
+            color: #000;
             text-align: center;
-            border: 0.5vmin solid #4caf50;
+            border: 0.5vmin solid #FF0000;
             min-height: 15vmin;
             display: flex;
             align-items: center;
@@ -152,19 +150,20 @@
         .answer-input {
             font-size: clamp(2rem, 6vmin, 4rem);
             padding: 2vmin 3vmin;
-            border: 0.5vmin solid #667eea;
+            border: 0.5vmin solid #FF0000;
             border-radius: 2vmin;
             text-align: center;
-            width: min(200px, 40vw);
+            width: min(300px, 50vw);
             margin: 0 auto;
             display: block;
             font-weight: bold;
+            background: white;
         }
         
         .answer-input:focus {
             outline: none;
-            border-color: #764ba2;
-            box-shadow: 0 0 2vmin rgba(102, 126, 234, 0.5);
+            border-color: #FFD700;
+            box-shadow: 0 0 2vmin rgba(255, 215, 0, 0.8);
         }
         
         .button-group {
@@ -178,7 +177,7 @@
         .btn {
             font-size: clamp(1.2rem, 3.5vmin, 2rem);
             padding: 3vmin 6vmin;
-            border: none;
+            border: 0.5vmin solid #000;
             border-radius: 2vmin;
             cursor: pointer;
             font-weight: bold;
@@ -191,8 +190,8 @@
         
         .btn:hover, .btn:focus {
             transform: translateY(-0.5vmin);
-            box-shadow: 0 1vmin 3vmin rgba(0,0,0,0.2);
-            outline: 0.4vmin solid rgba(102, 126, 234, 0.5);
+            box-shadow: 0 1vmin 3vmin rgba(0,0,0,0.3);
+            outline: 0.4vmin solid #FFD700;
         }
         
         .btn:active {
@@ -200,13 +199,13 @@
         }
         
         .btn-submit {
-            background: #667eea;
+            background: #FF0000;
             color: white;
         }
         
         .btn-next {
-            background: #4caf50;
-            color: white;
+            background: #FFD700;
+            color: #000;
         }
         
         .feedback {
@@ -219,11 +218,11 @@
         }
         
         .correct {
-            color: #4caf50;
+            color: #008000;
         }
         
         .incorrect {
-            color: #f44336;
+            color: #FF0000;
         }
         
         .stars {
@@ -236,7 +235,35 @@
             display: none;
         }
         
-        /* TV-specific optimizations */
+        .topic-selector {
+            display: flex;
+            gap: 1vmin;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 3vmin;
+        }
+        
+        .topic-btn {
+            padding: 2vmin 3vmin;
+            background: white;
+            border: 0.3vmin solid #FF0000;
+            border-radius: 1.5vmin;
+            cursor: pointer;
+            font-size: clamp(0.9rem, 2vmin, 1.2rem);
+            font-weight: bold;
+            color: #000;
+            transition: all 0.2s;
+        }
+        
+        .topic-btn.active {
+            background: #FF0000;
+            color: white;
+        }
+        
+        .topic-btn:hover {
+            background: #FFD700;
+        }
+        
         @media (min-width: 1200px) {
             body {
                 padding: 3vmin;
@@ -247,23 +274,22 @@
             }
             
             .btn:focus {
-                outline: 0.6vmin solid #ffd700;
+                outline: 0.6vmin solid #FFD700;
             }
         }
         
-        /* Phone-specific optimizations */
         @media (max-width: 600px) {
             .score-board {
                 padding: 2vmin;
             }
             
-            .explanation-box {
-                padding: 3vmin;
-            }
-            
             .btn {
                 min-width: 150px;
                 padding: 3vmin 4vmin;
+            }
+            
+            .topic-selector {
+                gap: 1.5vmin;
             }
         }
         
@@ -276,17 +302,23 @@
             animation: bounce 0.5s;
         }
         
-        /* Focus visible for keyboard/remote navigation */
         *:focus-visible {
-            outline: 0.5vmin solid #ffd700;
+            outline: 0.5vmin solid #FFD700;
             outline-offset: 0.5vmin;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🌟 Math Quest 🌟</h1>
-        <p class="subtitle">Learn the concepts, practice the skills!</p>
+        <h1>🎀 Mickey's Math Quest 🎀</h1>
+        <p class="subtitle">Grade 6 Math Adventure!</p>
+        
+        <div class="topic-selector">
+            <button class="topic-btn active" onclick="changeTopic('equations')">Equations</button>
+            <button class="topic-btn" onclick="changeTopic('order')">Order of Operations</button>
+            <button class="topic-btn" onclick="changeTopic('fractions')">Fractions</button>
+            <button class="topic-btn" onclick="changeTopic('area')">Area & Perimeter</button>
+        </div>
         
         <div class="score-board">
             <div class="score-item">
@@ -306,19 +338,18 @@
         <div id="explanation" class="explanation-box">
             <div class="concept-title" id="conceptTitle"></div>
             <div class="concept-text" id="conceptText"></div>
-            <div class="visual-demo" id="visualDemo"></div>
+            <div id="formulaBox" class="formula-box"></div>
+            <div id="stepsBox" class="steps"></div>
         </div>
         
         <div class="question-box" id="question"></div>
         
         <div class="answer-section">
-            <input type="number" 
+            <input type="text" 
                    class="answer-input" 
                    id="answer" 
                    placeholder="?" 
-                   autocomplete="off"
-                   inputmode="numeric"
-                   pattern="[0-9]*">
+                   autocomplete="off">
         </div>
         
         <div class="button-group">
@@ -339,96 +370,225 @@
         let total = 0;
         let streak = 0;
         let currentAnswer = 0;
-        let currentOperation = '+';
-        let num1 = 0;
-        let num2 = 0;
+        let currentTopic = 'equations';
         
-        const concepts = {
-            addition: {
-                title: "✨ Addition: Putting Things Together",
-                text: "When we <strong>add</strong>, we combine two groups to make a bigger group. The symbol + means 'plus' or 'and'. Example: If you have 3 apples and get 2 more, you now have 5 apples total!"
+        const topics = {
+            equations: {
+                name: "Solving Equations",
+                generate: generateEquation
             },
-            subtraction: {
-                title: "✂️ Subtraction: Taking Things Away",
-                text: "When we <strong>subtract</strong>, we take away from a group to make it smaller. The symbol − means 'minus' or 'take away'. Example: If you have 8 cookies and eat 3, you have 5 cookies left!"
+            order: {
+                name: "Order of Operations (BEDMAS/PEMDAS)",
+                generate: generateOrderProblem
+            },
+            fractions: {
+                name: "Working with Fractions",
+                generate: generateFractionProblem
+            },
+            area: {
+                name: "Area & Perimeter",
+                generate: generateAreaProblem
             }
         };
         
         const encouragement = {
             correct: [
-                "Amazing! You got it! ⭐",
-                "Fantastic work! 🎉",
-                "Perfect! You understand! 🌟",
-                "You're a math star! ✨",
-                "Brilliant thinking! 🎊"
+                "Hot dog! You got it! 🎉",
+                "Oh boy! That's correct! ⭐",
+                "Gosh! Perfect answer! 🌟",
+                "Wonderful! Mickey's proud! ✨",
+                "Aw shucks! You're a star! 🎊"
             ],
             incorrect: [
-                "Not quite, but great try! 💪",
-                "Let's think through it together! 🎯",
-                "Good effort! Try the next one! 🌈"
+                "Gee, not quite! Let's try again! 💪",
+                "Aw, good try! Check the steps! 🎯",
+                "Don't worry! Practice makes perfect! 🌈"
             ]
         };
         
-        function createBlocks(count, removing = 0) {
-            let html = '<div class="blocks">';
-            for (let i = 0; i < count; i++) {
-                const isRemoving = i >= (count - removing);
-                html += `<div class="block ${isRemoving ? 'removing' : ''}"></div>`;
+        function changeTopic(topic) {
+            currentTopic = topic;
+            document.querySelectorAll('.topic-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            generateQuestion();
+        }
+        
+        function generateEquation() {
+            const types = ['oneStep', 'twoStep', 'distributive'];
+            const type = types[Math.floor(Math.random() * types.length)];
+            
+            let equation, solution, steps;
+            
+            if (type === 'oneStep') {
+                const x = Math.floor(Math.random() * 15) + 1;
+                const b = Math.floor(Math.random() * 20) + 1;
+                const operation = Math.random() > 0.5 ? '+' : '-';
+                
+                if (operation === '+') {
+                    equation = `x + ${b} = ${x + b}`;
+                    solution = x;
+                    steps = `
+                        <div class="step"><strong>Step 1:</strong> Isolate x by doing the opposite operation</div>
+                        <div class="step"><strong>Step 2:</strong> Since we're adding ${b}, we subtract ${b} from both sides</div>
+                        <div class="step"><strong>Step 3:</strong> x + ${b} - ${b} = ${x + b} - ${b}</div>
+                        <div class="step"><strong>Step 4:</strong> x = ${x}</div>
+                    `;
+                } else {
+                    equation = `x - ${b} = ${x - b}`;
+                    solution = x;
+                    steps = `
+                        <div class="step"><strong>Step 1:</strong> Isolate x by doing the opposite operation</div>
+                        <div class="step"><strong>Step 2:</strong> Since we're subtracting ${b}, we add ${b} to both sides</div>
+                        <div class="step"><strong>Step 3:</strong> x - ${b} + ${b} = ${x - b} + ${b}</div>
+                        <div class="step"><strong>Step 4:</strong> x = ${x}</div>
+                    `;
+                }
+            } else if (type === 'twoStep') {
+                const x = Math.floor(Math.random() * 10) + 1;
+                const a = Math.floor(Math.random() * 5) + 2;
+                const b = Math.floor(Math.random() * 15) + 1;
+                
+                equation = `${a}x + ${b} = ${a * x + b}`;
+                solution = x;
+                steps = `
+                    <div class="step"><strong>Step 1:</strong> Subtract ${b} from both sides</div>
+                    <div class="step"><strong>Step 2:</strong> ${a}x + ${b} - ${b} = ${a * x + b} - ${b}</div>
+                    <div class="step"><strong>Step 3:</strong> ${a}x = ${a * x}</div>
+                    <div class="step"><strong>Step 4:</strong> Divide both sides by ${a}</div>
+                    <div class="step"><strong>Step 5:</strong> x = ${a * x} ÷ ${a} = ${x}</div>
+                `;
+            } else {
+                const x = Math.floor(Math.random() * 8) + 2;
+                const a = Math.floor(Math.random() * 4) + 2;
+                const b = Math.floor(Math.random() * 10) + 1;
+                
+                equation = `${a}(x + ${b}) = ${a * (x + b)}`;
+                solution = x;
+                steps = `
+                    <div class="step"><strong>Step 1:</strong> Distribute ${a} into the parentheses</div>
+                    <div class="step"><strong>Step 2:</strong> ${a} × x + ${a} × ${b} = ${a * (x + b)}</div>
+                    <div class="step"><strong>Step 3:</strong> ${a}x + ${a * b} = ${a * (x + b)}</div>
+                    <div class="step"><strong>Step 4:</strong> Subtract ${a * b} from both sides</div>
+                    <div class="step"><strong>Step 5:</strong> ${a}x = ${a * x}</div>
+                    <div class="step"><strong>Step 6:</strong> Divide by ${a}: x = ${x}</div>
+                `;
             }
-            html += '</div>';
-            return html;
+            
+            return {
+                title: "🔢 Solving Equations",
+                concept: "An <strong>equation</strong> is like a balance scale - what you do to one side, you must do to the other! We solve for x by isolating it (getting it alone on one side).",
+                formula: "Key Rule: Whatever you do to one side, do to the other!",
+                steps: steps,
+                question: `Solve for x: ${equation}`,
+                answer: solution
+            };
+        }
+        
+        function generateOrderProblem() {
+            const a = Math.floor(Math.random() * 10) + 2;
+            const b = Math.floor(Math.random() * 5) + 1;
+            const c = Math.floor(Math.random() * 10) + 1;
+            
+            const problem = `${a} + ${b} × ${c}`;
+            const answer = a + (b * c);
+            
+            return {
+                title: "📐 Order of Operations (BEDMAS)",
+                concept: "<strong>BEDMAS/PEMDAS</strong> tells us the order to solve: <strong>B</strong>rackets, <strong>E</strong>xponents, <strong>D</strong>ivision/<strong>M</strong>ultiplication (left to right), <strong>A</strong>ddition/<strong>S</strong>ubtraction (left to right)",
+                formula: "BEDMAS: Brackets → Exponents → Division/Multiplication → Addition/Subtraction",
+                steps: `
+                    <div class="step"><strong>Step 1:</strong> Check for Brackets (none here)</div>
+                    <div class="step"><strong>Step 2:</strong> Check for Exponents (none here)</div>
+                    <div class="step"><strong>Step 3:</strong> Do Multiplication: ${b} × ${c} = ${b * c}</div>
+                    <div class="step"><strong>Step 4:</strong> Rewrite: ${a} + ${b * c}</div>
+                    <div class="step"><strong>Step 5:</strong> Do Addition: ${a} + ${b * c} = ${answer}</div>
+                `,
+                question: problem,
+                answer: answer
+            };
+        }
+        
+        function generateFractionProblem() {
+            const num1 = Math.floor(Math.random() * 5) + 1;
+            const den = Math.floor(Math.random() * 8) + 2;
+            const num2 = Math.floor(Math.random() * 5) + 1;
+            
+            const problem = `${num1}/${den} + ${num2}/${den}`;
+            const answer = num1 + num2;
+            
+            return {
+                title: "🍕 Adding Fractions",
+                concept: "When fractions have the <strong>same denominator</strong> (bottom number), we can add the numerators (top numbers) and keep the denominator the same!",
+                formula: "a/c + b/c = (a+b)/c",
+                steps: `
+                    <div class="step"><strong>Step 1:</strong> Check if denominators are the same: ${den} = ${den} ✓</div>
+                    <div class="step"><strong>Step 2:</strong> Add the numerators: ${num1} + ${num2} = ${answer}</div>
+                    <div class="step"><strong>Step 3:</strong> Keep the denominator: ${den}</div>
+                    <div class="step"><strong>Step 4:</strong> Answer: ${answer}/${den}</div>
+                    <div class="step" style="color: #FF0000;"><strong>What is the numerator (top number)?</strong></div>
+                `,
+                question: `Add: ${problem}. What is the numerator?`,
+                answer: answer
+            };
+        }
+        
+        function generateAreaProblem() {
+            const shapes = ['rectangle', 'square'];
+            const shape = shapes[Math.floor(Math.random() * shapes.length)];
+            
+            if (shape === 'rectangle') {
+                const length = Math.floor(Math.random() * 12) + 3;
+                const width = Math.floor(Math.random() * 10) + 2;
+                const answer = length * width;
+                
+                return {
+                    title: "📏 Area of a Rectangle",
+                    concept: "<strong>Area</strong> is the space inside a shape. For rectangles, we multiply length × width.",
+                    formula: "Area = length × width",
+                    steps: `
+                        <div class="step"><strong>Given:</strong> Length = ${length} cm, Width = ${width} cm</div>
+                        <div class="step"><strong>Step 1:</strong> Use the formula: Area = length × width</div>
+                        <div class="step"><strong>Step 2:</strong> Substitute: Area = ${length} × ${width}</div>
+                        <div class="step"><strong>Step 3:</strong> Calculate: ${length} × ${width} = ${answer}</div>
+                        <div class="step"><strong>Answer:</strong> ${answer} cm²</div>
+                    `,
+                    question: `Find the area of a rectangle with length ${length} cm and width ${width} cm`,
+                    answer: answer
+                };
+            } else {
+                const side = Math.floor(Math.random() * 12) + 3;
+                const answer = side * side;
+                
+                return {
+                    title: "📐 Area of a Square",
+                    concept: "<strong>A square</strong> has all sides equal. Area = side × side (or side²)",
+                    formula: "Area = side × side = side²",
+                    steps: `
+                        <div class="step"><strong>Given:</strong> Side = ${side} cm</div>
+                        <div class="step"><strong>Step 1:</strong> Use the formula: Area = side × side</div>
+                        <div class="step"><strong>Step 2:</strong> Substitute: Area = ${side} × ${side}</div>
+                        <div class="step"><strong>Step 3:</strong> Calculate: ${side} × ${side} = ${answer}</div>
+                        <div class="step"><strong>Answer:</strong> ${answer} cm²</div>
+                    `,
+                    question: `Find the area of a square with side ${side} cm`,
+                    answer: answer
+                };
+            }
         }
         
         function generateQuestion() {
-            const operations = ['+', '-'];
-            currentOperation = operations[Math.floor(Math.random() * operations.length)];
+            const problem = topics[currentTopic].generate();
             
-            const explanationBox = document.getElementById('explanation');
-            const conceptTitle = document.getElementById('conceptTitle');
-            const conceptText = document.getElementById('conceptText');
-            const visualDemo = document.getElementById('visualDemo');
+            document.getElementById('conceptTitle').innerHTML = problem.title;
+            document.getElementById('conceptText').innerHTML = problem.concept;
+            document.getElementById('formulaBox').innerHTML = problem.formula;
+            document.getElementById('stepsBox').innerHTML = problem.steps;
+            document.getElementById('question').textContent = problem.question;
             
-            if (currentOperation === '+') {
-                num1 = Math.floor(Math.random() * 10) + 1;
-                num2 = Math.floor(Math.random() * 10) + 1;
-                currentAnswer = num1 + num2;
-                
-                conceptTitle.innerHTML = concepts.addition.title;
-                conceptText.innerHTML = concepts.addition.text;
-                
-                visualDemo.innerHTML = `
-                    <p style="font-weight: bold; margin-bottom: 2vmin;">
-                        Visual Example: ${num1} + ${num2}
-                    </p>
-                    <p>Start with ${num1} blocks:</p>
-                    ${createBlocks(num1)}
-                    <p style="margin: 2vmin 0; font-weight: bold;">➕ Add ${num2} more blocks:</p>
-                    ${createBlocks(num2)}
-                    <p style="margin: 2vmin 0; font-weight: bold;">= ${num1} + ${num2} blocks total</p>
-                    <p style="color: #667eea; font-weight: bold;">Count all the blocks to find the answer!</p>
-                `;
-                
-            } else {
-                num1 = Math.floor(Math.random() * 15) + 6;
-                num2 = Math.floor(Math.random() * (num1 - 1)) + 1;
-                currentAnswer = num1 - num2;
-                
-                conceptTitle.innerHTML = concepts.subtraction.title;
-                conceptText.innerHTML = concepts.subtraction.text;
-                
-                visualDemo.innerHTML = `
-                    <p style="font-weight: bold; margin-bottom: 2vmin;">
-                        Visual Example: ${num1} − ${num2}
-                    </p>
-                    <p>Start with ${num1} blocks:</p>
-                    ${createBlocks(num1, num2)}
-                    <p style="margin: 2vmin 0; font-weight: bold;">➖ Take away ${num2} blocks (shown faded):</p>
-                    <p style="margin: 2vmin 0; font-weight: bold;">= ${num1} − ${num2} blocks remaining</p>
-                    <p style="color: #667eea; font-weight: bold;">Count only the solid blocks to find the answer!</p>
-                `;
-            }
+            currentAnswer = problem.answer;
             
-            document.getElementById('question').textContent = `${num1} ${currentOperation} ${num2} = ?`;
             document.getElementById('answer').value = '';
             document.getElementById('feedback').textContent = '';
             document.getElementById('stars').textContent = '';
@@ -438,7 +598,7 @@
         }
         
         function checkAnswer() {
-            const userAnswer = parseInt(document.getElementById('answer').value);
+            const userAnswer = parseFloat(document.getElementById('answer').value);
             
             if (isNaN(userAnswer)) {
                 return;
@@ -451,14 +611,14 @@
             const submitBtn = document.getElementById('submitBtn');
             const nextBtn = document.getElementById('nextBtn');
             
-            if (userAnswer === currentAnswer) {
+            if (Math.abs(userAnswer - currentAnswer) < 0.01) {
                 correct++;
                 streak++;
                 
                 feedbackEl.innerHTML = `
                     ${encouragement.correct[Math.floor(Math.random() * encouragement.correct.length)]}<br>
                     <span style="font-size: 0.7em;">
-                        Yes! ${num1} ${currentOperation} ${num2} = ${currentAnswer}
+                        Correct! The answer is ${currentAnswer}
                     </span>
                 `;
                 feedbackEl.className = 'feedback correct animate';
@@ -469,18 +629,10 @@
             } else {
                 streak = 0;
                 
-                let explanation = '';
-                if (currentOperation === '+') {
-                    explanation = `When we add ${num1} and ${num2}, we're combining ${num1} things with ${num2} more things.`;
-                } else {
-                    explanation = `When we subtract ${num2} from ${num1}, we're taking ${num2} things away from ${num1} things.`;
-                }
-                
                 feedbackEl.innerHTML = `
                     ${encouragement.incorrect[Math.floor(Math.random() * encouragement.incorrect.length)]}<br>
                     <span style="font-size: 0.7em;">
-                        ${explanation}<br>
-                        The answer is ${currentAnswer}. Look at the blocks above!
+                        The answer is ${currentAnswer}. Check the steps above!
                     </span>
                 `;
                 feedbackEl.className = 'feedback incorrect';
@@ -503,7 +655,6 @@
             document.getElementById('streak').textContent = streak;
         }
         
-        // Enter key to submit
         document.getElementById('answer').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 const submitBtn = document.getElementById('submitBtn');
@@ -517,7 +668,6 @@
             }
         });
         
-        // Prevent zoom on double tap (iOS)
         let lastTouchEnd = 0;
         document.addEventListener('touchend', function (event) {
             const now = Date.now();
@@ -527,7 +677,6 @@
             lastTouchEnd = now;
         }, false);
         
-        // Start the game
         generateQuestion();
     </script>
 </body>
