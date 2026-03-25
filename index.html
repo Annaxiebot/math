@@ -306,9 +306,166 @@
             outline: 0.5vmin solid #FFD700;
             outline-offset: 0.5vmin;
         }
+        
+        .tutor-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 2vmin;
+        }
+        
+        .tutor-modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .tutor-content {
+            background: #FFF8DC;
+            border-radius: 3vmin;
+            padding: 4vmin;
+            max-width: 800px;
+            width: 100%;
+            border: 1vmin solid #FFD700;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .tutor-header {
+            text-align: center;
+            margin-bottom: 3vmin;
+        }
+        
+        .tutor-header h2 {
+            color: #FF0000;
+            font-size: clamp(1.5rem, 4vmin, 2.5rem);
+            margin-bottom: 1vmin;
+        }
+        
+        .tutor-input-group {
+            margin-bottom: 3vmin;
+        }
+        
+        .tutor-label {
+            display: block;
+            font-size: clamp(1rem, 2.5vmin, 1.3rem);
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 1vmin;
+        }
+        
+        .tutor-textarea {
+            width: 100%;
+            min-height: 20vmin;
+            font-size: clamp(1rem, 2.5vmin, 1.2rem);
+            padding: 2vmin;
+            border: 0.5vmin solid #FF0000;
+            border-radius: 1.5vmin;
+            font-family: inherit;
+            resize: vertical;
+        }
+        
+        .tutor-response {
+            background: white;
+            padding: 3vmin;
+            border-radius: 2vmin;
+            border: 0.5vmin solid #FFD700;
+            margin: 2vmin 0;
+            font-size: clamp(1rem, 2.5vmin, 1.3rem);
+            line-height: 1.6;
+            max-height: 50vmin;
+            overflow-y: auto;
+        }
+        
+        .tutor-loading {
+            text-align: center;
+            padding: 3vmin;
+            font-size: clamp(1.2rem, 3vmin, 1.5rem);
+            color: #FF0000;
+        }
+        
+        .btn-tutor {
+            background: #FFD700;
+            color: #000;
+            border: 0.5vmin solid #FF0000;
+        }
+        
+        .btn-close {
+            background: #666;
+            color: white;
+        }
+        
+        .tutor-examples {
+            font-size: clamp(0.9rem, 2vmin, 1.1rem);
+            color: #666;
+            margin-top: 1vmin;
+            font-style: italic;
+        }
+        
+        .api-warning {
+            background: #fff3cd;
+            border: 0.3vmin solid #ffc107;
+            padding: 2vmin;
+            border-radius: 1.5vmin;
+            margin-bottom: 2vmin;
+            font-size: clamp(0.9rem, 2vmin, 1.1rem);
+            color: #856404;
+        }
     </style>
 </head>
 <body>
+    <!-- AI Tutor Modal -->
+    <div class="tutor-modal" id="tutorModal">
+        <div class="tutor-content">
+            <div class="tutor-header">
+                <h2>🎀 Ask AI Tutor Mickey! 🎀</h2>
+                <p style="font-size: clamp(0.9rem, 2vmin, 1.1rem); color: #666;">
+                    Ask me for custom math practice problems!
+                </p>
+            </div>
+            
+            <div id="apiWarning" class="api-warning hidden">
+                ⚠️ <strong>API Key Not Configured</strong><br>
+                To use AI Tutor Mickey, you need to set up your NVIDIA API key in config.js<br>
+                Get a free key at: <a href="https://build.nvidia.com/" target="_blank">build.nvidia.com</a>
+            </div>
+            
+            <div class="tutor-input-group">
+                <label class="tutor-label" for="tutorQuestion">
+                    What kind of math problems do you want to practice?
+                </label>
+                <textarea 
+                    id="tutorQuestion" 
+                    class="tutor-textarea" 
+                    placeholder="Example: Give me 3 slope problems with positive slopes between 2 and 5..."
+                ></textarea>
+                <div class="tutor-examples">
+                    💡 Try: "Give me equations with fractions" or "Create area problems with rectangles"
+                </div>
+            </div>
+            
+            <div id="tutorResponse" class="tutor-response hidden"></div>
+            <div id="tutorLoading" class="tutor-loading hidden">
+                Mickey is thinking... 🤔
+            </div>
+            
+            <div class="button-group">
+                <button class="btn btn-tutor" onclick="askTutor()">
+                    Ask Mickey! 🎓
+                </button>
+                <button class="btn btn-close" onclick="closeTutorModal()">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+    
     <div class="container">
         <h1>🎀 Mickey's Math Quest 🎀</h1>
         <p class="subtitle">Grade 6 Math Adventure!</p>
@@ -319,6 +476,9 @@
             <button class="topic-btn" onclick="changeTopic('order')">Order of Operations</button>
             <button class="topic-btn" onclick="changeTopic('fractions')">Fractions</button>
             <button class="topic-btn" onclick="changeTopic('area')">Area & Perimeter</button>
+            <button class="topic-btn" style="background: #FFD700; border-color: #FF0000;" onclick="openTutorModal()">
+                🎓 Ask AI Tutor Mickey
+            </button>
         </div>
         
         <div class="score-board">
@@ -776,6 +936,120 @@
         }, false);
         
         generateQuestion();
+        
+        // AI Tutor Functions
+        function openTutorModal() {
+            const modal = document.getElementById('tutorModal');
+            const warning = document.getElementById('apiWarning');
+            
+            // Check if API is configured
+            if (typeof AI_CONFIG === 'undefined' || !isAITutorAvailable()) {
+                warning.classList.remove('hidden');
+            } else {
+                warning.classList.add('hidden');
+            }
+            
+            modal.classList.add('show');
+            document.getElementById('tutorQuestion').focus();
+        }
+        
+        function closeTutorModal() {
+            document.getElementById('tutorModal').classList.remove('show');
+            document.getElementById('tutorResponse').classList.add('hidden');
+            document.getElementById('tutorLoading').classList.add('hidden');
+        }
+        
+        async function askTutor() {
+            const question = document.getElementById('tutorQuestion').value.trim();
+            
+            if (!question) {
+                alert('Please type what kind of math problems you want!');
+                return;
+            }
+            
+            // Check if API is configured
+            if (typeof AI_CONFIG === 'undefined' || !isAITutorAvailable()) {
+                alert('⚠️ API Key not configured! Please set up config.js with your NVIDIA API key.');
+                return;
+            }
+            
+            const responseEl = document.getElementById('tutorResponse');
+            const loadingEl = document.getElementById('tutorLoading');
+            
+            // Show loading
+            responseEl.classList.add('hidden');
+            loadingEl.classList.remove('hidden');
+            
+            try {
+                const systemPrompt = `You are Mickey Mouse, a friendly AI math tutor for Grade 6 students. 
+Your job is to create math practice problems based on what the student asks for.
+
+Topics include:
+- Solving equations (one-step, two-step, with distributive property)
+- Slope and linear equations (calculating slope, y=mx+b, finding points)
+- Order of operations (BEDMAS/PEMDAS)
+- Fractions (adding, subtracting, multiplying, dividing)
+- Area and perimeter (rectangles, squares, triangles)
+
+When a student asks for problems:
+1. Create 2-3 practice problems based on their request
+2. Show the problems clearly with step-by-step solutions
+3. Use encouraging Mickey Mouse language ("Gosh!", "Oh boy!", "Hot dog!")
+4. Explain the concept briefly
+5. Format nicely with clear numbering
+
+Be enthusiastic, encouraging, and educational!`;
+
+                const response = await fetch(AI_CONFIG.INVOKE_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${AI_CONFIG.NVIDIA_API_KEY}`,
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        model: AI_CONFIG.MODEL,
+                        messages: [
+                            { role: 'system', content: systemPrompt },
+                            { role: 'user', content: question }
+                        ],
+                        max_tokens: 2048,
+                        temperature: 0.7,
+                        top_p: 0.95,
+                        stream: false
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`API Error: ${response.status} ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                const answer = data.choices[0].message.content;
+                
+                // Display response
+                loadingEl.classList.add('hidden');
+                responseEl.innerHTML = answer.replace(/\n/g, '<br>');
+                responseEl.classList.remove('hidden');
+                
+            } catch (error) {
+                console.error('AI Tutor Error:', error);
+                loadingEl.classList.add('hidden');
+                responseEl.innerHTML = `<span style="color: #FF0000;">
+                    Oops! Mickey had trouble: ${error.message}<br><br>
+                    Make sure your API key is set correctly in config.js!
+                </span>`;
+                responseEl.classList.remove('hidden');
+            }
+        }
+        
+        // Keyboard shortcut for tutor modal
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeTutorModal();
+            }
+        });
     </script>
+    <script src="config.js"></script>
 </body>
 </html>

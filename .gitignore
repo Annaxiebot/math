@@ -1,0 +1,4 @@
+# API Configuration with secrets
+config.js
+
+# Note: config.js.example is tracked so users know what to configure

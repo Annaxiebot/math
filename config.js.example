@@ -1,0 +1,23 @@
+// AI Tutor Configuration Example
+// Copy this file to config.js and add your API key
+
+const AI_CONFIG = {
+    // Get your free NVIDIA API key from: https://build.nvidia.com/
+    // ⚠️ WARNING: Never commit config.js with a real API key to a public repo!
+    NVIDIA_API_KEY: '', // Add your key here
+    
+    // Model options:
+    // - 'nvidia/llama-3.1-nemotron-70b-instruct' (recommended - fast, good quality)
+    // - 'qwen/qwen3.5-397b-a17b' (slower, smarter)
+    // - 'meta/llama-3.1-405b-instruct' (very capable)
+    MODEL: 'nvidia/llama-3.1-nemotron-70b-instruct',
+    
+    // NVIDIA NIM API endpoint
+    // For production, replace with your backend proxy URL for security
+    INVOKE_URL: 'https://integrate.api.nvidia.com/v1/chat/completions'
+};
+
+// Check if API key is configured
+function isAITutorAvailable() {
+    return AI_CONFIG.NVIDIA_API_KEY && AI_CONFIG.NVIDIA_API_KEY.length > 0;
+}
