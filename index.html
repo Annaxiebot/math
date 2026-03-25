@@ -315,6 +315,7 @@
         
         <div class="topic-selector">
             <button class="topic-btn active" onclick="changeTopic('equations')">Equations</button>
+            <button class="topic-btn" onclick="changeTopic('slope')">Slope & Lines</button>
             <button class="topic-btn" onclick="changeTopic('order')">Order of Operations</button>
             <button class="topic-btn" onclick="changeTopic('fractions')">Fractions</button>
             <button class="topic-btn" onclick="changeTopic('area')">Area & Perimeter</button>
@@ -376,6 +377,10 @@
             equations: {
                 name: "Solving Equations",
                 generate: generateEquation
+            },
+            slope: {
+                name: "Slope & Linear Equations",
+                generate: generateSlopeProblem
             },
             order: {
                 name: "Order of Operations (BEDMAS/PEMDAS)",
@@ -532,6 +537,99 @@
                 question: `Add: ${problem}. What is the numerator?`,
                 answer: answer
             };
+        }
+        
+        function generateSlopeProblem() {
+            const types = ['calculate', 'equation', 'findY'];
+            const type = types[Math.floor(Math.random() * types.length)];
+            
+            if (type === 'calculate') {
+                const x1 = Math.floor(Math.random() * 8) + 1;
+                const y1 = Math.floor(Math.random() * 8) + 1;
+                const x2 = x1 + Math.floor(Math.random() * 5) + 1;
+                const y2 = y1 + Math.floor(Math.random() * 10) - 3;
+                
+                const rise = y2 - y1;
+                const run = x2 - x1;
+                const slope = rise / run;
+                const answer = Math.round(slope * 10) / 10;
+                
+                return {
+                    title: "📈 Finding Slope",
+                    concept: "<strong>Slope</strong> measures how steep a line is. It's the ratio of rise (vertical change) to run (horizontal change). Slope = rise/run = Δy/Δx",
+                    formula: "Slope (m) = (y₂ - y₁) / (x₂ - x₁) = rise/run",
+                    steps: `
+                        <div class="step"><strong>Given:</strong> Point 1: (${x1}, ${y1}), Point 2: (${x2}, ${y2})</div>
+                        <div class="step"><strong>Step 1:</strong> Find the rise: y₂ - y₁ = ${y2} - ${y1} = ${rise}</div>
+                        <div class="step"><strong>Step 2:</strong> Find the run: x₂ - x₁ = ${x2} - ${x1} = ${run}</div>
+                        <div class="step"><strong>Step 3:</strong> Calculate slope: m = rise/run = ${rise}/${run}</div>
+                        <div class="step"><strong>Step 4:</strong> Simplify: m = ${answer}</div>
+                        ${slope > 0 ? '<div class="step" style="color: #008000;">Positive slope → line goes UP! ⬈</div>' : ''}
+                        ${slope < 0 ? '<div class="step" style="color: #FF0000;">Negative slope → line goes DOWN! ⬊</div>' : ''}
+                        ${slope === 0 ? '<div class="step" style="color: #0000FF;">Zero slope → HORIZONTAL line! ⬌</div>' : ''}
+                    `,
+                    question: `Find the slope between (${x1}, ${y1}) and (${x2}, ${y2}). Round to 1 decimal.`,
+                    answer: answer
+                };
+            } else if (type === 'equation') {
+                const m = Math.floor(Math.random() * 6) + 1;
+                const b = Math.floor(Math.random() * 10) - 3;
+                const questionType = Math.random() > 0.5 ? 'm' : 'b';
+                
+                if (questionType === 'm') {
+                    return {
+                        title: "📐 Slope-Intercept Form: y = mx + b",
+                        concept: "In <strong>y = mx + b</strong>, 'm' is the slope and 'b' is the y-intercept (where the line crosses the y-axis)",
+                        formula: "y = mx + b, where m = slope, b = y-intercept",
+                        steps: `
+                            <div class="step"><strong>Given equation:</strong> y = ${m}x ${b >= 0 ? '+' : ''} ${b}</div>
+                            <div class="step"><strong>Step 1:</strong> Compare to y = mx + b</div>
+                            <div class="step"><strong>Step 2:</strong> The number before x is the slope (m)</div>
+                            <div class="step"><strong>Step 3:</strong> m = ${m}</div>
+                            ${m > 1 ? '<div class="step" style="color: #008000;">This line is fairly steep going up! ⬈</div>' : ''}
+                            ${m === 1 ? '<div class="step" style="color: #0000FF;">This is a 45° line going up! ⬈</div>' : ''}
+                        `,
+                        question: `What is the slope (m) in: y = ${m}x ${b >= 0 ? '+' : ''} ${b}?`,
+                        answer: m
+                    };
+                } else {
+                    return {
+                        title: "📐 Y-Intercept in y = mx + b",
+                        concept: "The <strong>y-intercept (b)</strong> is where the line crosses the y-axis. It's the value of y when x = 0.",
+                        formula: "y = mx + b, where m = slope, b = y-intercept",
+                        steps: `
+                            <div class="step"><strong>Given equation:</strong> y = ${m}x ${b >= 0 ? '+' : ''} ${b}</div>
+                            <div class="step"><strong>Step 1:</strong> Compare to y = mx + b</div>
+                            <div class="step"><strong>Step 2:</strong> The constant (number alone) is the y-intercept (b)</div>
+                            <div class="step"><strong>Step 3:</strong> b = ${b}</div>
+                            <div class="step" style="color: #667eea;">The line crosses the y-axis at point (0, ${b})</div>
+                        `,
+                        question: `What is the y-intercept (b) in: y = ${m}x ${b >= 0 ? '+' : ''} ${b}?`,
+                        answer: b
+                    };
+                }
+            } else {
+                const m = Math.floor(Math.random() * 4) + 1;
+                const b = Math.floor(Math.random() * 8) + 1;
+                const x = Math.floor(Math.random() * 6) + 1;
+                const answer = m * x + b;
+                
+                return {
+                    title: "🎯 Using Linear Equations",
+                    concept: "To find y when you know x, <strong>substitute</strong> x into the equation and solve!",
+                    formula: "y = mx + b (substitute the value of x and calculate)",
+                    steps: `
+                        <div class="step"><strong>Given:</strong> y = ${m}x + ${b}, find y when x = ${x}</div>
+                        <div class="step"><strong>Step 1:</strong> Substitute x = ${x} into the equation</div>
+                        <div class="step"><strong>Step 2:</strong> y = ${m}(${x}) + ${b}</div>
+                        <div class="step"><strong>Step 3:</strong> Multiply: ${m} × ${x} = ${m * x}</div>
+                        <div class="step"><strong>Step 4:</strong> Add: y = ${m * x} + ${b} = ${answer}</div>
+                        <div class="step" style="color: #667eea;">So the point (${x}, ${answer}) is on this line!</div>
+                    `,
+                    question: `If y = ${m}x + ${b}, find y when x = ${x}`,
+                    answer: answer
+                };
+            }
         }
         
         function generateAreaProblem() {
