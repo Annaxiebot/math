@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Math Quest - Practice Addition & Subtraction!</title>
+    <title>Math Quest - Learn & Practice!</title>
     <style>
         * {
             margin: 0;
@@ -15,9 +15,6 @@
             font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             padding: 20px;
         }
         
@@ -26,21 +23,22 @@
             border-radius: 30px;
             padding: 40px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            max-width: 500px;
-            width: 100%;
-            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
         }
         
         h1 {
             color: #667eea;
             font-size: 2.5em;
             margin-bottom: 10px;
+            text-align: center;
         }
         
         .subtitle {
             color: #666;
             margin-bottom: 30px;
             font-size: 1.1em;
+            text-align: center;
         }
         
         .score-board {
@@ -68,18 +66,83 @@
             color: #667eea;
         }
         
-        .question-box {
+        .explanation-box {
             background: #fff9e6;
-            padding: 40px;
+            padding: 30px;
             border-radius: 20px;
-            margin-bottom: 30px;
-            font-size: 3em;
+            margin-bottom: 20px;
+            border: 3px solid #ffd700;
+        }
+        
+        .concept-title {
+            font-size: 1.5em;
+            color: #764ba2;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        .concept-text {
+            font-size: 1.1em;
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .visual-demo {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .blocks {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 5px;
+            margin: 15px 0;
+        }
+        
+        .block {
+            width: 30px;
+            height: 30px;
+            background: #667eea;
+            border-radius: 5px;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+        
+        .block.removing {
+            background: #ffcccb;
+            opacity: 0.3;
+        }
+        
+        .number-line {
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .number-line svg {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .question-box {
+            background: #e8f5e9;
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            font-size: 2.5em;
             font-weight: bold;
             color: #333;
-            min-height: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            text-align: center;
+            border: 3px solid #4caf50;
+        }
+        
+        .answer-section {
+            text-align: center;
+            margin-bottom: 20px;
         }
         
         .answer-input {
@@ -89,7 +152,7 @@
             border-radius: 15px;
             text-align: center;
             width: 150px;
-            margin-bottom: 20px;
+            margin: 0 10px;
         }
         
         .answer-input:focus {
@@ -123,6 +186,11 @@
             color: white;
         }
         
+        .btn-next {
+            background: #4caf50;
+            color: white;
+        }
+        
         .btn-skip {
             background: #e0e0e0;
             color: #666;
@@ -131,6 +199,7 @@
         .feedback {
             font-size: 1.5em;
             font-weight: bold;
+            text-align: center;
             min-height: 40px;
             margin: 20px 0;
         }
@@ -146,6 +215,11 @@
         .stars {
             font-size: 2em;
             margin-top: 10px;
+            text-align: center;
+        }
+        
+        .hidden {
+            display: none;
         }
         
         @keyframes bounce {
@@ -161,7 +235,7 @@
 <body>
     <div class="container">
         <h1>🌟 Math Quest 🌟</h1>
-        <p class="subtitle">Practice makes perfect!</p>
+        <p class="subtitle">Learn the concepts, practice the skills!</p>
         
         <div class="score-board">
             <div class="score-item">
@@ -178,13 +252,21 @@
             </div>
         </div>
         
-        <div class="question-box" id="question">Ready?</div>
+        <div id="explanation" class="explanation-box">
+            <div class="concept-title" id="conceptTitle"></div>
+            <div class="concept-text" id="conceptText"></div>
+            <div class="visual-demo" id="visualDemo"></div>
+        </div>
         
-        <input type="number" class="answer-input" id="answer" placeholder="?" autocomplete="off">
+        <div class="question-box" id="question"></div>
         
-        <div>
-            <button class="btn btn-submit" onclick="checkAnswer()">Check ✓</button>
-            <button class="btn btn-skip" onclick="nextQuestion()">Skip →</button>
+        <div class="answer-section">
+            <input type="number" class="answer-input" id="answer" placeholder="?" autocomplete="off">
+        </div>
+        
+        <div style="text-align: center;">
+            <button class="btn btn-submit" onclick="checkAnswer()">Check Answer ✓</button>
+            <button class="btn btn-next hidden" id="nextBtn" onclick="nextQuestion()">Next Problem →</button>
         </div>
         
         <div class="feedback" id="feedback"></div>
@@ -196,45 +278,104 @@
         let total = 0;
         let streak = 0;
         let currentAnswer = 0;
+        let currentOperation = '+';
+        let num1 = 0;
+        let num2 = 0;
+        
+        const concepts = {
+            addition: {
+                title: "✨ Addition: Putting Things Together",
+                text: "When we <strong>add</strong>, we combine two groups to make a bigger group. The symbol + means 'plus' or 'and'. Example: If you have 3 apples and get 2 more, you now have 5 apples total!"
+            },
+            subtraction: {
+                title: "✂️ Subtraction: Taking Things Away",
+                text: "When we <strong>subtract</strong>, we take away from a group to make it smaller. The symbol − means 'minus' or 'take away'. Example: If you have 8 cookies and eat 3, you have 5 cookies left!"
+            }
+        };
         
         const encouragement = {
             correct: [
-                "Amazing! ⭐",
-                "Fantastic! 🎉",
-                "Perfect! 🌟",
-                "You're a star! ✨",
-                "Brilliant! 🎊",
-                "Wonderful! 🏆"
+                "Amazing! You got it! ⭐",
+                "Fantastic work! 🎉",
+                "Perfect! You understand! 🌟",
+                "You're a math star! ✨",
+                "Brilliant thinking! 🎊"
             ],
             incorrect: [
-                "Keep trying! 💪",
-                "Almost there! 🎯",
-                "You've got this! 🌈",
-                "Try again! 🚀"
+                "Not quite, but great try! 💪",
+                "Let's think through it together! 🎯",
+                "Good effort! Try the next one! 🌈"
             ]
         };
         
+        function createBlocks(count, removing = 0) {
+            let html = '<div class="blocks">';
+            for (let i = 0; i < count; i++) {
+                const isRemoving = i >= (count - removing);
+                html += `<div class="block ${isRemoving ? 'removing' : ''}"></div>`;
+            }
+            html += '</div>';
+            return html;
+        }
+        
         function generateQuestion() {
             const operations = ['+', '-'];
-            const operation = operations[Math.floor(Math.random() * operations.length)];
+            currentOperation = operations[Math.floor(Math.random() * operations.length)];
             
-            let num1, num2;
+            // Show explanation
+            const explanationBox = document.getElementById('explanation');
+            const conceptTitle = document.getElementById('conceptTitle');
+            const conceptText = document.getElementById('conceptText');
+            const visualDemo = document.getElementById('visualDemo');
             
-            if (operation === '+') {
-                num1 = Math.floor(Math.random() * 20) + 1;
-                num2 = Math.floor(Math.random() * 20) + 1;
+            if (currentOperation === '+') {
+                num1 = Math.floor(Math.random() * 10) + 1;
+                num2 = Math.floor(Math.random() * 10) + 1;
                 currentAnswer = num1 + num2;
+                
+                conceptTitle.innerHTML = concepts.addition.title;
+                conceptText.innerHTML = concepts.addition.text;
+                
+                // Visual demonstration
+                visualDemo.innerHTML = `
+                    <p style="font-size: 1.2em; margin-bottom: 10px;">
+                        <strong>Visual Example: ${num1} + ${num2}</strong>
+                    </p>
+                    <p>Start with ${num1} blocks:</p>
+                    ${createBlocks(num1)}
+                    <p style="margin: 15px 0; font-size: 1.5em;">➕ Add ${num2} more blocks:</p>
+                    ${createBlocks(num2)}
+                    <p style="margin: 15px 0; font-size: 1.5em;">= ${num1} + ${num2} blocks total</p>
+                    <p style="color: #667eea; font-weight: bold;">Count all the blocks to find the answer!</p>
+                `;
+                
             } else {
-                num1 = Math.floor(Math.random() * 20) + 10;
-                num2 = Math.floor(Math.random() * num1) + 1;
+                num1 = Math.floor(Math.random() * 15) + 6;
+                num2 = Math.floor(Math.random() * (num1 - 1)) + 1;
                 currentAnswer = num1 - num2;
+                
+                conceptTitle.innerHTML = concepts.subtraction.title;
+                conceptText.innerHTML = concepts.subtraction.text;
+                
+                // Visual demonstration
+                visualDemo.innerHTML = `
+                    <p style="font-size: 1.2em; margin-bottom: 10px;">
+                        <strong>Visual Example: ${num1} − ${num2}</strong>
+                    </p>
+                    <p>Start with ${num1} blocks:</p>
+                    ${createBlocks(num1, num2)}
+                    <p style="margin: 15px 0; font-size: 1.5em;">➖ Take away ${num2} blocks (shown faded):</p>
+                    <p style="margin: 15px 0; font-size: 1.5em;">= ${num1} − ${num2} blocks remaining</p>
+                    <p style="color: #667eea; font-weight: bold;">Count only the solid blocks to find the answer!</p>
+                `;
             }
             
-            document.getElementById('question').textContent = `${num1} ${operation} ${num2} = ?`;
+            document.getElementById('question').textContent = `${num1} ${currentOperation} ${num2} = ?`;
             document.getElementById('answer').value = '';
             document.getElementById('feedback').textContent = '';
             document.getElementById('stars').textContent = '';
             document.getElementById('answer').focus();
+            document.getElementById('nextBtn').classList.add('hidden');
         }
         
         function checkAnswer() {
@@ -248,12 +389,18 @@
             
             const feedbackEl = document.getElementById('feedback');
             const starsEl = document.getElementById('stars');
+            const nextBtn = document.getElementById('nextBtn');
             
             if (userAnswer === currentAnswer) {
                 correct++;
                 streak++;
                 
-                feedbackEl.textContent = encouragement.correct[Math.floor(Math.random() * encouragement.correct.length)];
+                feedbackEl.innerHTML = `
+                    ${encouragement.correct[Math.floor(Math.random() * encouragement.correct.length)]}<br>
+                    <span style="font-size: 0.8em;">
+                        Yes! ${num1} ${currentOperation} ${num2} = ${currentAnswer}
+                    </span>
+                `;
                 feedbackEl.className = 'feedback correct animate';
                 
                 let starCount = Math.min(streak, 5);
@@ -261,13 +408,27 @@
                 
             } else {
                 streak = 0;
-                feedbackEl.textContent = `${encouragement.incorrect[Math.floor(Math.random() * encouragement.incorrect.length)]} The answer was ${currentAnswer}`;
+                
+                let explanation = '';
+                if (currentOperation === '+') {
+                    explanation = `When we add ${num1} and ${num2}, we're combining ${num1} things with ${num2} more things.`;
+                } else {
+                    explanation = `When we subtract ${num2} from ${num1}, we're taking ${num2} things away from ${num1} things.`;
+                }
+                
+                feedbackEl.innerHTML = `
+                    ${encouragement.incorrect[Math.floor(Math.random() * encouragement.incorrect.length)]}<br>
+                    <span style="font-size: 0.8em;">
+                        ${explanation}<br>
+                        The answer is ${currentAnswer}. Look at the blocks above!
+                    </span>
+                `;
                 feedbackEl.className = 'feedback incorrect';
                 starsEl.textContent = '';
             }
             
             updateScores();
-            setTimeout(nextQuestion, 2000);
+            nextBtn.classList.remove('hidden');
         }
         
         function nextQuestion() {
