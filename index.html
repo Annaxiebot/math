@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Quest - Practice Addition & Subtraction!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        
+        .score-board {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f0f4ff;
+            border-radius: 15px;
+        }
+        
+        .score-item {
+            text-align: center;
+        }
+        
+        .score-label {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+        
+        .score-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .question-box {
+            background: #fff9e6;
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            font-size: 3em;
+            font-weight: bold;
+            color: #333;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .answer-input {
+            font-size: 2em;
+            padding: 15px;
+            border: 3px solid #667eea;
+            border-radius: 15px;
+            text-align: center;
+            width: 150px;
+            margin-bottom: 20px;
+        }
+        
+        .answer-input:focus {
+            outline: none;
+            border-color: #764ba2;
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn {
+            font-size: 1.3em;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin: 5px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn-submit {
+            background: #667eea;
+            color: white;
+        }
+        
+        .btn-skip {
+            background: #e0e0e0;
+            color: #666;
+        }
+        
+        .feedback {
+            font-size: 1.5em;
+            font-weight: bold;
+            min-height: 40px;
+            margin: 20px 0;
+        }
+        
+        .correct {
+            color: #4caf50;
+        }
+        
+        .incorrect {
+            color: #f44336;
+        }
+        
+        .stars {
+            font-size: 2em;
+            margin-top: 10px;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        
+        .animate {
+            animation: bounce 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌟 Math Quest 🌟</h1>
+        <p class="subtitle">Practice makes perfect!</p>
+        
+        <div class="score-board">
+            <div class="score-item">
+                <div class="score-label">Correct</div>
+                <div class="score-value" id="correct">0</div>
+            </div>
+            <div class="score-item">
+                <div class="score-label">Streak</div>
+                <div class="score-value" id="streak">0</div>
+            </div>
+            <div class="score-item">
+                <div class="score-label">Total</div>
+                <div class="score-value" id="total">0</div>
+            </div>
+        </div>
+        
+        <div class="question-box" id="question">Ready?</div>
+        
+        <input type="number" class="answer-input" id="answer" placeholder="?" autocomplete="off">
+        
+        <div>
+            <button class="btn btn-submit" onclick="checkAnswer()">Check ✓</button>
+            <button class="btn btn-skip" onclick="nextQuestion()">Skip →</button>
+        </div>
+        
+        <div class="feedback" id="feedback"></div>
+        <div class="stars" id="stars"></div>
+    </div>
+
+    <script>
+        let correct = 0;
+        let total = 0;
+        let streak = 0;
+        let currentAnswer = 0;
+        
+        const encouragement = {
+            correct: [
+                "Amazing! ⭐",
+                "Fantastic! 🎉",
+                "Perfect! 🌟",
+                "You're a star! ✨",
+                "Brilliant! 🎊",
+                "Wonderful! 🏆"
+            ],
+            incorrect: [
+                "Keep trying! 💪",
+                "Almost there! 🎯",
+                "You've got this! 🌈",
+                "Try again! 🚀"
+            ]
+        };
+        
+        function generateQuestion() {
+            const operations = ['+', '-'];
+            const operation = operations[Math.floor(Math.random() * operations.length)];
+            
+            let num1, num2;
+            
+            if (operation === '+') {
+                num1 = Math.floor(Math.random() * 20) + 1;
+                num2 = Math.floor(Math.random() * 20) + 1;
+                currentAnswer = num1 + num2;
+            } else {
+                num1 = Math.floor(Math.random() * 20) + 10;
+                num2 = Math.floor(Math.random() * num1) + 1;
+                currentAnswer = num1 - num2;
+            }
+            
+            document.getElementById('question').textContent = `${num1} ${operation} ${num2} = ?`;
+            document.getElementById('answer').value = '';
+            document.getElementById('feedback').textContent = '';
+            document.getElementById('stars').textContent = '';
+            document.getElementById('answer').focus();
+        }
+        
+        function checkAnswer() {
+            const userAnswer = parseInt(document.getElementById('answer').value);
+            
+            if (isNaN(userAnswer)) {
+                return;
+            }
+            
+            total++;
+            
+            const feedbackEl = document.getElementById('feedback');
+            const starsEl = document.getElementById('stars');
+            
+            if (userAnswer === currentAnswer) {
+                correct++;
+                streak++;
+                
+                feedbackEl.textContent = encouragement.correct[Math.floor(Math.random() * encouragement.correct.length)];
+                feedbackEl.className = 'feedback correct animate';
+                
+                let starCount = Math.min(streak, 5);
+                starsEl.textContent = '⭐'.repeat(starCount);
+                
+            } else {
+                streak = 0;
+                feedbackEl.textContent = `${encouragement.incorrect[Math.floor(Math.random() * encouragement.incorrect.length)]} The answer was ${currentAnswer}`;
+                feedbackEl.className = 'feedback incorrect';
+                starsEl.textContent = '';
+            }
+            
+            updateScores();
+            setTimeout(nextQuestion, 2000);
+        }
+        
+        function nextQuestion() {
+            generateQuestion();
+        }
+        
+        function updateScores() {
+            document.getElementById('correct').textContent = correct;
+            document.getElementById('total').textContent = total;
+            document.getElementById('streak').textContent = streak;
+        }
+        
+        // Enter key to submit
+        document.getElementById('answer').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkAnswer();
+            }
+        });
+        
+        // Start the game
+        generateQuestion();
+    </script>
+</body>
+</html>
