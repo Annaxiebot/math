@@ -2,113 +2,123 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Math Quest - Learn & Practice!</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
         
         body {
-            font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: 20px;
+            padding: 2vmin;
+            overflow-x: hidden;
         }
         
         .container {
             background: white;
-            border-radius: 30px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            max-width: 700px;
+            border-radius: 3vmin;
+            padding: 4vmin;
+            box-shadow: 0 2vmin 6vmin rgba(0,0,0,0.3);
+            max-width: 1400px;
             margin: 0 auto;
         }
         
         h1 {
             color: #667eea;
-            font-size: 2.5em;
-            margin-bottom: 10px;
+            font-size: clamp(2rem, 6vmin, 4rem);
+            margin-bottom: 1vmin;
             text-align: center;
+            font-weight: bold;
         }
         
         .subtitle {
             color: #666;
-            margin-bottom: 30px;
-            font-size: 1.1em;
+            margin-bottom: 3vmin;
+            font-size: clamp(1rem, 2.5vmin, 1.5rem);
             text-align: center;
         }
         
         .score-board {
             display: flex;
             justify-content: space-around;
-            margin-bottom: 30px;
-            padding: 20px;
+            margin-bottom: 3vmin;
+            padding: 3vmin;
             background: #f0f4ff;
-            border-radius: 15px;
+            border-radius: 2vmin;
+            gap: 2vmin;
         }
         
         .score-item {
             text-align: center;
+            flex: 1;
         }
         
         .score-label {
             color: #666;
-            font-size: 0.9em;
-            margin-bottom: 5px;
+            font-size: clamp(0.9rem, 2vmin, 1.2rem);
+            margin-bottom: 1vmin;
         }
         
         .score-value {
-            font-size: 2em;
+            font-size: clamp(1.5rem, 5vmin, 3rem);
             font-weight: bold;
             color: #667eea;
         }
         
         .explanation-box {
             background: #fff9e6;
-            padding: 30px;
-            border-radius: 20px;
-            margin-bottom: 20px;
-            border: 3px solid #ffd700;
+            padding: 3vmin;
+            border-radius: 2vmin;
+            margin-bottom: 3vmin;
+            border: 0.5vmin solid #ffd700;
         }
         
         .concept-title {
-            font-size: 1.5em;
+            font-size: clamp(1.2rem, 3.5vmin, 2rem);
             color: #764ba2;
-            margin-bottom: 15px;
+            margin-bottom: 2vmin;
             font-weight: bold;
         }
         
         .concept-text {
-            font-size: 1.1em;
+            font-size: clamp(1rem, 2.5vmin, 1.4rem);
             color: #333;
-            line-height: 1.6;
-            margin-bottom: 15px;
+            line-height: 1.5;
+            margin-bottom: 2vmin;
         }
         
         .visual-demo {
             background: white;
-            padding: 20px;
-            border-radius: 15px;
-            margin: 20px 0;
+            padding: 3vmin;
+            border-radius: 2vmin;
+            margin: 2vmin 0;
             text-align: center;
+        }
+        
+        .visual-demo p {
+            font-size: clamp(1rem, 2.5vmin, 1.3rem);
+            margin: 1vmin 0;
         }
         
         .blocks {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 5px;
-            margin: 15px 0;
+            gap: 1vmin;
+            margin: 2vmin 0;
         }
         
         .block {
-            width: 30px;
-            height: 30px;
+            width: clamp(25px, 4vmin, 50px);
+            height: clamp(25px, 4vmin, 50px);
             background: #667eea;
-            border-radius: 5px;
+            border-radius: 1vmin;
             display: inline-block;
             transition: all 0.3s;
         }
@@ -118,63 +128,71 @@
             opacity: 0.3;
         }
         
-        .number-line {
-            margin: 20px 0;
-            text-align: center;
-        }
-        
-        .number-line svg {
-            max-width: 100%;
-            height: auto;
-        }
-        
         .question-box {
             background: #e8f5e9;
-            padding: 30px;
-            border-radius: 20px;
-            margin-bottom: 20px;
-            font-size: 2.5em;
+            padding: 4vmin;
+            border-radius: 2vmin;
+            margin-bottom: 3vmin;
+            font-size: clamp(2rem, 8vmin, 5rem);
             font-weight: bold;
             color: #333;
             text-align: center;
-            border: 3px solid #4caf50;
+            border: 0.5vmin solid #4caf50;
+            min-height: 15vmin;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .answer-section {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 3vmin;
         }
         
         .answer-input {
-            font-size: 2em;
-            padding: 15px;
-            border: 3px solid #667eea;
-            border-radius: 15px;
+            font-size: clamp(2rem, 6vmin, 4rem);
+            padding: 2vmin 3vmin;
+            border: 0.5vmin solid #667eea;
+            border-radius: 2vmin;
             text-align: center;
-            width: 150px;
-            margin: 0 10px;
+            width: min(200px, 40vw);
+            margin: 0 auto;
+            display: block;
+            font-weight: bold;
         }
         
         .answer-input:focus {
             outline: none;
             border-color: #764ba2;
-            box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 0 2vmin rgba(102, 126, 234, 0.5);
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 2vmin;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 3vmin 0;
         }
         
         .btn {
-            font-size: 1.3em;
-            padding: 15px 40px;
+            font-size: clamp(1.2rem, 3.5vmin, 2rem);
+            padding: 3vmin 6vmin;
             border: none;
-            border-radius: 15px;
+            border-radius: 2vmin;
             cursor: pointer;
             font-weight: bold;
             transition: transform 0.2s, box-shadow 0.2s;
-            margin: 5px;
+            min-width: 200px;
+            flex: 1;
+            max-width: 400px;
+            touch-action: manipulation;
         }
         
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        .btn:hover, .btn:focus {
+            transform: translateY(-0.5vmin);
+            box-shadow: 0 1vmin 3vmin rgba(0,0,0,0.2);
+            outline: 0.4vmin solid rgba(102, 126, 234, 0.5);
         }
         
         .btn:active {
@@ -191,17 +209,13 @@
             color: white;
         }
         
-        .btn-skip {
-            background: #e0e0e0;
-            color: #666;
-        }
-        
         .feedback {
-            font-size: 1.5em;
+            font-size: clamp(1.2rem, 4vmin, 2rem);
             font-weight: bold;
             text-align: center;
-            min-height: 40px;
-            margin: 20px 0;
+            min-height: 8vmin;
+            margin: 3vmin 0;
+            line-height: 1.4;
         }
         
         .correct {
@@ -213,8 +227,8 @@
         }
         
         .stars {
-            font-size: 2em;
-            margin-top: 10px;
+            font-size: clamp(2rem, 6vmin, 4rem);
+            margin-top: 2vmin;
             text-align: center;
         }
         
@@ -222,13 +236,50 @@
             display: none;
         }
         
+        /* TV-specific optimizations */
+        @media (min-width: 1200px) {
+            body {
+                padding: 3vmin;
+            }
+            
+            .container {
+                padding: 5vmin;
+            }
+            
+            .btn:focus {
+                outline: 0.6vmin solid #ffd700;
+            }
+        }
+        
+        /* Phone-specific optimizations */
+        @media (max-width: 600px) {
+            .score-board {
+                padding: 2vmin;
+            }
+            
+            .explanation-box {
+                padding: 3vmin;
+            }
+            
+            .btn {
+                min-width: 150px;
+                padding: 3vmin 4vmin;
+            }
+        }
+        
         @keyframes bounce {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
+            50% { transform: scale(1.1); }
         }
         
         .animate {
             animation: bounce 0.5s;
+        }
+        
+        /* Focus visible for keyboard/remote navigation */
+        *:focus-visible {
+            outline: 0.5vmin solid #ffd700;
+            outline-offset: 0.5vmin;
         }
     </style>
 </head>
@@ -261,12 +312,22 @@
         <div class="question-box" id="question"></div>
         
         <div class="answer-section">
-            <input type="number" class="answer-input" id="answer" placeholder="?" autocomplete="off">
+            <input type="number" 
+                   class="answer-input" 
+                   id="answer" 
+                   placeholder="?" 
+                   autocomplete="off"
+                   inputmode="numeric"
+                   pattern="[0-9]*">
         </div>
         
-        <div style="text-align: center;">
-            <button class="btn btn-submit" onclick="checkAnswer()">Check Answer ✓</button>
-            <button class="btn btn-next hidden" id="nextBtn" onclick="nextQuestion()">Next Problem →</button>
+        <div class="button-group">
+            <button class="btn btn-submit" id="submitBtn" onclick="checkAnswer()">
+                Check Answer ✓
+            </button>
+            <button class="btn btn-next hidden" id="nextBtn" onclick="nextQuestion()">
+                Next Problem →
+            </button>
         </div>
         
         <div class="feedback" id="feedback"></div>
@@ -322,7 +383,6 @@
             const operations = ['+', '-'];
             currentOperation = operations[Math.floor(Math.random() * operations.length)];
             
-            // Show explanation
             const explanationBox = document.getElementById('explanation');
             const conceptTitle = document.getElementById('conceptTitle');
             const conceptText = document.getElementById('conceptText');
@@ -336,16 +396,15 @@
                 conceptTitle.innerHTML = concepts.addition.title;
                 conceptText.innerHTML = concepts.addition.text;
                 
-                // Visual demonstration
                 visualDemo.innerHTML = `
-                    <p style="font-size: 1.2em; margin-bottom: 10px;">
-                        <strong>Visual Example: ${num1} + ${num2}</strong>
+                    <p style="font-weight: bold; margin-bottom: 2vmin;">
+                        Visual Example: ${num1} + ${num2}
                     </p>
                     <p>Start with ${num1} blocks:</p>
                     ${createBlocks(num1)}
-                    <p style="margin: 15px 0; font-size: 1.5em;">➕ Add ${num2} more blocks:</p>
+                    <p style="margin: 2vmin 0; font-weight: bold;">➕ Add ${num2} more blocks:</p>
                     ${createBlocks(num2)}
-                    <p style="margin: 15px 0; font-size: 1.5em;">= ${num1} + ${num2} blocks total</p>
+                    <p style="margin: 2vmin 0; font-weight: bold;">= ${num1} + ${num2} blocks total</p>
                     <p style="color: #667eea; font-weight: bold;">Count all the blocks to find the answer!</p>
                 `;
                 
@@ -357,15 +416,14 @@
                 conceptTitle.innerHTML = concepts.subtraction.title;
                 conceptText.innerHTML = concepts.subtraction.text;
                 
-                // Visual demonstration
                 visualDemo.innerHTML = `
-                    <p style="font-size: 1.2em; margin-bottom: 10px;">
-                        <strong>Visual Example: ${num1} − ${num2}</strong>
+                    <p style="font-weight: bold; margin-bottom: 2vmin;">
+                        Visual Example: ${num1} − ${num2}
                     </p>
                     <p>Start with ${num1} blocks:</p>
                     ${createBlocks(num1, num2)}
-                    <p style="margin: 15px 0; font-size: 1.5em;">➖ Take away ${num2} blocks (shown faded):</p>
-                    <p style="margin: 15px 0; font-size: 1.5em;">= ${num1} − ${num2} blocks remaining</p>
+                    <p style="margin: 2vmin 0; font-weight: bold;">➖ Take away ${num2} blocks (shown faded):</p>
+                    <p style="margin: 2vmin 0; font-weight: bold;">= ${num1} − ${num2} blocks remaining</p>
                     <p style="color: #667eea; font-weight: bold;">Count only the solid blocks to find the answer!</p>
                 `;
             }
@@ -375,6 +433,7 @@
             document.getElementById('feedback').textContent = '';
             document.getElementById('stars').textContent = '';
             document.getElementById('answer').focus();
+            document.getElementById('submitBtn').classList.remove('hidden');
             document.getElementById('nextBtn').classList.add('hidden');
         }
         
@@ -389,6 +448,7 @@
             
             const feedbackEl = document.getElementById('feedback');
             const starsEl = document.getElementById('stars');
+            const submitBtn = document.getElementById('submitBtn');
             const nextBtn = document.getElementById('nextBtn');
             
             if (userAnswer === currentAnswer) {
@@ -397,7 +457,7 @@
                 
                 feedbackEl.innerHTML = `
                     ${encouragement.correct[Math.floor(Math.random() * encouragement.correct.length)]}<br>
-                    <span style="font-size: 0.8em;">
+                    <span style="font-size: 0.7em;">
                         Yes! ${num1} ${currentOperation} ${num2} = ${currentAnswer}
                     </span>
                 `;
@@ -418,7 +478,7 @@
                 
                 feedbackEl.innerHTML = `
                     ${encouragement.incorrect[Math.floor(Math.random() * encouragement.incorrect.length)]}<br>
-                    <span style="font-size: 0.8em;">
+                    <span style="font-size: 0.7em;">
                         ${explanation}<br>
                         The answer is ${currentAnswer}. Look at the blocks above!
                     </span>
@@ -428,7 +488,9 @@
             }
             
             updateScores();
+            submitBtn.classList.add('hidden');
             nextBtn.classList.remove('hidden');
+            nextBtn.focus();
         }
         
         function nextQuestion() {
@@ -444,9 +506,26 @@
         // Enter key to submit
         document.getElementById('answer').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
-                checkAnswer();
+                const submitBtn = document.getElementById('submitBtn');
+                const nextBtn = document.getElementById('nextBtn');
+                
+                if (!submitBtn.classList.contains('hidden')) {
+                    checkAnswer();
+                } else if (!nextBtn.classList.contains('hidden')) {
+                    nextQuestion();
+                }
             }
         });
+        
+        // Prevent zoom on double tap (iOS)
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function (event) {
+            const now = Date.now();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
         
         // Start the game
         generateQuestion();
