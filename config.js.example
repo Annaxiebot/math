@@ -7,10 +7,10 @@ const AI_CONFIG = {
     NVIDIA_API_KEY: '', // Add your key here
     
     // Model options:
-    // - 'nvidia/llama-3.1-nemotron-70b-instruct' (recommended - fast, good quality)
-    // - 'qwen/qwen3.5-397b-a17b' (slower, smarter)
-    // - 'meta/llama-3.1-405b-instruct' (very capable)
-    MODEL: 'nvidia/llama-3.1-nemotron-70b-instruct',
+    // - 'meta/llama-3.1-8b-instruct' (RECOMMENDED - fast, works great!)
+    // - 'meta/llama-3.1-70b-instruct' (slower but smarter)
+    // - 'qwen/qwen3.5-397b-a17b' (very slow, very smart)
+    MODEL: 'meta/llama-3.1-8b-instruct',
     
     // NVIDIA NIM API endpoint
     // For production, replace with your backend proxy URL for security
