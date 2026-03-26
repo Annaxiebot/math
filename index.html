@@ -1327,23 +1327,27 @@ Format your response like this:
                 
                 let shouldRemove = false;
                 
-                // Remove white pixels
-                if (r > 250 && g > 250 && b > 250 && a > 250) {
+                // Remove white or very light pixels (be aggressive with whites/grays)
+                if (r > 240 && g > 240 && b > 240) {
                     shouldRemove = true;
                 }
                 
-                // Remove gray grid lines (#999999 = 153, 153, 153)
-                if (Math.abs(r - 153) < 10 && Math.abs(g - 153) < 10 && Math.abs(b - 153) < 10) {
+                // Remove medium gray pixels (grid lines are gray, much darker range)
+                // Gray grid lines are around 153, but allow wide range for anti-aliasing
+                const isGrayish = Math.abs(r - g) < 30 && Math.abs(g - b) < 30 && Math.abs(r - b) < 30;
+                if (isGrayish && r >= 100 && r <= 200 && g >= 100 && g <= 200 && b >= 100 && b <= 200) {
                     shouldRemove = true;
                 }
                 
-                // Remove blue ruled lines (#4DA6FF ≈ 77, 166, 255)
-                if (Math.abs(r - 77) < 20 && Math.abs(g - 166) < 20 && Math.abs(b - 255) < 20) {
+                // Remove light blue pixels (ruled lines)
+                // Blue ruled lines: high blue component, medium green, low red
+                if (b > 200 && g > 100 && g < 200 && r < 150) {
                     shouldRemove = true;
                 }
                 
-                // Remove red margin line (#FF6B6B ≈ 255, 107, 107)
-                if (Math.abs(r - 255) < 20 && Math.abs(g - 107) < 20 && Math.abs(b - 107) < 20) {
+                // Remove light red/pink pixels (margin line)
+                // Red margin: high red, medium green/blue
+                if (r > 200 && g > 80 && g < 150 && b > 80 && b < 150) {
                     shouldRemove = true;
                 }
                 
