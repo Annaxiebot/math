@@ -372,15 +372,40 @@
         }
         
         .tutor-response {
-            background: white;
-            padding: 3vmin;
+            background: linear-gradient(135deg, #FFF8DC 0%, #FFFACD 100%);
+            padding: 4vmin;
             border-radius: 2vmin;
-            border: 0.5vmin solid #FFD700;
+            border: 0.5vmin solid #FF0000;
             margin: 2vmin 0;
-            font-size: clamp(1rem, 2.5vmin, 1.3rem);
-            line-height: 1.6;
-            max-height: 50vmin;
+            font-size: clamp(1.1rem, 2.8vmin, 1.5rem);
+            line-height: 1.8;
+            max-height: 60vmin;
             overflow-y: auto;
+            box-shadow: 0 0.5vmin 2vmin rgba(255, 0, 0, 0.2);
+        }
+        
+        .tutor-response h3 {
+            color: #FF0000;
+            margin: 2vmin 0 1vmin 0;
+            font-size: clamp(1.3rem, 3.2vmin, 1.8rem);
+        }
+        
+        .tutor-response strong {
+            color: #FF0000;
+        }
+        
+        .tutor-response p {
+            margin: 1.5vmin 0;
+        }
+        
+        .tutor-response ol, .tutor-response ul {
+            margin-left: 3vmin;
+            margin-top: 1vmin;
+            margin-bottom: 1vmin;
+        }
+        
+        .tutor-response li {
+            margin: 1vmin 0;
         }
         
         .tutor-loading {
@@ -1026,9 +1051,27 @@ Be enthusiastic, encouraging, and educational!`;
                 const data = await response.json();
                 const answer = data.choices[0].message.content;
                 
-                // Display response
+                // Display response with formatting
                 loadingEl.classList.add('hidden');
-                responseEl.innerHTML = answer.replace(/\n/g, '<br>');
+                
+                // Convert Mickey's response to nice HTML
+                let formattedAnswer = answer
+                    // Convert markdown headers (###)
+                    .replace(/###\s+(.+)/g, '<h3>$1</h3>')
+                    // Convert bold (**text**)
+                    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                    // Convert numbered lists
+                    .replace(/^\d+\.\s+(.+)$/gm, '<li>$1</li>')
+                    // Wrap consecutive <li> in <ol>
+                    .replace(/(<li>.*<\/li>\s*)+/gs, '<ol>$&</ol>')
+                    // Convert line breaks
+                    .replace(/\n\n/g, '</p><p>')
+                    .replace(/\n/g, '<br>');
+                
+                // Wrap in paragraph
+                formattedAnswer = '<p>' + formattedAnswer + '</p>';
+                
+                responseEl.innerHTML = formattedAnswer;
                 responseEl.classList.remove('hidden');
                 
             } catch (error) {
