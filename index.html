@@ -1628,7 +1628,7 @@ Be enthusiastic, encouraging, and educational!`;
                     <li>"Change the buttons to green"</li>
                     <li>"Make everything purple themed"</li>
                 </ul>
-                
+
                 <p><strong>Change Text & Emojis:</strong></p>
                 <ul>
                     <li>"Change the title to 'Math Adventure! 🚀'"</li>
@@ -1636,7 +1636,7 @@ Be enthusiastic, encouraging, and educational!`;
                     <li>"Make the subtitle say 'Let's Go!'"</li>
                     <li>"Change 'Equations' button to 'Super Equations'"</li>
                 </ul>
-                
+
                 <p><strong>Change Everything:</strong></p>
                 <ul>
                     <li>"Make the text bigger"</li>
@@ -1645,7 +1645,7 @@ Be enthusiastic, encouraging, and educational!`;
                     <li>"Add 'AWESOME!' after every button name"</li>
                     <li>"Make all buttons round"</li>
                 </ul>
-                
+
                 <p><strong style="color: #4CAF50;">💻 You can change ANYTHING!</strong></p>
                 <ul>
                     <li>Any text on the page</li>
@@ -1653,8 +1653,32 @@ Be enthusiastic, encouraging, and educational!`;
                     <li>Add or remove elements</li>
                     <li>It's YOUR app to customize!</li>
                 </ul>
-
-                <p style="color: #FF0000;"><strong>Oh boy!</strong> Just type what you want and I'll make it happen! 🎀</p>
+                
+                <div style="background: #E8F5E9; padding: 2vmin; border-radius: 1.5vmin; margin-top: 2vmin; border: 0.3vmin solid #4CAF50;">
+                    <p style="font-weight: bold; color: #2E7D32; margin-bottom: 1vmin;">🎓 Learn to Code! (Advanced)</p>
+                    <p style="font-size: 0.95em;">You can also type JavaScript code directly! Use <code style="background: white; padding: 0.3vmin 0.8vmin; border-radius: 0.5vmin; color: #FF0000;">document.querySelector()</code> to find elements:</p>
+                    
+                    <p style="margin-top: 1vmin; font-family: monospace; font-size: 0.9em; background: white; padding: 1vmin; border-radius: 0.8vmin;">
+                        <strong>Change title:</strong><br>
+                        document.querySelector('h1').textContent = 'My Math App! 🚀';
+                    </p>
+                    
+                    <p style="margin-top: 1vmin; font-family: monospace; font-size: 0.9em; background: white; padding: 1vmin; border-radius: 0.8vmin;">
+                        <strong>Change background:</strong><br>
+                        document.body.style.background = 'linear-gradient(purple, pink)';
+                    </p>
+                    
+                    <p style="margin-top: 1vmin; font-family: monospace; font-size: 0.9em; background: white; padding: 1vmin; border-radius: 0.8vmin;">
+                        <strong>Change all buttons:</strong><br>
+                        document.querySelectorAll('.topic-btn').forEach(btn => btn.style.background = 'rainbow');
+                    </p>
+                    
+                    <p style="margin-top: 1vmin; font-size: 0.9em; color: #666;">
+                        💡 Just ask Mickey in plain English, or type code directly - either way works!
+                    </p>
+                </div>
+                
+                <p style="color: #FF0000; margin-top: 2vmin;"><strong>Oh boy!</strong> Just type what you want and I'll make it happen! 🎀</p>
             `;
             responseEl.classList.remove('hidden');
         }
