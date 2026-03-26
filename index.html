@@ -647,7 +647,7 @@
                 <button data-color="#9C27B0" onclick="setPenColor('#9C27B0')" style="width: 5vmin; height: 5vmin; background: #9C27B0; border: 0.3vmin solid #000; border-radius: 50%; cursor: pointer;"></button>
                 <input type="color" value="#FF0000" onchange="setPenColor(this.value)" style="width: 6vmin; height: 5vmin; border: 0.3vmin solid #000; border-radius: 0.5vmin; cursor: pointer;">
             </div>
-            
+
             <div style="display: flex; align-items: center; gap: 1vmin;">
                 <label style="font-weight: bold; font-size: clamp(1rem, 2.5vmin, 1.3rem);">📏 Size:</label>
                 <button data-size="2" onclick="setPenSize(2)" style="padding: 1vmin 2.5vmin; background: white; border: 0.3vmin solid #000; border-radius: 0.8vmin; cursor: pointer; font-size: clamp(1rem, 2vmin, 1.2rem);">Thin</button>
@@ -1161,8 +1161,6 @@ Format your response like this:
                             🧹
                         </button>
 
-                        <span id="currentTool" style="font-size: clamp(0.7rem, 1.6vmin, 0.9rem); color: #666;">✏️ Red, Med</span>
-
                         <button class="btn" style="background: #FFD700; color: #000; padding: 0.6vmin 2vmin; margin: 0; font-size: clamp(0.8rem, 1.8vmin, 1rem);" onclick="clearScratchPad()">
                             🗑️ Clear
                         </button>
@@ -1253,8 +1251,12 @@ Format your response like this:
         }
 
         function drawBackground(ctx, canvas) {
-            // Save current drawing
-            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            // Save current drawing to temp canvas
+            const tempCanvas = document.createElement('canvas');
+            tempCanvas.width = canvas.width;
+            tempCanvas.height = canvas.height;
+            const tempCtx = tempCanvas.getContext('2d');
+            tempCtx.drawImage(canvas, 0, 0);
 
             // Clear and fill white
             ctx.fillStyle = 'white';
@@ -1262,8 +1264,8 @@ Format your response like this:
 
             if (currentBackground === 'grid') {
                 // Draw grid lines
-                ctx.strokeStyle = '#E0E0E0';
-                ctx.lineWidth = 1;
+                ctx.strokeStyle = '#D0D0D0';
+                ctx.lineWidth = 2;
                 const spacing = 40; // Grid spacing
 
                 // Vertical lines
@@ -1284,7 +1286,7 @@ Format your response like this:
             } else if (currentBackground === 'ruled') {
                 // Draw college ruled lines
                 ctx.strokeStyle = '#B0E0FF';
-                ctx.lineWidth = 1;
+                ctx.lineWidth = 2;
                 const lineSpacing = 30; // Line spacing
 
                 // Horizontal lines
@@ -1297,19 +1299,24 @@ Format your response like this:
 
                 // Red margin line
                 ctx.strokeStyle = '#FFB0B0';
-                ctx.lineWidth = 2;
+                ctx.lineWidth = 3;
                 ctx.beginPath();
                 ctx.moveTo(80, 0);
                 ctx.lineTo(80, canvas.height);
                 ctx.stroke();
             }
 
-            // Restore drawing
-            ctx.putImageData(imageData, 0, 0);
+            // Restore drawing on top
+            ctx.drawImage(tempCanvas, 0, 0);
 
             // Restore pen settings
             ctx.strokeStyle = currentPenColor;
             ctx.lineWidth = currentPenSize;
+            if (isEraserMode) {
+                ctx.globalCompositeOperation = 'destination-out';
+            } else {
+                ctx.globalCompositeOperation = 'source-over';
+            }
         }
 
         function setBackground(type) {
@@ -1413,32 +1420,13 @@ Format your response like this:
         }
 
         function updateToolDisplay() {
-            const toolDisplay = document.getElementById('currentTool');
             const eraserBtn = document.getElementById('eraserBtn');
-
-            if (!toolDisplay) return;
-
-            const sizeNames = {2: 'Thin', 4: 'Med', 8: 'Thick'};
-            const colorNames = {
-                '#FF0000': 'Red',
-                '#000000': 'Black',
-                '#0000FF': 'Blue',
-                '#00AA00': 'Green',
-                '#FF6600': 'Orange',
-                '#9C27B0': 'Purple'
-            };
-
-            if (isEraserMode) {
-                toolDisplay.textContent = '🧹 Eraser';
-                if (eraserBtn) {
+            
+            if (eraserBtn) {
+                if (isEraserMode) {
                     eraserBtn.style.background = '#FFD700';
                     eraserBtn.style.borderColor = '#FF0000';
-                }
-            } else {
-                const colorName = colorNames[currentPenColor] || 'Custom';
-                const sizeName = sizeNames[currentPenSize] || currentPenSize;
-                toolDisplay.textContent = `✏️ ${colorName}, ${sizeName}`;
-                if (eraserBtn) {
+                } else {
                     eraserBtn.style.background = '#FFF';
                     eraserBtn.style.borderColor = '#999';
                 }
