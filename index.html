@@ -307,34 +307,29 @@
             outline-offset: 0.5vmin;
         }
         
-        .tutor-modal {
+        .tutor-section {
             display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 1000;
-            overflow-y: auto;
-            padding: 2vmin;
+            margin-top: 3vmin;
         }
         
-        .tutor-modal.show {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .tutor-section.show {
+            display: block;
+        }
+        
+        .practice-section {
+            display: block;
+        }
+        
+        .practice-section.hidden {
+            display: none;
         }
         
         .tutor-content {
             background: #FFF8DC;
             border-radius: 3vmin;
             padding: 4vmin;
-            max-width: 800px;
-            width: 100%;
             border: 1vmin solid #FFD700;
-            max-height: 90vh;
-            overflow-y: auto;
+            margin-bottom: 3vmin;
         }
         
         .tutor-header {
@@ -445,51 +440,7 @@
     </style>
 </head>
 <body>
-    <!-- AI Tutor Modal -->
-    <div class="tutor-modal" id="tutorModal">
-        <div class="tutor-content">
-            <div class="tutor-header">
-                <h2>🎀 Ask AI Tutor Mickey! 🎀</h2>
-                <p style="font-size: clamp(0.9rem, 2vmin, 1.1rem); color: #666;">
-                    Ask me for custom math practice problems!
-                </p>
-            </div>
-            
-            <div id="apiWarning" class="api-warning hidden">
-                ⚠️ <strong>API Key Not Configured</strong><br>
-                To use AI Tutor Mickey, you need to set up your NVIDIA API key in config.js<br>
-                Get a free key at: <a href="https://build.nvidia.com/" target="_blank">build.nvidia.com</a>
-            </div>
-            
-            <div class="tutor-input-group">
-                <label class="tutor-label" for="tutorQuestion">
-                    What kind of math problems do you want to practice?
-                </label>
-                <textarea 
-                    id="tutorQuestion" 
-                    class="tutor-textarea" 
-                    placeholder="Example: Give me 3 slope problems with positive slopes between 2 and 5..."
-                ></textarea>
-                <div class="tutor-examples">
-                    💡 Try: "Give me equations with fractions" or "Create area problems with rectangles"
-                </div>
-            </div>
-            
-            <div id="tutorResponse" class="tutor-response hidden"></div>
-            <div id="tutorLoading" class="tutor-loading hidden">
-                Mickey is thinking... 🤔
-            </div>
-            
-            <div class="button-group">
-                <button class="btn btn-tutor" onclick="askTutor()">
-                    Ask Mickey! 🎓
-                </button>
-                <button class="btn btn-close" onclick="closeTutorModal()">
-                    Close
-                </button>
-            </div>
-        </div>
-    </div>
+
     
     <div class="container">
         <h1>🎀 Mickey's Math Quest 🎀</h1>
@@ -501,10 +452,13 @@
             <button class="topic-btn" onclick="changeTopic('order')">Order of Operations</button>
             <button class="topic-btn" onclick="changeTopic('fractions')">Fractions</button>
             <button class="topic-btn" onclick="changeTopic('area')">Area & Perimeter</button>
-            <button class="topic-btn" style="background: #FFD700; border-color: #FF0000;" onclick="openTutorModal()">
+            <button class="topic-btn" style="background: #FFD700; border-color: #FF0000;" onclick="toggleTutorMode()">
                 🎓 Ask AI Tutor Mickey
             </button>
         </div>
+        
+        <!-- Practice Section (default questions) -->
+        <div id="practiceSection" class="practice-section">
         
         <div class="score-board">
             <div class="score-item">
@@ -549,6 +503,47 @@
         
         <div class="feedback" id="feedback"></div>
         <div class="stars" id="stars"></div>
+        </div>
+        
+        <!-- AI Tutor Section -->
+        <div id="tutorSection" class="tutor-section">
+            <div class="tutor-content">
+                <div class="tutor-header">
+                    <h2 style="color: #FF0000; text-align: center; margin-bottom: 2vmin;">🎀 Ask AI Tutor Mickey! 🎀</h2>
+                    <p style="font-size: clamp(0.9rem, 2vmin, 1.1rem); color: #666; text-align: center;">
+                        Ask me for custom math practice problems!
+                    </p>
+                </div>
+                
+                <div class="tutor-input-group">
+                    <label class="tutor-label" for="tutorQuestion">
+                        What kind of math problems do you want to practice?
+                    </label>
+                    <textarea 
+                        id="tutorQuestion" 
+                        class="tutor-textarea" 
+                        placeholder="Example: Give me 3 slope problems with positive slopes..."
+                    ></textarea>
+                    <div class="tutor-examples">
+                        💡 Try: "Give me equations with fractions" or "Create area problems with rectangles"
+                    </div>
+                </div>
+                
+                <div id="tutorResponse" class="tutor-response hidden"></div>
+                <div id="tutorLoading" class="tutor-loading hidden">
+                    Mickey is thinking... 🤔
+                </div>
+                
+                <div class="button-group">
+                    <button class="btn btn-tutor" onclick="askTutor()">
+                        Ask Mickey! 🎓
+                    </button>
+                    <button class="btn btn-next" onclick="toggleTutorMode()">
+                        ← Back to Practice
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -963,25 +958,21 @@
         generateQuestion();
         
         // AI Tutor Functions
-        function openTutorModal() {
-            const modal = document.getElementById('tutorModal');
-            const warning = document.getElementById('apiWarning');
+        function toggleTutorMode() {
+            const practiceSection = document.getElementById('practiceSection');
+            const tutorSection = document.getElementById('tutorSection');
             
-            // Check if API is configured
-            if (typeof AI_CONFIG === 'undefined' || !isAITutorAvailable()) {
-                warning.classList.remove('hidden');
+            if (tutorSection.classList.contains('show')) {
+                // Switch back to practice mode
+                tutorSection.classList.remove('show');
+                practiceSection.classList.remove('hidden');
+                document.getElementById('tutorResponse').classList.add('hidden');
             } else {
-                warning.classList.add('hidden');
+                // Switch to tutor mode
+                practiceSection.classList.add('hidden');
+                tutorSection.classList.add('show');
+                document.getElementById('tutorQuestion').focus();
             }
-            
-            modal.classList.add('show');
-            document.getElementById('tutorQuestion').focus();
-        }
-        
-        function closeTutorModal() {
-            document.getElementById('tutorModal').classList.remove('show');
-            document.getElementById('tutorResponse').classList.add('hidden');
-            document.getElementById('tutorLoading').classList.add('hidden');
         }
         
         async function askTutor() {
@@ -1085,10 +1076,13 @@ Be enthusiastic, encouraging, and educational!`;
             }
         }
         
-        // Keyboard shortcut for tutor modal
+        // Keyboard shortcut
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
-                closeTutorModal();
+                const tutorSection = document.getElementById('tutorSection');
+                if (tutorSection.classList.contains('show')) {
+                    toggleTutorMode();
+                }
             }
         });
     </script>
