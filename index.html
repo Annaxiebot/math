@@ -661,14 +661,14 @@
                 <button data-size="4" onclick="setPenSize(4)" style="padding: 1vmin 2.5vmin; background: #FFD700; border: 0.3vmin solid #FF0000; border-radius: 0.8vmin; cursor: pointer; font-size: clamp(1rem, 2vmin, 1.2rem); font-weight: bold;">Med</button>
                 <button data-size="8" onclick="setPenSize(8)" style="padding: 1vmin 2.5vmin; background: white; border: 0.3vmin solid #000; border-radius: 0.8vmin; cursor: pointer; font-size: clamp(1rem, 2vmin, 1.2rem);">Thick</button>
             </div>
-            
+
             <div style="display: flex; align-items: center; gap: 1vmin;">
                 <label style="font-weight: bold; font-size: clamp(1rem, 2.5vmin, 1.3rem);">📄 Paper:</label>
                 <button data-bg="blank" onclick="setBackground('blank')" style="padding: 1vmin 2.5vmin; background: #FFD700; border: 0.3vmin solid #FF0000; border-radius: 0.8vmin; cursor: pointer; font-size: clamp(1rem, 2vmin, 1.2rem); font-weight: bold;">Blank</button>
                 <button data-bg="grid" onclick="setBackground('grid')" style="padding: 1vmin 2.5vmin; background: white; border: 0.3vmin solid #000; border-radius: 0.8vmin; cursor: pointer; font-size: clamp(1rem, 2vmin, 1.2rem);">Grid</button>
                 <button data-bg="ruled" onclick="setBackground('ruled')" style="padding: 1vmin 2.5vmin; background: white; border: 0.3vmin solid #000; border-radius: 0.8vmin; cursor: pointer; font-size: clamp(1rem, 2vmin, 1.2rem);">Lined</button>
             </div>
-            
+
             <button onclick="toggleEraser()" style="padding: 1.5vmin 3vmin; background: #FFF; border: 0.3vmin solid #000; border-radius: 0.8vmin; cursor: pointer; font-size: clamp(1rem, 2.5vmin, 1.3rem); font-weight: bold;">
                 🧹 Eraser
             </button>
@@ -1576,13 +1576,19 @@ Format your response like this:
         let expandedBgCanvas, expandedBgCtx;
 
         function drawExpandedBackground() {
-            if (!expandedBgCtx || !expandedBgCanvas) return;
-
+            if (!expandedBgCtx || !expandedBgCanvas) {
+                console.log('expandedBg not ready!', expandedBgCtx, expandedBgCanvas);
+                return;
+            }
+            
+            console.log('Drawing expanded background:', currentBackground, expandedBgCanvas.width, 'x', expandedBgCanvas.height);
+            
             expandedBgCtx.clearRect(0, 0, expandedBgCanvas.width, expandedBgCanvas.height);
             expandedBgCtx.fillStyle = 'white';
             expandedBgCtx.fillRect(0, 0, expandedBgCanvas.width, expandedBgCanvas.height);
-
+            
             if (currentBackground === 'grid') {
+                console.log('Drawing grid on expanded...');
                 expandedBgCtx.strokeStyle = '#E0E0E0';  // Much lighter gray
                 expandedBgCtx.lineWidth = 2;
                 const spacing = 53; // Scale for larger canvas (1600/1200 * 40)
