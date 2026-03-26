@@ -1141,7 +1141,44 @@ Format your response like this:
             lastTouchEnd = now;
         }, false);
         
-        generateQuestion();
+        // Show welcome message on page load
+        showWelcomeMessage();
+        
+        function showWelcomeMessage() {
+            const explanationBox = document.getElementById('explanation');
+            const questionBox = document.getElementById('question');
+            
+            explanationBox.innerHTML = `
+                <div class="concept-title" style="color: #FF0000; text-align: center;">
+                    🎀 Welcome to Mickey's Math Quest! 🎀
+                </div>
+                <div class="concept-text" style="text-align: center;">
+                    <p><strong>Hot dog!</strong> I'm Mickey, your AI math tutor!</p>
+                    <p>🎯 <strong>Click any topic button above</strong> to get started!</p>
+                    <p>Each problem is unique and generated just for you by AI! ✨</p>
+                    <p style="margin-top: 2vmin;">
+                        📚 Choose your <strong>Grade Level</strong><br>
+                        🎨 Pick a <strong>Story Context</strong> (I'm default!)<br>
+                        🎓 Or click <strong>"Ask AI Tutor Mickey"</strong> for custom problems or to customize the app!
+                    </p>
+                    <p style="color: #FF0000; font-weight: bold; margin-top: 2vmin;">
+                        Gosh, let's have fun learning math! 🌟
+                    </p>
+                </div>
+            `;
+            
+            questionBox.innerHTML = `
+                <div style="font-size: clamp(1.5rem, 4vmin, 2.5rem); text-align: center; color: #FF0000;">
+                    👆 Click a topic to start! 👆
+                </div>
+            `;
+            
+            // Hide answer input on welcome
+            const answerSection = document.querySelector('.answer-section');
+            const buttonGroup = answerSection.nextElementSibling;
+            answerSection.style.display = 'none';
+            buttonGroup.style.display = 'none';
+        }
         
         // AI Tutor Functions
         function toggleTutorMode() {
