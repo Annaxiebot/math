@@ -1219,7 +1219,7 @@ Format your response like this:
         function toggleSolution() {
             const solutionBox = document.getElementById('solutionBox');
             const btn = event.target;
-            
+
             if (solutionBox.style.display === 'none') {
                 solutionBox.style.display = 'block';
                 btn.textContent = '🙈 Hide Solution';
@@ -1230,58 +1230,58 @@ Format your response like this:
                 btn.style.background = '#FF0000';
             }
         }
-        
+
         // Expanded Scratch Pad Functions
         let expandedCanvas, expandedCtx, isDrawingExpanded = false;
-        
+
         function expandScratchPad() {
             const modal = document.getElementById('scratchModal');
             expandedCanvas = document.getElementById('scratchPadExpanded');
             expandedCtx = expandedCanvas.getContext('2d');
-            
+
             // Copy current scratch pad content to expanded
             if (scratchCanvas) {
                 expandedCtx.drawImage(scratchCanvas, 0, 0, expandedCanvas.width, expandedCanvas.height);
             }
-            
+
             // Set up drawing
             expandedCtx.strokeStyle = '#FF0000';
             expandedCtx.lineWidth = 4;
             expandedCtx.lineCap = 'round';
             expandedCtx.lineJoin = 'round';
-            
+
             // Mouse events
             expandedCanvas.addEventListener('mousedown', startDrawingExpanded);
             expandedCanvas.addEventListener('mousemove', drawExpanded);
             expandedCanvas.addEventListener('mouseup', stopDrawingExpanded);
             expandedCanvas.addEventListener('mouseout', stopDrawingExpanded);
-            
+
             // Touch events
             expandedCanvas.addEventListener('touchstart', handleTouchStartExpanded);
             expandedCanvas.addEventListener('touchmove', handleTouchMoveExpanded);
             expandedCanvas.addEventListener('touchend', stopDrawingExpanded);
-            
+
             modal.classList.add('show');
         }
-        
+
         function closeExpandedPad() {
             const modal = document.getElementById('scratchModal');
-            
+
             // Copy expanded content back to small pad
             if (scratchCtx && expandedCanvas) {
                 scratchCtx.clearRect(0, 0, scratchCanvas.width, scratchCanvas.height);
                 scratchCtx.drawImage(expandedCanvas, 0, 0, scratchCanvas.width, scratchCanvas.height);
             }
-            
+
             modal.classList.remove('show');
         }
-        
+
         function clearExpandedPad() {
             if (expandedCtx) {
                 expandedCtx.clearRect(0, 0, expandedCanvas.width, expandedCanvas.height);
             }
         }
-        
+
         function startDrawingExpanded(e) {
             isDrawingExpanded = true;
             const rect = expandedCanvas.getBoundingClientRect();
@@ -1290,7 +1290,7 @@ Format your response like this:
             expandedCtx.beginPath();
             expandedCtx.moveTo(x, y);
         }
-        
+
         function drawExpanded(e) {
             if (!isDrawingExpanded) return;
             const rect = expandedCanvas.getBoundingClientRect();
@@ -1299,11 +1299,11 @@ Format your response like this:
             expandedCtx.lineTo(x, y);
             expandedCtx.stroke();
         }
-        
+
         function stopDrawingExpanded() {
             isDrawingExpanded = false;
         }
-        
+
         function handleTouchStartExpanded(e) {
             e.preventDefault();
             const touch = e.touches[0];
@@ -1314,7 +1314,7 @@ Format your response like this:
             expandedCtx.beginPath();
             expandedCtx.moveTo(x, y);
         }
-        
+
         function handleTouchMoveExpanded(e) {
             if (!isDrawingExpanded) return;
             e.preventDefault();
@@ -1628,19 +1628,30 @@ Be enthusiastic, encouraging, and educational!`;
                     <li>"Change the buttons to green"</li>
                     <li>"Make everything purple themed"</li>
                 </ul>
-
-                <p><strong>Change Icons/Emojis:</strong></p>
+                
+                <p><strong>Change Text & Emojis:</strong></p>
                 <ul>
-                    <li>"Change the emoji to 🌟"</li>
-                    <li>"Use 🚀 instead of 🎀"</li>
-                    <li>"Make the title emoji a 🦁"</li>
+                    <li>"Change the title to 'Math Adventure! 🚀'"</li>
+                    <li>"Replace all 🎀 with 🌟"</li>
+                    <li>"Make the subtitle say 'Let's Go!'"</li>
+                    <li>"Change 'Equations' button to 'Super Equations'"</li>
                 </ul>
-
-                <p><strong>Advanced:</strong></p>
+                
+                <p><strong>Change Everything:</strong></p>
                 <ul>
                     <li>"Make the text bigger"</li>
-                    <li>"Add stars to the background"</li>
-                    <li>"Change the font"</li>
+                    <li>"Add a rainbow gradient background"</li>
+                    <li>"Hide the score board"</li>
+                    <li>"Add 'AWESOME!' after every button name"</li>
+                    <li>"Make all buttons round"</li>
+                </ul>
+                
+                <p><strong style="color: #4CAF50;">💻 You can change ANYTHING!</strong></p>
+                <ul>
+                    <li>Any text on the page</li>
+                    <li>Any color or style</li>
+                    <li>Add or remove elements</li>
+                    <li>It's YOUR app to customize!</li>
                 </ul>
 
                 <p style="color: #FF0000;"><strong>Oh boy!</strong> Just type what you want and I'll make it happen! 🎀</p>
@@ -1662,20 +1673,30 @@ Be enthusiastic, encouraging, and educational!`;
             try {
                 const systemPrompt = `You are Mickey Mouse, a helpful coding assistant. The student wants to customize their math app.
 
-Analyze their request and generate CSS code to make the changes. You can change:
-- Background colors (body, container, buttons)
-- Text colors
-- Emojis in the title (h1)
-- Font sizes
-- Border colors
-- Anything visual!
+Analyze their request and generate JAVASCRIPT code to make ANY changes they want:
+- Change text content (title, labels, button text)
+- Change emojis anywhere
+- Change colors (CSS)
+- Change layouts
+- Add new elements
+- Remove elements
+- Literally ANYTHING visual!
+
+Your code should use querySelector/querySelectorAll to find elements and modify them.
 
 Return your response in this EXACT format:
 **Changes:** [Describe what you're changing in Mickey language]
 **Code:**
-\`\`\`css
-[Your CSS code here]
+\`\`\`javascript
+// Your JavaScript code here
+// Use document.querySelector() to find elements
+// Modify .textContent for text, .innerHTML for HTML, .style for CSS
 \`\`\`
+
+Examples:
+- "Change title" → document.querySelector('h1').textContent = 'New Title 🚀';
+- "Change background" → document.body.style.background = 'purple';
+- "Add emoji" → document.querySelector('.subtitle').textContent += ' 🎉';
 
 Be encouraging and fun! Use Mickey language (Oh boy!, Gosh!, Hot dog!)`;
 
@@ -1703,33 +1724,32 @@ Be encouraging and fun! Use Mickey language (Oh boy!, Gosh!, Hot dog!)`;
                 const data = await response.json();
                 const mickeyResponse = data.choices[0].message.content;
 
-                // Extract CSS code
-                const cssMatch = mickeyResponse.match(/```css\n([\s\S]*?)\n```/);
+                // Extract JavaScript code
+                const jsMatch = mickeyResponse.match(/```javascript\n([\s\S]*?)\n```/);
 
-                if (cssMatch) {
-                    const cssCode = cssMatch[1];
+                if (jsMatch) {
+                    const jsCode = jsMatch[1];
 
-                    // Apply the CSS
-                    let styleTag = document.getElementById('vibe-style');
-                    if (!styleTag) {
-                        styleTag = document.createElement('style');
-                        styleTag.id = 'vibe-style';
-                        document.head.appendChild(styleTag);
+                    try {
+                        // Execute the JavaScript code
+                        eval(jsCode);
+
+                        // Show success
+                        loadingEl.classList.add('hidden');
+                        responseEl.innerHTML = `
+                            <h3 style="color: #FF0000;">✨ Hot dog! Changes applied! ✨</h3>
+                            ${mickeyResponse.split('**Code:**')[0]}
+                            <p style="margin-top: 2vmin;"><strong>Executed Code:</strong></p>
+                            <pre style="background: #f0f0f0; padding: 2vmin; border-radius: 1vmin; overflow-x: auto; font-size: clamp(0.8rem, 2vmin, 1rem);">${jsCode}</pre>
+                            <p style="color: #FF0000; margin-top: 2vmin;"><strong>Gosh!</strong> Don't like it? Just ask me to change it again! 🎨</p>
+                            <p style="color: #666; font-size: 0.9em; margin-top: 1vmin;">💡 Tip: Refresh the page to reset everything!</p>
+                        `;
+                        responseEl.classList.remove('hidden');
+                    } catch (execError) {
+                        throw new Error(`Code execution error: ${execError.message}`);
                     }
-                    styleTag.textContent = cssCode;
-
-                    // Show success
-                    loadingEl.classList.add('hidden');
-                    responseEl.innerHTML = `
-                        <h3 style="color: #FF0000;">✨ Hot dog! Changes applied! ✨</h3>
-                        ${mickeyResponse.split('**Code:**')[0]}
-                        <p style="margin-top: 2vmin;"><strong>Applied CSS:</strong></p>
-                        <pre style="background: #f0f0f0; padding: 2vmin; border-radius: 1vmin; overflow-x: auto;">${cssCode}</pre>
-                        <p style="color: #FF0000; margin-top: 2vmin;"><strong>Gosh!</strong> Don't like it? Just ask me to change it again! 🎨</p>
-                    `;
-                    responseEl.classList.remove('hidden');
                 } else {
-                    throw new Error('Could not extract CSS code from response');
+                    throw new Error('Could not extract JavaScript code from response');
                 }
 
             } catch (error) {
