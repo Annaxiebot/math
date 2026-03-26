@@ -8,7 +8,7 @@ const AI_CONFIG = {
     MODEL: 'meta/llama-3.1-8b-instruct',
     
     // Vercel proxy endpoint (secure!)
-    INVOKE_URL: 'https://math-api-proxy1.vercel.app/api/tutor'
+    INVOKE_URL: 'https://math-api-proxy1.vercel.app/api'
 };
 
 function isAITutorAvailable() {
