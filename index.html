@@ -330,6 +330,14 @@
             justify-content: center;
         }
 
+        .scratch-modal .canvas-wrapper {
+            position: relative;
+            max-width: 95vw;
+            max-height: 80vh;
+            width: auto;
+            height: auto;
+        }
+
         .scratch-modal canvas {
             max-width: 95vw;
             max-height: 80vh;
@@ -660,18 +668,18 @@
             </button>
         </div>
 
-        <div style="position: relative; max-width: 95vw; max-height: 80vh;">
+        <div class="canvas-wrapper">
             <!-- Background canvas -->
-            <canvas id="scratchPadExpandedBg"
-                width="1600"
+            <canvas id="scratchPadExpandedBg" 
+                width="1600" 
                 height="1000"
-                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; max-width: 95vw; max-height: 80vh; background: white; border: 0.5vmin solid #FFD700; border-radius: 2vmin; pointer-events: none;">
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: white; border: 0.5vmin solid #FFD700; border-radius: 2vmin; pointer-events: none;">
             </canvas>
             <!-- Drawing canvas -->
-            <canvas id="scratchPadExpanded"
-                width="1600"
+            <canvas id="scratchPadExpanded" 
+                width="1600" 
                 height="1000"
-                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; max-width: 95vw; max-height: 80vh; cursor: crosshair; touch-action: none;">
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: crosshair; touch-action: none;">
             </canvas>
         </div>
         <div class="scratch-modal-buttons">
@@ -1572,14 +1580,14 @@ Format your response like this:
                 expandedBgCtx.strokeStyle = '#E0E0E0';  // Much lighter gray
                 expandedBgCtx.lineWidth = 2;
                 const spacing = 53; // Scale for larger canvas (1600/1200 * 40)
-                
+
                 for (let x = 0; x <= expandedBgCanvas.width; x += spacing) {
                     expandedBgCtx.beginPath();
                     expandedBgCtx.moveTo(x, 0);
                     expandedBgCtx.lineTo(x, expandedBgCanvas.height);
                     expandedBgCtx.stroke();
                 }
-                
+
                 for (let y = 0; y <= expandedBgCanvas.height; y += spacing) {
                     expandedBgCtx.beginPath();
                     expandedBgCtx.moveTo(0, y);
@@ -1590,14 +1598,14 @@ Format your response like this:
                 expandedBgCtx.strokeStyle = '#E0F0FF';  // Very light blue
                 expandedBgCtx.lineWidth = 2;
                 const lineSpacing = 40; // Scale for larger canvas
-                
+
                 for (let y = lineSpacing; y < expandedBgCanvas.height; y += lineSpacing) {
                     expandedBgCtx.beginPath();
                     expandedBgCtx.moveTo(0, y);
                     expandedBgCtx.lineTo(expandedBgCanvas.width, y);
                     expandedBgCtx.stroke();
                 }
-                
+
                 expandedBgCtx.strokeStyle = '#FFD5D5';  // Light pink
                 expandedBgCtx.lineWidth = 3;
                 expandedBgCtx.beginPath();
