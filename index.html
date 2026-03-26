@@ -546,8 +546,13 @@
                 <div class="tutor-header">
                     <h2 style="color: #FF0000; text-align: center; margin-bottom: 2vmin;">🎀 Ask AI Tutor Mickey! 🎀</h2>
                     <p style="font-size: clamp(0.9rem, 2vmin, 1.1rem); color: #666; text-align: center;">
-                        Ask me for custom math practice problems!
+                        Ask me for custom math practice problems OR customize the app!
                     </p>
+                    <div style="text-align: center; margin-bottom: 2vmin;">
+                        <button class="topic-btn" onclick="showVibeCodingHelp()" style="background: #FFD700; font-size: clamp(0.9rem, 2vmin, 1.1rem);">
+                            🎨 Vibe Coding Help
+                        </button>
+                    </div>
                 </div>
                 
                 <div class="tutor-input-group">
@@ -560,7 +565,8 @@
                         placeholder="Example: Give me 3 slope problems with positive slopes..."
                     ></textarea>
                     <div class="tutor-examples">
-                        💡 Try: "Give me equations with fractions" or "Create area problems with rectangles"
+                        💡 <strong>Math:</strong> "Give me equations with fractions"<br>
+                        🎨 <strong>Vibe Coding:</strong> "Make the background purple" or "Change the emoji to 🌟"
                     </div>
                 </div>
                 
@@ -1138,7 +1144,16 @@ Format your response like this:
             const question = document.getElementById('tutorQuestion').value.trim();
             
             if (!question) {
-                alert('Please type what kind of math problems you want!');
+                alert('Please type what kind of math problems you want, or ask to customize the app!');
+                return;
+            }
+            
+            // Check if this is a vibe coding request
+            const vibeCodingKeywords = ['color', 'background', 'change', 'emoji', 'icon', 'theme', 'style', 'look', 'vibe', 'purple', 'blue', 'green', 'red', 'pink'];
+            const isVibeCoding = vibeCodingKeywords.some(keyword => question.toLowerCase().includes(keyword));
+            
+            if (isVibeCoding) {
+                await handleVibeCoding(question);
                 return;
             }
             
@@ -1255,6 +1270,131 @@ Be enthusiastic, encouraging, and educational!`;
                 customDiv.style.display = 'none';
             }
         });
+        
+        // Vibe Coding Functions
+        function showVibeCodingHelp() {
+            const responseEl = document.getElementById('tutorResponse');
+            responseEl.innerHTML = `
+                <h3 style="color: #FF0000;">🎨 Vibe Coding - Customize Your App!</h3>
+                <p><strong>Hot dog!</strong> You can change how the app looks! Just ask me in plain English:</p>
+                
+                <p><strong>Change Colors:</strong></p>
+                <ul>
+                    <li>"Make the background light blue"</li>
+                    <li>"Change the buttons to green"</li>
+                    <li>"Make everything purple themed"</li>
+                </ul>
+                
+                <p><strong>Change Icons/Emojis:</strong></p>
+                <ul>
+                    <li>"Change the emoji to 🌟"</li>
+                    <li>"Use 🚀 instead of 🎀"</li>
+                    <li>"Make the title emoji a 🦁"</li>
+                </ul>
+                
+                <p><strong>Advanced:</strong></p>
+                <ul>
+                    <li>"Make the text bigger"</li>
+                    <li>"Add stars to the background"</li>
+                    <li>"Change the font"</li>
+                </ul>
+                
+                <p style="color: #FF0000;"><strong>Oh boy!</strong> Just type what you want and I'll make it happen! 🎀</p>
+            `;
+            responseEl.classList.remove('hidden');
+        }
+        
+        async function handleVibeCoding(question) {
+            const responseEl = document.getElementById('tutorResponse');
+            const loadingEl = document.getElementById('tutorLoading');
+            
+            responseEl.classList.add('hidden');
+            loadingEl.classList.remove('hidden');
+            loadingEl.textContent = 'Mickey is coding your changes... 💻';
+            
+            try {
+                const systemPrompt = `You are Mickey Mouse, a helpful coding assistant. The student wants to customize their math app.
+
+Analyze their request and generate CSS code to make the changes. You can change:
+- Background colors (body, container, buttons)
+- Text colors
+- Emojis in the title (h1)
+- Font sizes
+- Border colors
+- Anything visual!
+
+Return your response in this EXACT format:
+**Changes:** [Describe what you're changing in Mickey language]
+**Code:**
+\`\`\`css
+[Your CSS code here]
+\`\`\`
+
+Be encouraging and fun! Use Mickey language (Oh boy!, Gosh!, Hot dog!)`;
+
+                const response = await fetch(AI_CONFIG.INVOKE_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        model: AI_CONFIG.MODEL,
+                        messages: [
+                            { role: 'system', content: systemPrompt },
+                            { role: 'user', content: question }
+                        ],
+                        max_tokens: 1024,
+                        temperature: 0.7
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`API Error: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                const mickeyResponse = data.choices[0].message.content;
+                
+                // Extract CSS code
+                const cssMatch = mickeyResponse.match(/```css\n([\s\S]*?)\n```/);
+                
+                if (cssMatch) {
+                    const cssCode = cssMatch[1];
+                    
+                    // Apply the CSS
+                    let styleTag = document.getElementById('vibe-style');
+                    if (!styleTag) {
+                        styleTag = document.createElement('style');
+                        styleTag.id = 'vibe-style';
+                        document.head.appendChild(styleTag);
+                    }
+                    styleTag.textContent = cssCode;
+                    
+                    // Show success
+                    loadingEl.classList.add('hidden');
+                    responseEl.innerHTML = `
+                        <h3 style="color: #FF0000;">✨ Hot dog! Changes applied! ✨</h3>
+                        ${mickeyResponse.split('**Code:**')[0]}
+                        <p style="margin-top: 2vmin;"><strong>Applied CSS:</strong></p>
+                        <pre style="background: #f0f0f0; padding: 2vmin; border-radius: 1vmin; overflow-x: auto;">${cssCode}</pre>
+                        <p style="color: #FF0000; margin-top: 2vmin;"><strong>Gosh!</strong> Don't like it? Just ask me to change it again! 🎨</p>
+                    `;
+                    responseEl.classList.remove('hidden');
+                } else {
+                    throw new Error('Could not extract CSS code from response');
+                }
+                
+            } catch (error) {
+                console.error('Vibe Coding Error:', error);
+                loadingEl.classList.add('hidden');
+                responseEl.innerHTML = `
+                    <span style="color: #FF0000;">Oops! Mickey had trouble with that.</span><br>
+                    <span style="font-size: 0.8em;">Try being more specific, like "Make the background light blue"</span>
+                `;
+                responseEl.classList.remove('hidden');
+            }
+        }
     </script>
     <script src="config.js"></script>
 </body>
