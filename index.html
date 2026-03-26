@@ -1314,24 +1314,46 @@ Format your response like this:
                 console.log('Ruled lines drawn!');
             }
             
-            // 5. Extract only NON-WHITE pixels from saved image (the actual strokes)
+            // 5. Extract only USER STROKES from saved image (filter out white + old background patterns)
             const imageData = tempCtx.getImageData(0, 0, tempCanvas.width, tempCanvas.height);
             const pixels = imageData.data;
             
-            // Make white pixels transparent
+            // Remove white pixels AND background pattern colors
             for (let i = 0; i < pixels.length; i += 4) {
                 const r = pixels[i];
                 const g = pixels[i + 1];
                 const b = pixels[i + 2];
                 const a = pixels[i + 3];
                 
-                // If pixel is white (or very close to white), make it transparent
+                let shouldRemove = false;
+                
+                // Remove white pixels
                 if (r > 250 && g > 250 && b > 250 && a > 250) {
-                    pixels[i + 3] = 0; // Set alpha to 0
+                    shouldRemove = true;
+                }
+                
+                // Remove gray grid lines (#999999 = 153, 153, 153)
+                if (Math.abs(r - 153) < 10 && Math.abs(g - 153) < 10 && Math.abs(b - 153) < 10) {
+                    shouldRemove = true;
+                }
+                
+                // Remove blue ruled lines (#4DA6FF ≈ 77, 166, 255)
+                if (Math.abs(r - 77) < 20 && Math.abs(g - 166) < 20 && Math.abs(b - 255) < 20) {
+                    shouldRemove = true;
+                }
+                
+                // Remove red margin line (#FF6B6B ≈ 255, 107, 107)
+                if (Math.abs(r - 255) < 20 && Math.abs(g - 107) < 20 && Math.abs(b - 107) < 20) {
+                    shouldRemove = true;
+                }
+                
+                if (shouldRemove) {
+                    pixels[i + 3] = 0; // Set alpha to 0 (transparent)
                 }
             }
             
             tempCtx.putImageData(imageData, 0, 0);
+            console.log('Filtered out white + old background patterns, keeping only user strokes');
             
             // 6. Draw the non-white pixels (strokes only) on top
             ctx.globalCompositeOperation = 'source-over';
