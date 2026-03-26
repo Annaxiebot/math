@@ -1097,10 +1097,10 @@ Format your response like this:
                     <div style="font-size: clamp(1.1rem, 2.5vmin, 1.4rem); font-weight: bold; color: #FF0000; margin-bottom: 1vmin;">
                         ✏️ Scratch Paper (Draw or write your work!)
                     </div>
-                    <canvas id="scratchPad"
-                        width="800"
-                        height="400"
-                        style="border: 0.5vmin solid #FF0000; border-radius: 2vmin; background: white; width: 100%; max-width: 800px; height: auto; aspect-ratio: 2/1; touch-action: none; cursor: crosshair;">
+                    <canvas id="scratchPad" 
+                        width="1200" 
+                        height="600"
+                        style="border: 0.5vmin solid #FF0000; border-radius: 2vmin; background: white; width: 100%; height: auto; aspect-ratio: 2/1; touch-action: none; cursor: crosshair; display: block;">
                     </canvas>
                     <div style="margin-top: 1vmin; text-align: center;">
                         <button class="btn" style="background: #FFD700; color: #000; padding: 1vmin 3vmin; margin: 0.5vmin;" onclick="clearScratchPad()">
@@ -1653,31 +1653,31 @@ Be enthusiastic, encouraging, and educational!`;
                     <li>Add or remove elements</li>
                     <li>It's YOUR app to customize!</li>
                 </ul>
-                
+
                 <div style="background: #E8F5E9; padding: 2vmin; border-radius: 1.5vmin; margin-top: 2vmin; border: 0.3vmin solid #4CAF50;">
                     <p style="font-weight: bold; color: #2E7D32; margin-bottom: 1vmin;">🎓 Learn to Code! (Advanced)</p>
                     <p style="font-size: 0.95em;">You can also type JavaScript code directly! Use <code style="background: white; padding: 0.3vmin 0.8vmin; border-radius: 0.5vmin; color: #FF0000;">document.querySelector()</code> to find elements:</p>
-                    
+
                     <p style="margin-top: 1vmin; font-family: monospace; font-size: 0.9em; background: white; padding: 1vmin; border-radius: 0.8vmin;">
                         <strong>Change title:</strong><br>
                         document.querySelector('h1').textContent = 'My Math App! 🚀';
                     </p>
-                    
+
                     <p style="margin-top: 1vmin; font-family: monospace; font-size: 0.9em; background: white; padding: 1vmin; border-radius: 0.8vmin;">
                         <strong>Change background:</strong><br>
                         document.body.style.background = 'linear-gradient(purple, pink)';
                     </p>
-                    
+
                     <p style="margin-top: 1vmin; font-family: monospace; font-size: 0.9em; background: white; padding: 1vmin; border-radius: 0.8vmin;">
                         <strong>Change all buttons:</strong><br>
                         document.querySelectorAll('.topic-btn').forEach(btn => btn.style.background = 'rainbow');
                     </p>
-                    
+
                     <p style="margin-top: 1vmin; font-size: 0.9em; color: #666;">
                         💡 Just ask Mickey in plain English, or type code directly - either way works!
                     </p>
                 </div>
-                
+
                 <p style="color: #FF0000; margin-top: 2vmin;"><strong>Oh boy!</strong> Just type what you want and I'll make it happen! 🎀</p>
             `;
             responseEl.classList.remove('hidden');
