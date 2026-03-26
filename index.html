@@ -445,17 +445,40 @@
     <div class="container">
         <h1>🎀 Mickey's Math Quest 🎀</h1>
         <div style="text-align: center; margin-bottom: 3vmin;">
-            <label style="font-size: clamp(1rem, 2.5vmin, 1.3rem); font-weight: bold; margin-right: 2vmin;">
-                Grade Level:
-            </label>
-            <select id="gradeLevel" style="font-size: clamp(1rem, 2.5vmin, 1.3rem); padding: 1vmin 2vmin; border-radius: 1vmin; border: 0.3vmin solid #FF0000; background: white;">
-                <option value="3">Grade 3</option>
-                <option value="4">Grade 4</option>
-                <option value="5">Grade 5</option>
-                <option value="6" selected>Grade 6</option>
-                <option value="7">Grade 7</option>
-                <option value="8">Grade 8</option>
-            </select>
+            <div style="margin-bottom: 2vmin;">
+                <label style="font-size: clamp(1rem, 2.5vmin, 1.3rem); font-weight: bold; margin-right: 2vmin;">
+                    Grade Level:
+                </label>
+                <select id="gradeLevel" style="font-size: clamp(1rem, 2.5vmin, 1.3rem); padding: 1vmin 2vmin; border-radius: 1vmin; border: 0.3vmin solid #FF0000; background: white;">
+                    <option value="3">Grade 3</option>
+                    <option value="4">Grade 4</option>
+                    <option value="5">Grade 5</option>
+                    <option value="6" selected>Grade 6</option>
+                    <option value="7">Grade 7</option>
+                    <option value="8">Grade 8</option>
+                </select>
+            </div>
+            
+            <div style="margin-bottom: 2vmin;">
+                <label style="font-size: clamp(1rem, 2.5vmin, 1.3rem); font-weight: bold; margin-right: 2vmin;">
+                    Story Context:
+                </label>
+                <select id="storyContext" style="font-size: clamp(1rem, 2.5vmin, 1.3rem); padding: 1vmin 2vmin; border-radius: 1vmin; border: 0.3vmin solid #FF0000; background: white;">
+                    <option value="mickey" selected>Mickey Mouse Adventures 🎀</option>
+                    <option value="space">Space & Rockets 🚀</option>
+                    <option value="sports">Sports & Games ⚽</option>
+                    <option value="cooking">Cooking & Food 🍕</option>
+                    <option value="animals">Animals & Nature 🦁</option>
+                    <option value="superheroes">Superheroes 🦸</option>
+                    <option value="minecraft">Minecraft & Gaming 🎮</option>
+                    <option value="custom">Custom (type below) ✏️</option>
+                </select>
+            </div>
+            
+            <div id="customContextDiv" style="display: none; margin-top: 2vmin;">
+                <input type="text" id="customContext" placeholder="Describe your story context... (e.g., pirates, dinosaurs, cars)" 
+                    style="font-size: clamp(1rem, 2.5vmin, 1.2rem); padding: 1.5vmin; border-radius: 1vmin; border: 0.3vmin solid #FFD700; width: min(400px, 80%); text-align: center;">
+            </div>
         </div>
         
         <div class="topic-selector">
@@ -885,26 +908,44 @@
         async function generateAIProblem(topic) {
             try {
                 const gradeLevel = document.getElementById('gradeLevel').value;
+                const storyContext = document.getElementById('storyContext').value;
+                const customContext = document.getElementById('customContext').value;
                 const topicInfo = topics[topic];
                 
-                const systemPrompt = `You are Mickey Mouse, a friendly AI math tutor. Create Grade ${gradeLevel} math problems.
+                // Get the story context description
+                const contextDescriptions = {
+                    'mickey': 'Mickey Mouse and his friends (Minnie, Goofy, Donald Duck, Pluto) on fun adventures',
+                    'space': 'astronauts, rockets, planets, and space exploration',
+                    'sports': 'sports games, athletes, scores, and competitions',
+                    'cooking': 'recipes, ingredients, cooking, and delicious food',
+                    'animals': 'animals in nature, zoos, or wildlife adventures',
+                    'superheroes': 'superheroes saving the day with their powers',
+                    'minecraft': 'Minecraft worlds, blocks, crafting, and building',
+                    'custom': customContext || 'fun everyday situations'
+                };
                 
+                const contextDesc = contextDescriptions[storyContext] || contextDescriptions['mickey'];
+                
+                const systemPrompt = `You are Mickey Mouse, a friendly AI math tutor. Create Grade ${gradeLevel} math problems that are FUN and engaging!
+
+IMPORTANT: Make the word problem about ${contextDesc}. Make it exciting and relatable!
+
 When creating problems:
-1. Generate ONE practice problem
-2. Show the problem clearly
+1. Generate ONE word problem with a fun story about ${contextDesc}
+2. Show the problem clearly with the story context
 3. Provide the step-by-step solution
 4. Use Mickey language (Oh boy!, Gosh!, Hot dog!)
 5. Make it appropriate for Grade ${gradeLevel}
-6. Be encouraging!
+6. Make it FUN - kids should enjoy solving it!
 
 Format your response like this:
 **Problem:**
-[The problem to solve]
+[A fun word problem involving ${contextDesc}]
 
 **Solution:**
 [Step-by-step solution with final answer]`;
 
-                const userPrompt = topicInfo.prompt;
+                const userPrompt = topicInfo.prompt + ` Remember to make it a FUN word problem about ${contextDesc}!`;
                 
                 const response = await fetch(AI_CONFIG.INVOKE_URL, {
                     method: 'POST',
@@ -1201,6 +1242,17 @@ Be enthusiastic, encouraging, and educational!`;
                 if (tutorSection.classList.contains('show')) {
                     toggleTutorMode();
                 }
+            }
+        });
+        
+        // Show/hide custom context input
+        document.getElementById('storyContext').addEventListener('change', function() {
+            const customDiv = document.getElementById('customContextDiv');
+            if (this.value === 'custom') {
+                customDiv.style.display = 'block';
+                document.getElementById('customContext').focus();
+            } else {
+                customDiv.style.display = 'none';
             }
         });
     </script>
