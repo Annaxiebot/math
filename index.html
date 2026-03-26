@@ -1625,7 +1625,17 @@ Format your response like this:
             expandedCanvas.addEventListener('touchstart', handleTouchStartExpanded);
             expandedCanvas.addEventListener('touchmove', handleTouchMoveExpanded);
             expandedCanvas.addEventListener('touchend', stopDrawingExpanded);
-
+            
+            // Update UI to reflect current settings
+            // Trigger setPenColor to highlight the current color
+            setPenColor(currentPenColor);
+            // Trigger setPenSize to highlight the current size
+            setPenSize(currentPenSize);
+            // Trigger setBackground to highlight the current background
+            setBackground(currentBackground);
+            // Update eraser button state
+            updateToolDisplay();
+            
             modal.classList.add('show');
         }
 
