@@ -1288,8 +1288,8 @@ Format your response like this:
 
             // Draw grid or lines if needed
             if (currentBackground === 'grid') {
-                scratchBgCtx.strokeStyle = '#999999';
-                scratchBgCtx.lineWidth = 3;
+                scratchBgCtx.strokeStyle = '#E0E0E0';  // Much lighter gray
+                scratchBgCtx.lineWidth = 2;  // Thinner
                 const spacing = 40;
 
                 for (let x = 0; x <= scratchBgCanvas.width; x += spacing) {
@@ -1306,8 +1306,8 @@ Format your response like this:
                     scratchBgCtx.stroke();
                 }
             } else if (currentBackground === 'ruled') {
-                scratchBgCtx.strokeStyle = '#4DA6FF';
-                scratchBgCtx.lineWidth = 3;
+                scratchBgCtx.strokeStyle = '#E0F0FF';  // Very light blue
+                scratchBgCtx.lineWidth = 2;  // Thinner
                 const lineSpacing = 30;
 
                 for (let y = lineSpacing; y < scratchBgCanvas.height; y += lineSpacing) {
@@ -1317,8 +1317,8 @@ Format your response like this:
                     scratchBgCtx.stroke();
                 }
 
-                scratchBgCtx.strokeStyle = '#FF6B6B';
-                scratchBgCtx.lineWidth = 4;
+                scratchBgCtx.strokeStyle = '#FFD5D5';  // Light pink
+                scratchBgCtx.lineWidth = 3;  // Thinner
                 scratchBgCtx.beginPath();
                 scratchBgCtx.moveTo(80, 0);
                 scratchBgCtx.lineTo(80, scratchBgCanvas.height);
@@ -1564,17 +1564,17 @@ Format your response like this:
         // Expanded Scratch Pad Functions - Dual Canvas
         let expandedCanvas, expandedCtx, isDrawingExpanded = false;
         let expandedBgCanvas, expandedBgCtx;
-        
+
         function drawExpandedBackground() {
             if (!expandedBgCtx || !expandedBgCanvas) return;
-            
+
             expandedBgCtx.clearRect(0, 0, expandedBgCanvas.width, expandedBgCanvas.height);
             expandedBgCtx.fillStyle = 'white';
             expandedBgCtx.fillRect(0, 0, expandedBgCanvas.width, expandedBgCanvas.height);
-            
+
             if (currentBackground === 'grid') {
-                expandedBgCtx.strokeStyle = '#999999';
-                expandedBgCtx.lineWidth = 4;
+                expandedBgCtx.strokeStyle = '#E0E0E0';  // Much lighter gray
+                expandedBgCtx.lineWidth = 2;
                 const spacing = 53; // Scale for larger canvas (1600/1200 * 40)
                 
                 for (let x = 0; x <= expandedBgCanvas.width; x += spacing) {
@@ -1591,8 +1591,8 @@ Format your response like this:
                     expandedBgCtx.stroke();
                 }
             } else if (currentBackground === 'ruled') {
-                expandedBgCtx.strokeStyle = '#4DA6FF';
-                expandedBgCtx.lineWidth = 4;
+                expandedBgCtx.strokeStyle = '#E0F0FF';  // Very light blue
+                expandedBgCtx.lineWidth = 2;
                 const lineSpacing = 40; // Scale for larger canvas
                 
                 for (let y = lineSpacing; y < expandedBgCanvas.height; y += lineSpacing) {
@@ -1602,15 +1602,15 @@ Format your response like this:
                     expandedBgCtx.stroke();
                 }
                 
-                expandedBgCtx.strokeStyle = '#FF6B6B';
-                expandedBgCtx.lineWidth = 5;
+                expandedBgCtx.strokeStyle = '#FFD5D5';  // Light pink
+                expandedBgCtx.lineWidth = 3;
                 expandedBgCtx.beginPath();
                 expandedBgCtx.moveTo(106, 0); // Scale margin
                 expandedBgCtx.lineTo(106, expandedBgCanvas.height);
                 expandedBgCtx.stroke();
             }
         }
-        
+
         function expandScratchPad() {
             const modal = document.getElementById('scratchModal');
 
