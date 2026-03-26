@@ -1251,18 +1251,21 @@ Format your response like this:
         }
 
         function drawBackground(ctx, canvas) {
+            console.log('drawBackground called, currentBackground:', currentBackground, 'canvas size:', canvas.width, 'x', canvas.height);
+            
             // Save current drawing to temp canvas
             const tempCanvas = document.createElement('canvas');
             tempCanvas.width = canvas.width;
             tempCanvas.height = canvas.height;
             const tempCtx = tempCanvas.getContext('2d');
             tempCtx.drawImage(canvas, 0, 0);
-
+            
             // Clear and fill white
             ctx.fillStyle = 'white';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-
+            
             if (currentBackground === 'grid') {
+                console.log('Drawing grid lines...');
                 // Draw grid lines
                 ctx.strokeStyle = '#D0D0D0';
                 ctx.lineWidth = 2;
@@ -1320,11 +1323,15 @@ Format your response like this:
         }
 
         function setBackground(type) {
+            console.log('setBackground called with:', type);
             currentBackground = type;
 
             // Update both canvases
             if (scratchCtx && scratchCanvas) {
+                console.log('Drawing background on scratchCanvas, size:', scratchCanvas.width, 'x', scratchCanvas.height);
                 drawBackground(scratchCtx, scratchCanvas);
+            } else {
+                console.log('scratchCanvas not ready!');
             }
             if (expandedCtx && expandedCanvas) {
                 drawBackground(expandedCtx, expandedCanvas);
@@ -1421,7 +1428,7 @@ Format your response like this:
 
         function updateToolDisplay() {
             const eraserBtn = document.getElementById('eraserBtn');
-            
+
             if (eraserBtn) {
                 if (isEraserMode) {
                     eraserBtn.style.background = '#FFD700';
