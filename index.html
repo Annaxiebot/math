@@ -1252,25 +1252,26 @@ Format your response like this:
 
         function drawBackground(ctx, canvas) {
             console.log('drawBackground called, currentBackground:', currentBackground, 'canvas size:', canvas.width, 'x', canvas.height);
-
+            
             // Save current drawing to temp canvas
             const tempCanvas = document.createElement('canvas');
             tempCanvas.width = canvas.width;
             tempCanvas.height = canvas.height;
             const tempCtx = tempCanvas.getContext('2d');
             tempCtx.drawImage(canvas, 0, 0);
-
+            
             // Clear and fill white
             ctx.fillStyle = 'white';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-
+            
+            // IMPORTANT: Draw grid/lines FIRST (as background)
             if (currentBackground === 'grid') {
                 console.log('Drawing grid lines...');
                 // Draw grid lines - darker and thicker for visibility
                 ctx.strokeStyle = '#999999';  // Medium gray (was too light)
                 ctx.lineWidth = 3;  // Thicker lines
                 const spacing = 40; // Grid spacing
-
+                
                 // Vertical lines
                 for (let x = 0; x <= canvas.width; x += spacing) {
                     ctx.beginPath();
@@ -1278,7 +1279,7 @@ Format your response like this:
                     ctx.lineTo(x, canvas.height);
                     ctx.stroke();
                 }
-
+                
                 // Horizontal lines
                 for (let y = 0; y <= canvas.height; y += spacing) {
                     ctx.beginPath();
@@ -1286,7 +1287,7 @@ Format your response like this:
                     ctx.lineTo(canvas.width, y);
                     ctx.stroke();
                 }
-
+                
                 console.log('Grid drawn! Lines from 0 to', canvas.width, 'in', spacing, 'px steps');
             } else if (currentBackground === 'ruled') {
                 // Draw college ruled lines - more visible
@@ -1312,10 +1313,14 @@ Format your response like this:
                 
                 console.log('Ruled lines drawn!');
             }
-
-            // Restore drawing on top
+            
+            // Restore user's drawing on top of the background
+            // Use source-over to draw ink strokes on top of grid/lines
+            ctx.globalCompositeOperation = 'source-over';
             ctx.drawImage(tempCanvas, 0, 0);
-
+            
+            console.log('Drawing restored on top of background');
+            
             // Restore pen settings
             ctx.strokeStyle = currentPenColor;
             ctx.lineWidth = currentPenSize;
