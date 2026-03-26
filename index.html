@@ -639,8 +639,8 @@
         <div style="background: rgba(255,255,255,0.95); padding: 2vmin; border-radius: 1.5vmin; margin-bottom: 2vmin; display: flex; flex-wrap: wrap; gap: 1.5vmin; align-items: center; justify-content: center;">
             <div style="display: flex; align-items: center; gap: 1vmin;">
                 <label style="font-weight: bold; font-size: clamp(1rem, 2.5vmin, 1.3rem);">🎨 Color:</label>
-                <button data-color="#FF0000" onclick="setPenColor('#FF0000')" style="width: 5vmin; height: 5vmin; background: #FF0000; border: 0.5vmin solid #FFD700; border-radius: 50%; cursor: pointer; box-shadow: 0 0 1vmin rgba(255,215,0,0.8);"></button>
-                <button data-color="#000000" onclick="setPenColor('#000000')" style="width: 5vmin; height: 5vmin; background: #000000; border: 0.3vmin solid #000; border-radius: 50%; cursor: pointer;"></button>
+                <button data-color="#FF0000" onclick="setPenColor('#FF0000')" style="width: 5vmin; height: 5vmin; background: #FF0000; border: 0.3vmin solid #000; border-radius: 50%; cursor: pointer;"></button>
+                <button data-color="#000000" onclick="setPenColor('#000000')" style="width: 5vmin; height: 5vmin; background: #000000; border: 0.5vmin solid #FFD700; border-radius: 50%; cursor: pointer; box-shadow: 0 0 1vmin rgba(255,215,0,0.8);"></button>
                 <button data-color="#0000FF" onclick="setPenColor('#0000FF')" style="width: 5vmin; height: 5vmin; background: #0000FF; border: 0.3vmin solid #000; border-radius: 50%; cursor: pointer;"></button>
                 <button data-color="#00AA00" onclick="setPenColor('#00AA00')" style="width: 5vmin; height: 5vmin; background: #00AA00; border: 0.3vmin solid #000; border-radius: 50%; cursor: pointer;"></button>
                 <button data-color="#FF6600" onclick="setPenColor('#FF6600')" style="width: 5vmin; height: 5vmin; background: #FF6600; border: 0.3vmin solid #000; border-radius: 50%; cursor: pointer;"></button>
@@ -1154,8 +1154,8 @@ Format your response like this:
                     <!-- Drawing Tools (below canvas, subtle) -->
                     <div style="background: rgba(255,248,220,0.5); padding: 1.5vmin; border-radius: 1vmin; margin-top: 1vmin; display: flex; flex-wrap: wrap; gap: 1vmin; align-items: center; justify-content: center; border: 0.2vmin solid rgba(255,215,0,0.3);">
                         <div style="display: flex; align-items: center; gap: 0.8vmin;">
-                            <button data-color="#FF0000" onclick="setPenColor('#FF0000')" title="Red" style="width: 3.5vmin; height: 3.5vmin; background: #FF0000; border: 0.5vmin solid #FFD700; border-radius: 50%; cursor: pointer; box-shadow: 0 0 1vmin rgba(255,215,0,0.8);"></button>
-                            <button data-color="#000000" onclick="setPenColor('#000000')" title="Black" style="width: 3.5vmin; height: 3.5vmin; background: #000000; border: 0.2vmin solid #999; border-radius: 50%; cursor: pointer;"></button>
+                            <button data-color="#FF0000" onclick="setPenColor('#FF0000')" title="Red" style="width: 3.5vmin; height: 3.5vmin; background: #FF0000; border: 0.2vmin solid #999; border-radius: 50%; cursor: pointer;"></button>
+                            <button data-color="#000000" onclick="setPenColor('#000000')" title="Black" style="width: 3.5vmin; height: 3.5vmin; background: #000000; border: 0.5vmin solid #FFD700; border-radius: 50%; cursor: pointer; box-shadow: 0 0 1vmin rgba(255,215,0,0.8);"></button>
                             <button data-color="#0000FF" onclick="setPenColor('#0000FF')" title="Blue" style="width: 3.5vmin; height: 3.5vmin; background: #0000FF; border: 0.2vmin solid #999; border-radius: 50%; cursor: pointer;"></button>
                             <button data-color="#00AA00" onclick="setPenColor('#00AA00')" title="Green" style="width: 3.5vmin; height: 3.5vmin; background: #00AA00; border: 0.2vmin solid #999; border-radius: 50%; cursor: pointer;"></button>
                             <button data-color="#FF6600" onclick="setPenColor('#FF6600')" title="Orange" style="width: 3.5vmin; height: 3.5vmin; background: #FF6600; border: 0.2vmin solid #999; border-radius: 50%; cursor: pointer;"></button>
@@ -1179,11 +1179,11 @@ Format your response like this:
                             🧹
                         </button>
 
-                        <button class="btn" style="background: #FFD700; color: #000; padding: 0.6vmin 2vmin; margin: 0; font-size: clamp(0.8rem, 1.8vmin, 1rem);" onclick="clearScratchPad()">
-                            🗑️ Clear
+                        <button class="btn" style="background: #FFD700; color: #000; padding: 0.6vmin 1.2vmin; margin: 0; font-size: clamp(0.8rem, 1.8vmin, 1rem);" onclick="clearScratchPad()">
+                            🗑️
                         </button>
-                        <button class="btn" style="background: #4CAF50; color: white; padding: 0.6vmin 2vmin; margin: 0; font-size: clamp(0.8rem, 1.8vmin, 1rem);" onclick="expandScratchPad()">
-                            ⛶ Expand
+                        <button class="btn" style="background: #4CAF50; color: white; padding: 0.6vmin 1.2vmin; margin: 0; font-size: clamp(0.8rem, 1.8vmin, 1rem);" onclick="expandScratchPad()">
+                            ⛶
                         </button>
                     </div>
                 </div>
@@ -1237,7 +1237,7 @@ Format your response like this:
         // Scratch Pad Functions - Dual Canvas System
         let scratchCanvas, scratchCtx, isDrawing = false;  // Drawing layer
         let scratchBgCanvas, scratchBgCtx;  // Background layer
-        let currentPenColor = '#FF0000';
+        let currentPenColor = '#000000';  // Default: black
         let currentPenSize = 4;
         let isEraserMode = false;
         let currentBackground = 'blank';
