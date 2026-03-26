@@ -11,7 +11,7 @@
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
         }
-        
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
             background: linear-gradient(135deg, #FF0000 0%, #000000 100%);
@@ -19,7 +19,7 @@
             padding: 2vmin;
             overflow-x: hidden;
         }
-        
+
         .container {
             background: #FFF8DC;
             border-radius: 3vmin;
@@ -29,7 +29,7 @@
             margin: 0 auto;
             border: 1vmin solid #FFD700;
         }
-        
+
         h1 {
             color: #FF0000;
             font-size: clamp(2rem, 6vmin, 4rem);
@@ -38,7 +38,7 @@
             font-weight: bold;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
-        
+
         .subtitle {
             color: #333;
             margin-bottom: 3vmin;
@@ -46,7 +46,7 @@
             text-align: center;
             font-weight: bold;
         }
-        
+
         .score-board {
             display: flex;
             justify-content: space-around;
@@ -57,26 +57,26 @@
             gap: 2vmin;
             border: 0.5vmin solid #FF0000;
         }
-        
+
         .score-item {
             text-align: center;
             flex: 1;
         }
-        
+
         .score-label {
             color: #000;
             font-size: clamp(0.9rem, 2vmin, 1.2rem);
             margin-bottom: 1vmin;
             font-weight: bold;
         }
-        
+
         .score-value {
             font-size: clamp(1.5rem, 5vmin, 3rem);
             font-weight: bold;
             color: #FF0000;
             text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
         }
-        
+
         .explanation-box {
             background: white;
             padding: 3vmin;
@@ -84,21 +84,21 @@
             margin-bottom: 3vmin;
             border: 0.5vmin solid #FF0000;
         }
-        
+
         .concept-title {
             font-size: clamp(1.2rem, 3.5vmin, 2rem);
             color: #FF0000;
             margin-bottom: 2vmin;
             font-weight: bold;
         }
-        
+
         .concept-text {
             font-size: clamp(1rem, 2.5vmin, 1.4rem);
             color: #333;
             line-height: 1.6;
             margin-bottom: 2vmin;
         }
-        
+
         .formula-box {
             background: #FFD700;
             padding: 2vmin;
@@ -110,14 +110,14 @@
             border: 0.3vmin solid #FF0000;
             color: #000;
         }
-        
+
         .steps {
             background: #f0f0f0;
             padding: 2vmin;
             border-radius: 1.5vmin;
             margin: 2vmin 0;
         }
-        
+
         .step {
             font-size: clamp(1rem, 2.5vmin, 1.3rem);
             padding: 1vmin;
@@ -125,7 +125,7 @@
             color: #333;
             line-height: 1.5;
         }
-        
+
         .question-box {
             background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
             padding: 4vmin;
@@ -141,12 +141,12 @@
             align-items: center;
             justify-content: center;
         }
-        
+
         .answer-section {
             text-align: center;
             margin-bottom: 3vmin;
         }
-        
+
         .answer-input {
             font-size: clamp(2rem, 6vmin, 4rem);
             padding: 2vmin 3vmin;
@@ -159,13 +159,13 @@
             font-weight: bold;
             background: white;
         }
-        
+
         .answer-input:focus {
             outline: none;
             border-color: #FFD700;
             box-shadow: 0 0 2vmin rgba(255, 215, 0, 0.8);
         }
-        
+
         .button-group {
             display: flex;
             gap: 2vmin;
@@ -173,7 +173,7 @@
             flex-wrap: wrap;
             margin: 3vmin 0;
         }
-        
+
         .btn {
             font-size: clamp(1.2rem, 3.5vmin, 2rem);
             padding: 3vmin 6vmin;
@@ -187,27 +187,27 @@
             max-width: 400px;
             touch-action: manipulation;
         }
-        
+
         .btn:hover, .btn:focus {
             transform: translateY(-0.5vmin);
             box-shadow: 0 1vmin 3vmin rgba(0,0,0,0.3);
             outline: 0.4vmin solid #FFD700;
         }
-        
+
         .btn:active {
             transform: translateY(0);
         }
-        
+
         .btn-submit {
             background: #FF0000;
             color: white;
         }
-        
+
         .btn-next {
             background: #FFD700;
             color: #000;
         }
-        
+
         .feedback {
             font-size: clamp(1.2rem, 4vmin, 2rem);
             font-weight: bold;
@@ -216,25 +216,25 @@
             margin: 3vmin 0;
             line-height: 1.4;
         }
-        
+
         .correct {
             color: #008000;
         }
-        
+
         .incorrect {
             color: #FF0000;
         }
-        
+
         .stars {
             font-size: clamp(2rem, 6vmin, 4rem);
             margin-top: 2vmin;
             text-align: center;
         }
-        
+
         .hidden {
             display: none;
         }
-        
+
         .topic-selector {
             display: flex;
             gap: 1vmin;
@@ -242,7 +242,7 @@
             justify-content: center;
             margin-bottom: 3vmin;
         }
-        
+
         .topic-btn {
             padding: 2vmin 3vmin;
             background: white;
@@ -254,85 +254,117 @@
             color: #000;
             transition: all 0.2s;
         }
-        
+
         .topic-btn.active {
             background: #FF0000;
             color: white;
         }
-        
+
         .topic-btn:hover {
             background: #FFD700;
         }
-        
+
         @media (min-width: 1200px) {
             body {
                 padding: 3vmin;
             }
-            
+
             .container {
                 padding: 5vmin;
             }
-            
+
             .btn:focus {
                 outline: 0.6vmin solid #FFD700;
             }
         }
-        
+
         @media (max-width: 600px) {
             .score-board {
                 padding: 2vmin;
             }
-            
+
             .btn {
                 min-width: 150px;
                 padding: 3vmin 4vmin;
             }
-            
+
             .topic-selector {
                 gap: 1.5vmin;
             }
         }
-        
+
         @keyframes bounce {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.2); }
         }
-        
+
         @keyframes pulse {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.6; }
         }
-        
+
         .animate {
             animation: bounce 0.5s;
         }
-        
+
         .loading-pulse {
             animation: pulse 1.5s infinite;
         }
-        
+
+        .scratch-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            padding: 2vmin;
+        }
+
+        .scratch-modal.show {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .scratch-modal canvas {
+            max-width: 95vw;
+            max-height: 80vh;
+            background: white;
+            border: 0.5vmin solid #FFD700;
+            border-radius: 2vmin;
+        }
+
+        .scratch-modal-buttons {
+            margin-top: 2vmin;
+            text-align: center;
+        }
+
         *:focus-visible {
             outline: 0.5vmin solid #FFD700;
             outline-offset: 0.5vmin;
         }
-        
+
         .tutor-section {
             display: none;
             margin-top: 3vmin;
         }
-        
+
         .tutor-section.show {
             display: block;
         }
-        
+
         .practice-section {
             display: block;
         }
-        
+
         .practice-section.hidden {
             display: none;
         }
-        
+
         .tutor-content {
             background: #FFF8DC;
             border-radius: 3vmin;
@@ -340,22 +372,22 @@
             border: 1vmin solid #FFD700;
             margin-bottom: 3vmin;
         }
-        
+
         .tutor-header {
             text-align: center;
             margin-bottom: 3vmin;
         }
-        
+
         .tutor-header h2 {
             color: #FF0000;
             font-size: clamp(1.5rem, 4vmin, 2.5rem);
             margin-bottom: 1vmin;
         }
-        
+
         .tutor-input-group {
             margin-bottom: 3vmin;
         }
-        
+
         .tutor-label {
             display: block;
             font-size: clamp(1rem, 2.5vmin, 1.3rem);
@@ -363,7 +395,7 @@
             color: #333;
             margin-bottom: 1vmin;
         }
-        
+
         .tutor-textarea {
             width: 100%;
             min-height: 20vmin;
@@ -374,7 +406,7 @@
             font-family: inherit;
             resize: vertical;
         }
-        
+
         .tutor-response {
             background: linear-gradient(135deg, #FFF8DC 0%, #FFFACD 100%);
             padding: 4vmin;
@@ -387,56 +419,56 @@
             overflow-y: auto;
             box-shadow: 0 0.5vmin 2vmin rgba(255, 0, 0, 0.2);
         }
-        
+
         .tutor-response h3 {
             color: #FF0000;
             margin: 2vmin 0 1vmin 0;
             font-size: clamp(1.3rem, 3.2vmin, 1.8rem);
         }
-        
+
         .tutor-response strong {
             color: #FF0000;
         }
-        
+
         .tutor-response p {
             margin: 1.5vmin 0;
         }
-        
+
         .tutor-response ol, .tutor-response ul {
             margin-left: 3vmin;
             margin-top: 1vmin;
             margin-bottom: 1vmin;
         }
-        
+
         .tutor-response li {
             margin: 1vmin 0;
         }
-        
+
         .tutor-loading {
             text-align: center;
             padding: 3vmin;
             font-size: clamp(1.2rem, 3vmin, 1.5rem);
             color: #FF0000;
         }
-        
+
         .btn-tutor {
             background: #FFD700;
             color: #000;
             border: 0.5vmin solid #FF0000;
         }
-        
+
         .btn-close {
             background: #666;
             color: white;
         }
-        
+
         .tutor-examples {
             font-size: clamp(0.9rem, 2vmin, 1.1rem);
             color: #666;
             margin-top: 1vmin;
             font-style: italic;
         }
-        
+
         .api-warning {
             background: #fff3cd;
             border: 0.3vmin solid #ffc107;
@@ -450,7 +482,7 @@
 </head>
 <body>
 
-    
+
     <div class="container">
         <h1>🎀 Mickey's Math Quest 🎀</h1>
         <div style="text-align: center; margin-bottom: 3vmin;">
@@ -467,7 +499,7 @@
                     <option value="8">Grade 8</option>
                 </select>
             </div>
-            
+
             <div style="margin-bottom: 2vmin;">
                 <label style="font-size: clamp(1rem, 2.5vmin, 1.3rem); font-weight: bold; margin-right: 2vmin;">
                     Story Context:
@@ -483,13 +515,13 @@
                     <option value="custom">Custom (type below) ✏️</option>
                 </select>
             </div>
-            
+
             <div id="customContextDiv" style="display: none; margin-top: 2vmin;">
-                <input type="text" id="customContext" placeholder="Describe your story context... (e.g., pirates, dinosaurs, cars)" 
+                <input type="text" id="customContext" placeholder="Describe your story context... (e.g., pirates, dinosaurs, cars)"
                     style="font-size: clamp(1rem, 2.5vmin, 1.2rem); padding: 1.5vmin; border-radius: 1vmin; border: 0.3vmin solid #FFD700; width: min(400px, 80%); text-align: center;">
             </div>
         </div>
-        
+
         <div class="topic-selector">
             <button class="topic-btn active" onclick="changeTopic('equations')">Equations</button>
             <button class="topic-btn" onclick="changeTopic('slope')">Slope & Lines</button>
@@ -500,10 +532,10 @@
                 🎓 Ask AI Tutor Mickey
             </button>
         </div>
-        
+
         <!-- Practice Section (default questions) -->
         <div id="practiceSection" class="practice-section">
-        
+
         <div class="score-board">
             <div class="score-item">
                 <div class="score-label">Correct</div>
@@ -518,24 +550,24 @@
                 <div class="score-value" id="total">0</div>
             </div>
         </div>
-        
+
         <div id="explanation" class="explanation-box">
             <div class="concept-title" id="conceptTitle"></div>
             <div class="concept-text" id="conceptText"></div>
             <div id="formulaBox" class="formula-box"></div>
             <div id="stepsBox" class="steps"></div>
         </div>
-        
+
         <div class="question-box" id="question"></div>
-        
+
         <div class="answer-section">
-            <input type="text" 
-                   class="answer-input" 
-                   id="answer" 
-                   placeholder="?" 
+            <input type="text"
+                   class="answer-input"
+                   id="answer"
+                   placeholder="?"
                    autocomplete="off">
         </div>
-        
+
         <div class="button-group">
             <button class="btn btn-submit" id="submitBtn" onclick="checkAnswer()">
                 Check Answer ✓
@@ -544,11 +576,11 @@
                 Next Problem →
             </button>
         </div>
-        
+
         <div class="feedback" id="feedback"></div>
         <div class="stars" id="stars"></div>
         </div>
-        
+
         <!-- AI Tutor Section -->
         <div id="tutorSection" class="tutor-section">
             <div class="tutor-content">
@@ -563,14 +595,14 @@
                         </button>
                     </div>
                 </div>
-                
+
                 <div class="tutor-input-group">
                     <label class="tutor-label" for="tutorQuestion">
                         What kind of math problems do you want to practice?
                     </label>
-                    <textarea 
-                        id="tutorQuestion" 
-                        class="tutor-textarea" 
+                    <textarea
+                        id="tutorQuestion"
+                        class="tutor-textarea"
                         placeholder="Example: Give me 3 slope problems with positive slopes..."
                     ></textarea>
                     <div class="tutor-examples">
@@ -578,13 +610,13 @@
                         🎨 <strong>Vibe Coding:</strong> "Make the background purple" or "Change the emoji to 🌟"
                     </div>
                 </div>
-                
+
                 <div id="tutorResponse" class="tutor-response hidden"></div>
                 <div id="tutorLoading" class="tutor-loading hidden">
                     <div style="font-size: clamp(3rem, 6vmin, 5rem); animation: bounce 1s infinite;">🤔</div>
                     <div style="margin-top: 2vmin;">Mickey is thinking...</div>
                 </div>
-                
+
                 <div class="button-group">
                     <button class="btn btn-tutor" onclick="askTutor()">
                         Ask Mickey! 🎓
@@ -597,13 +629,30 @@
         </div>
     </div>
 
+    <!-- Expanded Scratch Pad Modal -->
+    <div class="scratch-modal" id="scratchModal">
+        <canvas id="scratchPadExpanded"
+            width="1600"
+            height="1000"
+            style="cursor: crosshair; touch-action: none;">
+        </canvas>
+        <div class="scratch-modal-buttons">
+            <button class="btn" style="background: #FFD700; color: #000; padding: 2vmin 4vmin; margin: 1vmin; font-size: clamp(1.2rem, 3vmin, 1.8rem);" onclick="clearExpandedPad()">
+                🗑️ Clear
+            </button>
+            <button class="btn" style="background: #FF0000; color: white; padding: 2vmin 4vmin; margin: 1vmin; font-size: clamp(1.2rem, 3vmin, 1.8rem);" onclick="closeExpandedPad()">
+                ✕ Close
+            </button>
+        </div>
+    </div>
+
     <script>
         let correct = 0;
         let total = 0;
         let streak = 0;
         let currentAnswer = 0;
         let currentTopic = 'equations';
-        
+
         const topics = {
             equations: {
                 name: "Solving Equations",
@@ -626,7 +675,7 @@
                 prompt: "Create 1 area or perimeter problem with a shape. Show the formula and step-by-step solution."
             }
         };
-        
+
         const encouragement = {
             correct: [
                 "Hot dog! You got it! 🎉",
@@ -641,20 +690,20 @@
                 "Don't worry! Practice makes perfect! 🌈"
             ]
         };
-        
+
         async function changeTopic(topic) {
             currentTopic = topic;
             document.querySelectorAll('.topic-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
             event.target.classList.add('active');
-            
+
             // Show loading animation
             const questionBox = document.getElementById('question');
             const feedbackEl = document.getElementById('feedback');
             const starsEl = document.getElementById('stars');
             const explanationBox = document.getElementById('explanation');
-            
+
             // Show Mickey thinking animation
             explanationBox.innerHTML = `
                 <div style="text-align: center; padding: 4vmin;">
@@ -667,26 +716,26 @@
                     </div>
                 </div>
             `;
-            
+
             questionBox.textContent = '';
             feedbackEl.textContent = '';
             starsEl.textContent = '';
             document.getElementById('answer').value = '';
-            
+
             await generateAIProblem(topic);
         }
-        
+
         function generateEquation() {
             const types = ['oneStep', 'twoStep', 'distributive'];
             const type = types[Math.floor(Math.random() * types.length)];
-            
+
             let equation, solution, steps;
-            
+
             if (type === 'oneStep') {
                 const x = Math.floor(Math.random() * 15) + 1;
                 const b = Math.floor(Math.random() * 20) + 1;
                 const operation = Math.random() > 0.5 ? '+' : '-';
-                
+
                 if (operation === '+') {
                     equation = `x + ${b} = ${x + b}`;
                     solution = x;
@@ -710,7 +759,7 @@
                 const x = Math.floor(Math.random() * 10) + 1;
                 const a = Math.floor(Math.random() * 5) + 2;
                 const b = Math.floor(Math.random() * 15) + 1;
-                
+
                 equation = `${a}x + ${b} = ${a * x + b}`;
                 solution = x;
                 steps = `
@@ -724,7 +773,7 @@
                 const x = Math.floor(Math.random() * 8) + 2;
                 const a = Math.floor(Math.random() * 4) + 2;
                 const b = Math.floor(Math.random() * 10) + 1;
-                
+
                 equation = `${a}(x + ${b}) = ${a * (x + b)}`;
                 solution = x;
                 steps = `
@@ -736,7 +785,7 @@
                     <div class="step"><strong>Step 6:</strong> Divide by ${a}: x = ${x}</div>
                 `;
             }
-            
+
             return {
                 title: "🔢 Solving Equations",
                 concept: "An <strong>equation</strong> is like a balance scale - what you do to one side, you must do to the other! We solve for x by isolating it (getting it alone on one side).",
@@ -746,15 +795,15 @@
                 answer: solution
             };
         }
-        
+
         function generateOrderProblem() {
             const a = Math.floor(Math.random() * 10) + 2;
             const b = Math.floor(Math.random() * 5) + 1;
             const c = Math.floor(Math.random() * 10) + 1;
-            
+
             const problem = `${a} + ${b} × ${c}`;
             const answer = a + (b * c);
-            
+
             return {
                 title: "📐 Order of Operations (BEDMAS)",
                 concept: "<strong>BEDMAS/PEMDAS</strong> tells us the order to solve: <strong>B</strong>rackets, <strong>E</strong>xponents, <strong>D</strong>ivision/<strong>M</strong>ultiplication (left to right), <strong>A</strong>ddition/<strong>S</strong>ubtraction (left to right)",
@@ -770,15 +819,15 @@
                 answer: answer
             };
         }
-        
+
         function generateFractionProblem() {
             const num1 = Math.floor(Math.random() * 5) + 1;
             const den = Math.floor(Math.random() * 8) + 2;
             const num2 = Math.floor(Math.random() * 5) + 1;
-            
+
             const problem = `${num1}/${den} + ${num2}/${den}`;
             const answer = num1 + num2;
-            
+
             return {
                 title: "🍕 Adding Fractions",
                 concept: "When fractions have the <strong>same denominator</strong> (bottom number), we can add the numerators (top numbers) and keep the denominator the same!",
@@ -794,22 +843,22 @@
                 answer: answer
             };
         }
-        
+
         function generateSlopeProblem() {
             const types = ['calculate', 'equation', 'findY'];
             const type = types[Math.floor(Math.random() * types.length)];
-            
+
             if (type === 'calculate') {
                 const x1 = Math.floor(Math.random() * 8) + 1;
                 const y1 = Math.floor(Math.random() * 8) + 1;
                 const x2 = x1 + Math.floor(Math.random() * 5) + 1;
                 const y2 = y1 + Math.floor(Math.random() * 10) - 3;
-                
+
                 const rise = y2 - y1;
                 const run = x2 - x1;
                 const slope = rise / run;
                 const answer = Math.round(slope * 10) / 10;
-                
+
                 return {
                     title: "📈 Finding Slope",
                     concept: "<strong>Slope</strong> measures how steep a line is. It's the ratio of rise (vertical change) to run (horizontal change). Slope = rise/run = Δy/Δx",
@@ -831,7 +880,7 @@
                 const m = Math.floor(Math.random() * 6) + 1;
                 const b = Math.floor(Math.random() * 10) - 3;
                 const questionType = Math.random() > 0.5 ? 'm' : 'b';
-                
+
                 if (questionType === 'm') {
                     return {
                         title: "📐 Slope-Intercept Form: y = mx + b",
@@ -869,7 +918,7 @@
                 const b = Math.floor(Math.random() * 8) + 1;
                 const x = Math.floor(Math.random() * 6) + 1;
                 const answer = m * x + b;
-                
+
                 return {
                     title: "🎯 Using Linear Equations",
                     concept: "To find y when you know x, <strong>substitute</strong> x into the equation and solve!",
@@ -887,16 +936,16 @@
                 };
             }
         }
-        
+
         function generateAreaProblem() {
             const shapes = ['rectangle', 'square'];
             const shape = shapes[Math.floor(Math.random() * shapes.length)];
-            
+
             if (shape === 'rectangle') {
                 const length = Math.floor(Math.random() * 12) + 3;
                 const width = Math.floor(Math.random() * 10) + 2;
                 const answer = length * width;
-                
+
                 return {
                     title: "📏 Area of a Rectangle",
                     concept: "<strong>Area</strong> is the space inside a shape. For rectangles, we multiply length × width.",
@@ -914,7 +963,7 @@
             } else {
                 const side = Math.floor(Math.random() * 12) + 3;
                 const answer = side * side;
-                
+
                 return {
                     title: "📐 Area of a Square",
                     concept: "<strong>A square</strong> has all sides equal. Area = side × side (or side²)",
@@ -931,14 +980,14 @@
                 };
             }
         }
-        
+
         async function generateAIProblem(topic) {
             try {
                 const gradeLevel = document.getElementById('gradeLevel').value;
                 const storyContext = document.getElementById('storyContext').value;
                 const customContext = document.getElementById('customContext').value;
                 const topicInfo = topics[topic];
-                
+
                 // Get the story context description
                 const contextDescriptions = {
                     'mickey': 'Mickey Mouse and his friends (Minnie, Goofy, Donald Duck, Pluto) on fun adventures',
@@ -950,9 +999,9 @@
                     'minecraft': 'Minecraft worlds, blocks, crafting, and building',
                     'custom': customContext || 'fun everyday situations'
                 };
-                
+
                 const contextDesc = contextDescriptions[storyContext] || contextDescriptions['mickey'];
-                
+
                 const systemPrompt = `You are Mickey Mouse, a friendly AI math tutor. Create Grade ${gradeLevel} math problems that are FUN and engaging!
 
 IMPORTANT: Make the word problem about ${contextDesc}. Make it exciting and relatable!
@@ -973,7 +1022,7 @@ Format your response like this:
 [Step-by-step solution with final answer]`;
 
                 const userPrompt = topicInfo.prompt + ` Remember to make it a FUN word problem about ${contextDesc}!`;
-                
+
                 const response = await fetch(AI_CONFIG.INVOKE_URL, {
                     method: 'POST',
                     headers: {
@@ -990,17 +1039,17 @@ Format your response like this:
                         temperature: 0.7
                     })
                 });
-                
+
                 if (!response.ok) {
                     throw new Error(`API Error: ${response.status}`);
                 }
-                
+
                 const data = await response.json();
                 const mickeyResponse = data.choices[0].message.content;
-                
+
                 // Display Mickey's problem and solution
                 displayAIProblem(mickeyResponse);
-                
+
             } catch (error) {
                 console.error('AI Problem Error:', error);
                 document.getElementById('question').innerHTML = `
@@ -1009,24 +1058,24 @@ Format your response like this:
                 `;
             }
         }
-        
+
         function displayAIProblem(mickeyResponse) {
             const explanationBox = document.getElementById('explanation');
-            
+
             // Try to split problem and solution
             const problemMatch = mickeyResponse.match(/\*\*Problem:\*\*([\s\S]*?)(?=\*\*Solution:\*\*|$)/i);
             const solutionMatch = mickeyResponse.match(/\*\*Solution:\*\*([\s\S]*)/i);
-            
+
             let problemText = problemMatch ? problemMatch[1].trim() : mickeyResponse;
             let solutionText = solutionMatch ? solutionMatch[1].trim() : '';
-            
+
             // Format problem
             let formattedProblem = problemText
                 .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
                 .replace(/\n\n/g, '</p><p>')
                 .replace(/\n/g, '<br>');
             formattedProblem = '<p>' + formattedProblem + '</p>';
-            
+
             // Format solution (hidden by default)
             let formattedSolution = '';
             if (solutionText) {
@@ -1036,20 +1085,20 @@ Format your response like this:
                     .replace(/\n/g, '<br>');
                 formattedSolution = '<p>' + formattedSolution + '</p>';
             }
-            
+
             // Show problem with scratch pad
             explanationBox.innerHTML = `
                 <div class="concept-title" style="color: #FF0000;">🎀 ${topics[currentTopic].name} - Try to solve!</div>
                 <div class="concept-text" style="background: #FFF8DC; padding: 3vmin; border-radius: 2vmin; border: 0.5vmin solid #FFD700;">
                     ${formattedProblem}
                 </div>
-                
+
                 <div style="margin-top: 3vmin;">
                     <div style="font-size: clamp(1.1rem, 2.5vmin, 1.4rem); font-weight: bold; color: #FF0000; margin-bottom: 1vmin;">
                         ✏️ Scratch Paper (Draw or write your work!)
                     </div>
-                    <canvas id="scratchPad" 
-                        width="800" 
+                    <canvas id="scratchPad"
+                        width="800"
                         height="400"
                         style="border: 0.5vmin solid #FF0000; border-radius: 2vmin; background: white; width: 100%; max-width: 800px; height: auto; aspect-ratio: 2/1; touch-action: none; cursor: crosshair;">
                     </canvas>
@@ -1057,12 +1106,15 @@ Format your response like this:
                         <button class="btn" style="background: #FFD700; color: #000; padding: 1vmin 3vmin; margin: 0.5vmin;" onclick="clearScratchPad()">
                             🗑️ Clear
                         </button>
+                        <button class="btn" style="background: #4CAF50; color: white; padding: 1vmin 3vmin; margin: 0.5vmin;" onclick="expandScratchPad()">
+                            ⛶ Expand
+                        </button>
                         <button class="btn" style="background: #FF0000; color: white; padding: 1vmin 3vmin; margin: 0.5vmin;" onclick="toggleSolution()">
                             👀 Show Solution
                         </button>
                     </div>
                 </div>
-                
+
                 <div id="solutionBox" style="display: none; margin-top: 3vmin; background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%); padding: 3vmin; border-radius: 2vmin; border: 0.5vmin solid #4CAF50;">
                     <div style="font-size: clamp(1.2rem, 3vmin, 1.6rem); font-weight: bold; color: #2E7D32; margin-bottom: 2vmin;">
                         ✅ Mickey's Solution
@@ -1072,48 +1124,48 @@ Format your response like this:
                     </div>
                 </div>
             `;
-            
+
             // Initialize scratch pad
             initScratchPad();
-            
+
             // Show next problem button
             document.getElementById('question').innerHTML = `
                 <button class="btn btn-next" onclick="changeTopic('${currentTopic}')" style="margin: 0 auto; display: block;">
                     Next ${topics[currentTopic].name} Problem →
                 </button>
             `;
-            
+
             const answerSection = document.querySelector('.answer-section');
             const buttonGroup = answerSection.nextElementSibling;
             answerSection.style.display = 'none';
             buttonGroup.style.display = 'none';
         }
-        
+
         // Scratch Pad Functions
         let scratchCanvas, scratchCtx, isDrawing = false;
-        
+
         function initScratchPad() {
             scratchCanvas = document.getElementById('scratchPad');
             if (!scratchCanvas) return;
-            
+
             scratchCtx = scratchCanvas.getContext('2d');
             scratchCtx.strokeStyle = '#FF0000';
             scratchCtx.lineWidth = 3;
             scratchCtx.lineCap = 'round';
             scratchCtx.lineJoin = 'round';
-            
+
             // Mouse events
             scratchCanvas.addEventListener('mousedown', startDrawing);
             scratchCanvas.addEventListener('mousemove', draw);
             scratchCanvas.addEventListener('mouseup', stopDrawing);
             scratchCanvas.addEventListener('mouseout', stopDrawing);
-            
+
             // Touch events
             scratchCanvas.addEventListener('touchstart', handleTouchStart);
             scratchCanvas.addEventListener('touchmove', handleTouchMove);
             scratchCanvas.addEventListener('touchend', stopDrawing);
         }
-        
+
         function startDrawing(e) {
             isDrawing = true;
             const rect = scratchCanvas.getBoundingClientRect();
@@ -1122,7 +1174,7 @@ Format your response like this:
             scratchCtx.beginPath();
             scratchCtx.moveTo(x, y);
         }
-        
+
         function draw(e) {
             if (!isDrawing) return;
             const rect = scratchCanvas.getBoundingClientRect();
@@ -1131,11 +1183,11 @@ Format your response like this:
             scratchCtx.lineTo(x, y);
             scratchCtx.stroke();
         }
-        
+
         function stopDrawing() {
             isDrawing = false;
         }
-        
+
         function handleTouchStart(e) {
             e.preventDefault();
             const touch = e.touches[0];
@@ -1146,7 +1198,7 @@ Format your response like this:
             scratchCtx.beginPath();
             scratchCtx.moveTo(x, y);
         }
-        
+
         function handleTouchMove(e) {
             if (!isDrawing) return;
             e.preventDefault();
@@ -1157,13 +1209,13 @@ Format your response like this:
             scratchCtx.lineTo(x, y);
             scratchCtx.stroke();
         }
-        
+
         function clearScratchPad() {
             if (scratchCtx) {
                 scratchCtx.clearRect(0, 0, scratchCanvas.width, scratchCanvas.height);
             }
         }
-        
+
         function toggleSolution() {
             const solutionBox = document.getElementById('solutionBox');
             const btn = event.target;
@@ -1179,19 +1231,114 @@ Format your response like this:
             }
         }
         
+        // Expanded Scratch Pad Functions
+        let expandedCanvas, expandedCtx, isDrawingExpanded = false;
+        
+        function expandScratchPad() {
+            const modal = document.getElementById('scratchModal');
+            expandedCanvas = document.getElementById('scratchPadExpanded');
+            expandedCtx = expandedCanvas.getContext('2d');
+            
+            // Copy current scratch pad content to expanded
+            if (scratchCanvas) {
+                expandedCtx.drawImage(scratchCanvas, 0, 0, expandedCanvas.width, expandedCanvas.height);
+            }
+            
+            // Set up drawing
+            expandedCtx.strokeStyle = '#FF0000';
+            expandedCtx.lineWidth = 4;
+            expandedCtx.lineCap = 'round';
+            expandedCtx.lineJoin = 'round';
+            
+            // Mouse events
+            expandedCanvas.addEventListener('mousedown', startDrawingExpanded);
+            expandedCanvas.addEventListener('mousemove', drawExpanded);
+            expandedCanvas.addEventListener('mouseup', stopDrawingExpanded);
+            expandedCanvas.addEventListener('mouseout', stopDrawingExpanded);
+            
+            // Touch events
+            expandedCanvas.addEventListener('touchstart', handleTouchStartExpanded);
+            expandedCanvas.addEventListener('touchmove', handleTouchMoveExpanded);
+            expandedCanvas.addEventListener('touchend', stopDrawingExpanded);
+            
+            modal.classList.add('show');
+        }
+        
+        function closeExpandedPad() {
+            const modal = document.getElementById('scratchModal');
+            
+            // Copy expanded content back to small pad
+            if (scratchCtx && expandedCanvas) {
+                scratchCtx.clearRect(0, 0, scratchCanvas.width, scratchCanvas.height);
+                scratchCtx.drawImage(expandedCanvas, 0, 0, scratchCanvas.width, scratchCanvas.height);
+            }
+            
+            modal.classList.remove('show');
+        }
+        
+        function clearExpandedPad() {
+            if (expandedCtx) {
+                expandedCtx.clearRect(0, 0, expandedCanvas.width, expandedCanvas.height);
+            }
+        }
+        
+        function startDrawingExpanded(e) {
+            isDrawingExpanded = true;
+            const rect = expandedCanvas.getBoundingClientRect();
+            const x = (e.clientX - rect.left) * (expandedCanvas.width / rect.width);
+            const y = (e.clientY - rect.top) * (expandedCanvas.height / rect.height);
+            expandedCtx.beginPath();
+            expandedCtx.moveTo(x, y);
+        }
+        
+        function drawExpanded(e) {
+            if (!isDrawingExpanded) return;
+            const rect = expandedCanvas.getBoundingClientRect();
+            const x = (e.clientX - rect.left) * (expandedCanvas.width / rect.width);
+            const y = (e.clientY - rect.top) * (expandedCanvas.height / rect.height);
+            expandedCtx.lineTo(x, y);
+            expandedCtx.stroke();
+        }
+        
+        function stopDrawingExpanded() {
+            isDrawingExpanded = false;
+        }
+        
+        function handleTouchStartExpanded(e) {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const rect = expandedCanvas.getBoundingClientRect();
+            const x = (touch.clientX - rect.left) * (expandedCanvas.width / rect.width);
+            const y = (touch.clientY - rect.top) * (expandedCanvas.height / rect.height);
+            isDrawingExpanded = true;
+            expandedCtx.beginPath();
+            expandedCtx.moveTo(x, y);
+        }
+        
+        function handleTouchMoveExpanded(e) {
+            if (!isDrawingExpanded) return;
+            e.preventDefault();
+            const touch = e.touches[0];
+            const rect = expandedCanvas.getBoundingClientRect();
+            const x = (touch.clientX - rect.left) * (expandedCanvas.width / rect.width);
+            const y = (touch.clientY - rect.top) * (expandedCanvas.height / rect.height);
+            expandedCtx.lineTo(x, y);
+            expandedCtx.stroke();
+        }
+
         function generateQuestion() {
             // This function is now replaced by generateAIProblem
             // Keeping it for compatibility
             const problem = { title: '', concept: '', formula: '', steps: '', question: 'Loading...', answer: 0 };
-            
+
             document.getElementById('conceptTitle').innerHTML = problem.title;
             document.getElementById('conceptText').innerHTML = problem.concept;
             document.getElementById('formulaBox').innerHTML = problem.formula;
             document.getElementById('stepsBox').innerHTML = problem.steps;
             document.getElementById('question').textContent = problem.question;
-            
+
             currentAnswer = problem.answer;
-            
+
             document.getElementById('answer').value = '';
             document.getElementById('feedback').textContent = '';
             document.getElementById('stars').textContent = '';
@@ -1199,25 +1346,25 @@ Format your response like this:
             document.getElementById('submitBtn').classList.remove('hidden');
             document.getElementById('nextBtn').classList.add('hidden');
         }
-        
+
         function checkAnswer() {
             const userAnswer = parseFloat(document.getElementById('answer').value);
-            
+
             if (isNaN(userAnswer)) {
                 return;
             }
-            
+
             total++;
-            
+
             const feedbackEl = document.getElementById('feedback');
             const starsEl = document.getElementById('stars');
             const submitBtn = document.getElementById('submitBtn');
             const nextBtn = document.getElementById('nextBtn');
-            
+
             if (Math.abs(userAnswer - currentAnswer) < 0.01) {
                 correct++;
                 streak++;
-                
+
                 feedbackEl.innerHTML = `
                     ${encouragement.correct[Math.floor(Math.random() * encouragement.correct.length)]}<br>
                     <span style="font-size: 0.7em;">
@@ -1225,13 +1372,13 @@ Format your response like this:
                     </span>
                 `;
                 feedbackEl.className = 'feedback correct animate';
-                
+
                 let starCount = Math.min(streak, 5);
                 starsEl.textContent = '⭐'.repeat(starCount);
-                
+
             } else {
                 streak = 0;
-                
+
                 feedbackEl.innerHTML = `
                     ${encouragement.incorrect[Math.floor(Math.random() * encouragement.incorrect.length)]}<br>
                     <span style="font-size: 0.7em;">
@@ -1241,28 +1388,28 @@ Format your response like this:
                 feedbackEl.className = 'feedback incorrect';
                 starsEl.textContent = '';
             }
-            
+
             updateScores();
             submitBtn.classList.add('hidden');
             nextBtn.classList.remove('hidden');
             nextBtn.focus();
         }
-        
+
         function nextQuestion() {
             generateQuestion();
         }
-        
+
         function updateScores() {
             document.getElementById('correct').textContent = correct;
             document.getElementById('total').textContent = total;
             document.getElementById('streak').textContent = streak;
         }
-        
+
         document.getElementById('answer').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 const submitBtn = document.getElementById('submitBtn');
                 const nextBtn = document.getElementById('nextBtn');
-                
+
                 if (!submitBtn.classList.contains('hidden')) {
                     checkAnswer();
                 } else if (!nextBtn.classList.contains('hidden')) {
@@ -1270,7 +1417,7 @@ Format your response like this:
                 }
             }
         });
-        
+
         let lastTouchEnd = 0;
         document.addEventListener('touchend', function (event) {
             const now = Date.now();
@@ -1279,14 +1426,14 @@ Format your response like this:
             }
             lastTouchEnd = now;
         }, false);
-        
+
         // Show welcome message on page load
         showWelcomeMessage();
-        
+
         function showWelcomeMessage() {
             const explanationBox = document.getElementById('explanation');
             const questionBox = document.getElementById('question');
-            
+
             explanationBox.innerHTML = `
                 <div class="concept-title" style="color: #FF0000; text-align: center;">
                     🎀 Welcome to Mickey's Math Quest! 🎀
@@ -1305,25 +1452,25 @@ Format your response like this:
                     </p>
                 </div>
             `;
-            
+
             questionBox.innerHTML = `
                 <div style="font-size: clamp(1.5rem, 4vmin, 2.5rem); text-align: center; color: #FF0000;">
                     👆 Click a topic to start! 👆
                 </div>
             `;
-            
+
             // Hide answer input on welcome
             const answerSection = document.querySelector('.answer-section');
             const buttonGroup = answerSection.nextElementSibling;
             answerSection.style.display = 'none';
             buttonGroup.style.display = 'none';
         }
-        
+
         // AI Tutor Functions
         function toggleTutorMode() {
             const practiceSection = document.getElementById('practiceSection');
             const tutorSection = document.getElementById('tutorSection');
-            
+
             if (tutorSection.classList.contains('show')) {
                 // Switch back to practice mode
                 tutorSection.classList.remove('show');
@@ -1336,39 +1483,39 @@ Format your response like this:
                 document.getElementById('tutorQuestion').focus();
             }
         }
-        
+
         async function askTutor() {
             const question = document.getElementById('tutorQuestion').value.trim();
-            
+
             if (!question) {
                 alert('Please type what kind of math problems you want, or ask to customize the app!');
                 return;
             }
-            
+
             // Check if this is a vibe coding request
             const vibeCodingKeywords = ['color', 'background', 'change', 'emoji', 'icon', 'theme', 'style', 'look', 'vibe', 'purple', 'blue', 'green', 'red', 'pink'];
             const isVibeCoding = vibeCodingKeywords.some(keyword => question.toLowerCase().includes(keyword));
-            
+
             if (isVibeCoding) {
                 await handleVibeCoding(question);
                 return;
             }
-            
+
             // Check if API is configured
             if (typeof AI_CONFIG === 'undefined' || !isAITutorAvailable()) {
                 alert('⚠️ API Key not configured! Please set up config.js with your NVIDIA API key.');
                 return;
             }
-            
+
             const responseEl = document.getElementById('tutorResponse');
             const loadingEl = document.getElementById('tutorLoading');
-            
+
             // Show loading
             responseEl.classList.add('hidden');
             loadingEl.classList.remove('hidden');
-            
+
             try {
-                const systemPrompt = `You are Mickey Mouse, a friendly AI math tutor for Grade 6 students. 
+                const systemPrompt = `You are Mickey Mouse, a friendly AI math tutor for Grade 6 students.
 Your job is to create math practice problems based on what the student asks for.
 
 Topics include:
@@ -1405,17 +1552,17 @@ Be enthusiastic, encouraging, and educational!`;
                         stream: false
                     })
                 });
-                
+
                 if (!response.ok) {
                     throw new Error(`API Error: ${response.status} ${response.statusText}`);
                 }
-                
+
                 const data = await response.json();
                 const answer = data.choices[0].message.content;
-                
+
                 // Display response with formatting
                 loadingEl.classList.add('hidden');
-                
+
                 // Convert Mickey's response to nice HTML
                 let formattedAnswer = answer
                     // Convert markdown headers (###)
@@ -1429,13 +1576,13 @@ Be enthusiastic, encouraging, and educational!`;
                     // Convert line breaks
                     .replace(/\n\n/g, '</p><p>')
                     .replace(/\n/g, '<br>');
-                
+
                 // Wrap in paragraph
                 formattedAnswer = '<p>' + formattedAnswer + '</p>';
-                
+
                 responseEl.innerHTML = formattedAnswer;
                 responseEl.classList.remove('hidden');
-                
+
             } catch (error) {
                 console.error('AI Tutor Error:', error);
                 loadingEl.classList.add('hidden');
@@ -1446,7 +1593,7 @@ Be enthusiastic, encouraging, and educational!`;
                 responseEl.classList.remove('hidden');
             }
         }
-        
+
         // Keyboard shortcut
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
@@ -1456,7 +1603,7 @@ Be enthusiastic, encouraging, and educational!`;
                 }
             }
         });
-        
+
         // Show/hide custom context input
         document.getElementById('storyContext').addEventListener('change', function() {
             const customDiv = document.getElementById('customContextDiv');
@@ -1467,51 +1614,51 @@ Be enthusiastic, encouraging, and educational!`;
                 customDiv.style.display = 'none';
             }
         });
-        
+
         // Vibe Coding Functions
         function showVibeCodingHelp() {
             const responseEl = document.getElementById('tutorResponse');
             responseEl.innerHTML = `
                 <h3 style="color: #FF0000;">🎨 Vibe Coding - Customize Your App!</h3>
                 <p><strong>Hot dog!</strong> You can change how the app looks! Just ask me in plain English:</p>
-                
+
                 <p><strong>Change Colors:</strong></p>
                 <ul>
                     <li>"Make the background light blue"</li>
                     <li>"Change the buttons to green"</li>
                     <li>"Make everything purple themed"</li>
                 </ul>
-                
+
                 <p><strong>Change Icons/Emojis:</strong></p>
                 <ul>
                     <li>"Change the emoji to 🌟"</li>
                     <li>"Use 🚀 instead of 🎀"</li>
                     <li>"Make the title emoji a 🦁"</li>
                 </ul>
-                
+
                 <p><strong>Advanced:</strong></p>
                 <ul>
                     <li>"Make the text bigger"</li>
                     <li>"Add stars to the background"</li>
                     <li>"Change the font"</li>
                 </ul>
-                
+
                 <p style="color: #FF0000;"><strong>Oh boy!</strong> Just type what you want and I'll make it happen! 🎀</p>
             `;
             responseEl.classList.remove('hidden');
         }
-        
+
         async function handleVibeCoding(question) {
             const responseEl = document.getElementById('tutorResponse');
             const loadingEl = document.getElementById('tutorLoading');
-            
+
             responseEl.classList.add('hidden');
             loadingEl.classList.remove('hidden');
             loadingEl.innerHTML = `
                 <div style="font-size: clamp(3rem, 6vmin, 5rem); animation: bounce 1s infinite;">💻</div>
                 <div style="margin-top: 2vmin;">Mickey is coding your changes...</div>
             `;
-            
+
             try {
                 const systemPrompt = `You are Mickey Mouse, a helpful coding assistant. The student wants to customize their math app.
 
@@ -1548,20 +1695,20 @@ Be encouraging and fun! Use Mickey language (Oh boy!, Gosh!, Hot dog!)`;
                         temperature: 0.7
                     })
                 });
-                
+
                 if (!response.ok) {
                     throw new Error(`API Error: ${response.status}`);
                 }
-                
+
                 const data = await response.json();
                 const mickeyResponse = data.choices[0].message.content;
-                
+
                 // Extract CSS code
                 const cssMatch = mickeyResponse.match(/```css\n([\s\S]*?)\n```/);
-                
+
                 if (cssMatch) {
                     const cssCode = cssMatch[1];
-                    
+
                     // Apply the CSS
                     let styleTag = document.getElementById('vibe-style');
                     if (!styleTag) {
@@ -1570,7 +1717,7 @@ Be encouraging and fun! Use Mickey language (Oh boy!, Gosh!, Hot dog!)`;
                         document.head.appendChild(styleTag);
                     }
                     styleTag.textContent = cssCode;
-                    
+
                     // Show success
                     loadingEl.classList.add('hidden');
                     responseEl.innerHTML = `
@@ -1584,7 +1731,7 @@ Be encouraging and fun! Use Mickey language (Oh boy!, Gosh!, Hot dog!)`;
                 } else {
                     throw new Error('Could not extract CSS code from response');
                 }
-                
+
             } catch (error) {
                 console.error('Vibe Coding Error:', error);
                 loadingEl.classList.add('hidden');
