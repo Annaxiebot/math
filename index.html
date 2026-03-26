@@ -1003,9 +1003,8 @@ Be enthusiastic, encouraging, and educational!`;
                 const response = await fetch(AI_CONFIG.INVOKE_URL, {
                     method: 'POST',
                     headers: {
-                        'Authorization': `Bearer ${AI_CONFIG.NVIDIA_API_KEY}`,
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
                     },
                     body: JSON.stringify({
                         model: AI_CONFIG.MODEL,
