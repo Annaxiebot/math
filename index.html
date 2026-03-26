@@ -295,11 +295,20 @@
         
         @keyframes bounce {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+            50% { transform: scale(1.2); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
         }
         
         .animate {
             animation: bounce 0.5s;
+        }
+        
+        .loading-pulse {
+            animation: pulse 1.5s infinite;
         }
         
         *:focus-visible {
@@ -572,7 +581,8 @@
                 
                 <div id="tutorResponse" class="tutor-response hidden"></div>
                 <div id="tutorLoading" class="tutor-loading hidden">
-                    Mickey is thinking... 🤔
+                    <div style="font-size: clamp(3rem, 6vmin, 5rem); animation: bounce 1s infinite;">🤔</div>
+                    <div style="margin-top: 2vmin;">Mickey is thinking...</div>
                 </div>
                 
                 <div class="button-group">
@@ -639,12 +649,26 @@
             });
             event.target.classList.add('active');
             
-            // Show loading
+            // Show loading animation
             const questionBox = document.getElementById('question');
             const feedbackEl = document.getElementById('feedback');
             const starsEl = document.getElementById('stars');
+            const explanationBox = document.getElementById('explanation');
             
-            questionBox.textContent = 'Mickey is creating a problem for you... 🤔';
+            // Show Mickey thinking animation
+            explanationBox.innerHTML = `
+                <div style="text-align: center; padding: 4vmin;">
+                    <div style="font-size: clamp(3rem, 8vmin, 6rem); animation: bounce 1s infinite;">🤔</div>
+                    <div style="font-size: clamp(1.2rem, 3vmin, 1.8rem); color: #FF0000; font-weight: bold; margin-top: 2vmin;">
+                        Mickey is creating your problem...
+                    </div>
+                    <div style="font-size: clamp(1rem, 2.5vmin, 1.3rem); color: #666; margin-top: 1vmin;">
+                        Thinking of a fun ${topics[topic].name} problem! 💭
+                    </div>
+                </div>
+            `;
+            
+            questionBox.textContent = '';
             feedbackEl.textContent = '';
             starsEl.textContent = '';
             document.getElementById('answer').value = '';
@@ -1307,7 +1331,10 @@ Be enthusiastic, encouraging, and educational!`;
             
             responseEl.classList.add('hidden');
             loadingEl.classList.remove('hidden');
-            loadingEl.textContent = 'Mickey is coding your changes... 💻';
+            loadingEl.innerHTML = `
+                <div style="font-size: clamp(3rem, 6vmin, 5rem); animation: bounce 1s infinite;">💻</div>
+                <div style="margin-top: 2vmin;">Mickey is coding your changes...</div>
+            `;
             
             try {
                 const systemPrompt = `You are Mickey Mouse, a helpful coding assistant. The student wants to customize their math app.
