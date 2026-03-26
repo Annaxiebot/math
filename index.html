@@ -444,7 +444,19 @@
     
     <div class="container">
         <h1>🎀 Mickey's Math Quest 🎀</h1>
-        <p class="subtitle">Grade 6 Math Adventure!</p>
+        <div style="text-align: center; margin-bottom: 3vmin;">
+            <label style="font-size: clamp(1rem, 2.5vmin, 1.3rem); font-weight: bold; margin-right: 2vmin;">
+                Grade Level:
+            </label>
+            <select id="gradeLevel" style="font-size: clamp(1rem, 2.5vmin, 1.3rem); padding: 1vmin 2vmin; border-radius: 1vmin; border: 0.3vmin solid #FF0000; background: white;">
+                <option value="3">Grade 3</option>
+                <option value="4">Grade 4</option>
+                <option value="5">Grade 5</option>
+                <option value="6" selected>Grade 6</option>
+                <option value="7">Grade 7</option>
+                <option value="8">Grade 8</option>
+            </select>
+        </div>
         
         <div class="topic-selector">
             <button class="topic-btn active" onclick="changeTopic('equations')">Equations</button>
@@ -556,25 +568,28 @@
         const topics = {
             equations: {
                 name: "Solving Equations",
-                generate: generateEquation
+                prompt: "Create 1 equation problem for practice. Include step-by-step solution. Make it appropriate for the student's grade level."
             },
             slope: {
                 name: "Slope & Linear Equations",
-                generate: generateSlopeProblem
+                prompt: "Create 1 slope or linear equation problem. Show the formula and step-by-step solution."
             },
             order: {
-                name: "Order of Operations (BEDMAS/PEMDAS)",
-                generate: generateOrderProblem
+                name: "Order of Operations",
+                prompt: "Create 1 order of operations (BEDMAS/PEMDAS) problem. Show step-by-step solution."
             },
             fractions: {
-                name: "Working with Fractions",
-                generate: generateFractionProblem
+                name: "Fractions",
+                prompt: "Create 1 fraction problem (adding, subtracting, multiplying, or dividing). Show step-by-step solution."
             },
             area: {
                 name: "Area & Perimeter",
-                generate: generateAreaProblem
+                prompt: "Create 1 area or perimeter problem with a shape. Show the formula and step-by-step solution."
             }
         };
+        
+        let currentTopic = 'equations';
+        let currentProblem = null;
         
         const encouragement = {
             correct: [
@@ -591,13 +606,24 @@
             ]
         };
         
-        function changeTopic(topic) {
+        async function changeTopic(topic) {
             currentTopic = topic;
             document.querySelectorAll('.topic-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
             event.target.classList.add('active');
-            generateQuestion();
+            
+            // Show loading
+            const questionBox = document.getElementById('question');
+            const feedbackEl = document.getElementById('feedback');
+            const starsEl = document.getElementById('stars');
+            
+            questionBox.textContent = 'Mickey is creating a problem for you... 🤔';
+            feedbackEl.textContent = '';
+            starsEl.textContent = '';
+            document.getElementById('answer').value = '';
+            
+            await generateAIProblem(topic);
         }
         
         function generateEquation() {
@@ -856,8 +882,100 @@
             }
         }
         
+        async function generateAIProblem(topic) {
+            try {
+                const gradeLevel = document.getElementById('gradeLevel').value;
+                const topicInfo = topics[topic];
+                
+                const systemPrompt = `You are Mickey Mouse, a friendly AI math tutor. Create Grade ${gradeLevel} math problems.
+                
+When creating problems:
+1. Generate ONE practice problem
+2. Show the problem clearly
+3. Provide the step-by-step solution
+4. Use Mickey language (Oh boy!, Gosh!, Hot dog!)
+5. Make it appropriate for Grade ${gradeLevel}
+6. Be encouraging!
+
+Format your response like this:
+**Problem:**
+[The problem to solve]
+
+**Solution:**
+[Step-by-step solution with final answer]`;
+
+                const userPrompt = topicInfo.prompt;
+                
+                const response = await fetch(AI_CONFIG.INVOKE_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        model: AI_CONFIG.MODEL,
+                        messages: [
+                            { role: 'system', content: systemPrompt },
+                            { role: 'user', content: userPrompt }
+                        ],
+                        max_tokens: 800,
+                        temperature: 0.7
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`API Error: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                const mickeyResponse = data.choices[0].message.content;
+                
+                // Display Mickey's problem and solution
+                displayAIProblem(mickeyResponse);
+                
+            } catch (error) {
+                console.error('AI Problem Error:', error);
+                document.getElementById('question').innerHTML = `
+                    <span style="color: #FF0000;">Oops! Mickey had trouble creating a problem.</span><br>
+                    <span style="font-size: 0.6em;">Error: ${error.message}</span>
+                `;
+            }
+        }
+        
+        function displayAIProblem(mickeyResponse) {
+            const explanationBox = document.getElementById('explanation');
+            
+            // Format the response nicely
+            let formattedResponse = mickeyResponse
+                .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\n\n/g, '</p><p>')
+                .replace(/\n/g, '<br>');
+            
+            formattedResponse = '<p>' + formattedResponse + '</p>';
+            
+            // Show in explanation box
+            explanationBox.innerHTML = `
+                <div class="concept-title" style="color: #FF0000;">🎀 ${topics[currentTopic].name}</div>
+                <div class="concept-text">${formattedResponse}</div>
+            `;
+            
+            // Show next problem button
+            document.getElementById('question').innerHTML = `
+                <button class="btn btn-next" onclick="changeTopic('${currentTopic}')" style="margin: 0 auto; display: block;">
+                    Next ${topics[currentTopic].name} Problem →
+                </button>
+            `;
+            
+            const answerSection = document.querySelector('.answer-section');
+            const buttonGroup = answerSection.nextElementSibling;
+            answerSection.style.display = 'none';
+            buttonGroup.style.display = 'none';
+        }
+        
         function generateQuestion() {
-            const problem = topics[currentTopic].generate();
+            // This function is now replaced by generateAIProblem
+            // Keeping it for compatibility
+            const problem = { title: '', concept: '', formula: '', steps: '', question: 'Loading...', answer: 0 };
             
             document.getElementById('conceptTitle').innerHTML = problem.title;
             document.getElementById('conceptText').innerHTML = problem.concept;
