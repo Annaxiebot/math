@@ -1253,24 +1253,25 @@ Format your response like this:
         function drawBackground(ctx, canvas) {
             console.log('drawBackground called, currentBackground:', currentBackground, 'canvas size:', canvas.width, 'x', canvas.height);
             
-            // Save current drawing to temp canvas
-            const tempCanvas = document.createElement('canvas');
-            tempCanvas.width = canvas.width;
-            tempCanvas.height = canvas.height;
-            const tempCtx = tempCanvas.getContext('2d');
-            tempCtx.drawImage(canvas, 0, 0);
+            // NEW APPROACH: Draw background BEHIND existing content instead of replacing it
+            // This preserves user's strokes while changing the background
             
-            // Clear and fill white
+            // Save current composite operation
+            const oldComposite = ctx.globalCompositeOperation;
+            
+            // Use destination-over to draw BEHIND existing content
+            ctx.globalCompositeOperation = 'destination-over';
+            
+            // Fill white background (will go behind existing strokes)
             ctx.fillStyle = 'white';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
-            // IMPORTANT: Draw grid/lines FIRST (as background)
             if (currentBackground === 'grid') {
-                console.log('Drawing grid lines...');
+                console.log('Drawing grid lines BEHIND content...');
                 // Draw grid lines - darker and thicker for visibility
-                ctx.strokeStyle = '#999999';  // Medium gray (was too light)
-                ctx.lineWidth = 3;  // Thicker lines
-                const spacing = 40; // Grid spacing
+                ctx.strokeStyle = '#999999';  // Medium gray
+                ctx.lineWidth = 3;
+                const spacing = 40;
                 
                 // Vertical lines
                 for (let x = 0; x <= canvas.width; x += spacing) {
@@ -1288,12 +1289,13 @@ Format your response like this:
                     ctx.stroke();
                 }
                 
-                console.log('Grid drawn! Lines from 0 to', canvas.width, 'in', spacing, 'px steps');
+                console.log('Grid drawn behind content!');
             } else if (currentBackground === 'ruled') {
-                // Draw college ruled lines - more visible
-                ctx.strokeStyle = '#4DA6FF';  // Brighter blue
-                ctx.lineWidth = 3;  // Thicker
-                const lineSpacing = 30; // Line spacing
+                console.log('Drawing ruled lines BEHIND content...');
+                // Draw college ruled lines
+                ctx.strokeStyle = '#4DA6FF';
+                ctx.lineWidth = 3;
+                const lineSpacing = 30;
                 
                 // Horizontal lines
                 for (let y = lineSpacing; y < canvas.height; y += lineSpacing) {
@@ -1304,22 +1306,18 @@ Format your response like this:
                 }
                 
                 // Red margin line
-                ctx.strokeStyle = '#FF6B6B';  // Brighter red
-                ctx.lineWidth = 4;  // Thicker
+                ctx.strokeStyle = '#FF6B6B';
+                ctx.lineWidth = 4;
                 ctx.beginPath();
                 ctx.moveTo(80, 0);
                 ctx.lineTo(80, canvas.height);
                 ctx.stroke();
                 
-                console.log('Ruled lines drawn!');
+                console.log('Ruled lines drawn behind content!');
             }
             
-            // Restore user's drawing on top of the background
-            // Use source-over to draw ink strokes on top of grid/lines
-            ctx.globalCompositeOperation = 'source-over';
-            ctx.drawImage(tempCanvas, 0, 0);
-            
-            console.log('Drawing restored on top of background');
+            // Restore composite operation
+            ctx.globalCompositeOperation = oldComposite;
             
             // Restore pen settings
             ctx.strokeStyle = currentPenColor;
