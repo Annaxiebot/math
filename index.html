@@ -1292,9 +1292,9 @@ Format your response like this:
                 console.log('drawCanvasBackground: ctx or canvas is null!', ctx, canvas);
                 return;
             }
-            
+
             console.log('drawCanvasBackground called, currentBackground:', currentBackground, 'canvas size:', canvas.width, 'x', canvas.height);
-            
+
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = 'white';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -1599,7 +1599,12 @@ Format your response like this:
 
             console.log('Expanded canvas initialized:', expandedBgCanvas, 'size:', expandedBgCanvas.width, 'x', expandedBgCanvas.height);
             console.log('Current background:', currentBackground);
-
+            
+            // TEST: Draw a red rectangle to verify canvas is working
+            expandedBgCtx.fillStyle = 'red';
+            expandedBgCtx.fillRect(0, 0, 200, 200);
+            console.log('Drew test red rectangle');
+            
             // Draw background
             drawExpandedBackground();
             console.log('After drawExpandedBackground');
