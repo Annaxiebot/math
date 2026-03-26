@@ -1013,19 +1013,68 @@ Format your response like this:
         function displayAIProblem(mickeyResponse) {
             const explanationBox = document.getElementById('explanation');
             
-            // Format the response nicely
-            let formattedResponse = mickeyResponse
+            // Try to split problem and solution
+            const problemMatch = mickeyResponse.match(/\*\*Problem:\*\*([\s\S]*?)(?=\*\*Solution:\*\*|$)/i);
+            const solutionMatch = mickeyResponse.match(/\*\*Solution:\*\*([\s\S]*)/i);
+            
+            let problemText = problemMatch ? problemMatch[1].trim() : mickeyResponse;
+            let solutionText = solutionMatch ? solutionMatch[1].trim() : '';
+            
+            // Format problem
+            let formattedProblem = problemText
                 .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
                 .replace(/\n\n/g, '</p><p>')
                 .replace(/\n/g, '<br>');
+            formattedProblem = '<p>' + formattedProblem + '</p>';
             
-            formattedResponse = '<p>' + formattedResponse + '</p>';
+            // Format solution (hidden by default)
+            let formattedSolution = '';
+            if (solutionText) {
+                formattedSolution = solutionText
+                    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                    .replace(/\n\n/g, '</p><p>')
+                    .replace(/\n/g, '<br>');
+                formattedSolution = '<p>' + formattedSolution + '</p>';
+            }
             
-            // Show in explanation box
+            // Show problem with scratch pad
             explanationBox.innerHTML = `
-                <div class="concept-title" style="color: #FF0000;">🎀 ${topics[currentTopic].name}</div>
-                <div class="concept-text">${formattedResponse}</div>
+                <div class="concept-title" style="color: #FF0000;">🎀 ${topics[currentTopic].name} - Try to solve!</div>
+                <div class="concept-text" style="background: #FFF8DC; padding: 3vmin; border-radius: 2vmin; border: 0.5vmin solid #FFD700;">
+                    ${formattedProblem}
+                </div>
+                
+                <div style="margin-top: 3vmin;">
+                    <div style="font-size: clamp(1.1rem, 2.5vmin, 1.4rem); font-weight: bold; color: #FF0000; margin-bottom: 1vmin;">
+                        ✏️ Scratch Paper (Draw or write your work!)
+                    </div>
+                    <canvas id="scratchPad" 
+                        width="800" 
+                        height="400"
+                        style="border: 0.5vmin solid #FF0000; border-radius: 2vmin; background: white; width: 100%; max-width: 800px; height: auto; aspect-ratio: 2/1; touch-action: none; cursor: crosshair;">
+                    </canvas>
+                    <div style="margin-top: 1vmin; text-align: center;">
+                        <button class="btn" style="background: #FFD700; color: #000; padding: 1vmin 3vmin; margin: 0.5vmin;" onclick="clearScratchPad()">
+                            🗑️ Clear
+                        </button>
+                        <button class="btn" style="background: #FF0000; color: white; padding: 1vmin 3vmin; margin: 0.5vmin;" onclick="toggleSolution()">
+                            👀 Show Solution
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="solutionBox" style="display: none; margin-top: 3vmin; background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%); padding: 3vmin; border-radius: 2vmin; border: 0.5vmin solid #4CAF50;">
+                    <div style="font-size: clamp(1.2rem, 3vmin, 1.6rem); font-weight: bold; color: #2E7D32; margin-bottom: 2vmin;">
+                        ✅ Mickey's Solution
+                    </div>
+                    <div class="concept-text">
+                        ${formattedSolution}
+                    </div>
+                </div>
             `;
+            
+            // Initialize scratch pad
+            initScratchPad();
             
             // Show next problem button
             document.getElementById('question').innerHTML = `
@@ -1038,6 +1087,96 @@ Format your response like this:
             const buttonGroup = answerSection.nextElementSibling;
             answerSection.style.display = 'none';
             buttonGroup.style.display = 'none';
+        }
+        
+        // Scratch Pad Functions
+        let scratchCanvas, scratchCtx, isDrawing = false;
+        
+        function initScratchPad() {
+            scratchCanvas = document.getElementById('scratchPad');
+            if (!scratchCanvas) return;
+            
+            scratchCtx = scratchCanvas.getContext('2d');
+            scratchCtx.strokeStyle = '#FF0000';
+            scratchCtx.lineWidth = 3;
+            scratchCtx.lineCap = 'round';
+            scratchCtx.lineJoin = 'round';
+            
+            // Mouse events
+            scratchCanvas.addEventListener('mousedown', startDrawing);
+            scratchCanvas.addEventListener('mousemove', draw);
+            scratchCanvas.addEventListener('mouseup', stopDrawing);
+            scratchCanvas.addEventListener('mouseout', stopDrawing);
+            
+            // Touch events
+            scratchCanvas.addEventListener('touchstart', handleTouchStart);
+            scratchCanvas.addEventListener('touchmove', handleTouchMove);
+            scratchCanvas.addEventListener('touchend', stopDrawing);
+        }
+        
+        function startDrawing(e) {
+            isDrawing = true;
+            const rect = scratchCanvas.getBoundingClientRect();
+            const x = (e.clientX - rect.left) * (scratchCanvas.width / rect.width);
+            const y = (e.clientY - rect.top) * (scratchCanvas.height / rect.height);
+            scratchCtx.beginPath();
+            scratchCtx.moveTo(x, y);
+        }
+        
+        function draw(e) {
+            if (!isDrawing) return;
+            const rect = scratchCanvas.getBoundingClientRect();
+            const x = (e.clientX - rect.left) * (scratchCanvas.width / rect.width);
+            const y = (e.clientY - rect.top) * (scratchCanvas.height / rect.height);
+            scratchCtx.lineTo(x, y);
+            scratchCtx.stroke();
+        }
+        
+        function stopDrawing() {
+            isDrawing = false;
+        }
+        
+        function handleTouchStart(e) {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const rect = scratchCanvas.getBoundingClientRect();
+            const x = (touch.clientX - rect.left) * (scratchCanvas.width / rect.width);
+            const y = (touch.clientY - rect.top) * (scratchCanvas.height / rect.height);
+            isDrawing = true;
+            scratchCtx.beginPath();
+            scratchCtx.moveTo(x, y);
+        }
+        
+        function handleTouchMove(e) {
+            if (!isDrawing) return;
+            e.preventDefault();
+            const touch = e.touches[0];
+            const rect = scratchCanvas.getBoundingClientRect();
+            const x = (touch.clientX - rect.left) * (scratchCanvas.width / rect.width);
+            const y = (touch.clientY - rect.top) * (scratchCanvas.height / rect.height);
+            scratchCtx.lineTo(x, y);
+            scratchCtx.stroke();
+        }
+        
+        function clearScratchPad() {
+            if (scratchCtx) {
+                scratchCtx.clearRect(0, 0, scratchCanvas.width, scratchCanvas.height);
+            }
+        }
+        
+        function toggleSolution() {
+            const solutionBox = document.getElementById('solutionBox');
+            const btn = event.target;
+            
+            if (solutionBox.style.display === 'none') {
+                solutionBox.style.display = 'block';
+                btn.textContent = '🙈 Hide Solution';
+                btn.style.background = '#666';
+            } else {
+                solutionBox.style.display = 'none';
+                btn.textContent = '👀 Show Solution';
+                btn.style.background = '#FF0000';
+            }
         }
         
         function generateQuestion() {
