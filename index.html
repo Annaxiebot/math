@@ -660,11 +660,20 @@
             </button>
         </div>
 
-        <canvas id="scratchPadExpanded"
-            width="1600"
-            height="1000"
-            style="cursor: crosshair; touch-action: none;">
-        </canvas>
+        <div style="position: relative; max-width: 95vw; max-height: 80vh;">
+            <!-- Background canvas -->
+            <canvas id="scratchPadExpandedBg"
+                width="1600"
+                height="1000"
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; max-width: 95vw; max-height: 80vh; background: white; border: 0.5vmin solid #FFD700; border-radius: 2vmin; pointer-events: none;">
+            </canvas>
+            <!-- Drawing canvas -->
+            <canvas id="scratchPadExpanded"
+                width="1600"
+                height="1000"
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; max-width: 95vw; max-height: 80vh; cursor: crosshair; touch-action: none;">
+            </canvas>
+        </div>
         <div class="scratch-modal-buttons">
             <button class="btn" style="background: #FFD700; color: #000; padding: 2vmin 4vmin; margin: 1vmin; font-size: clamp(1.2rem, 3vmin, 1.8rem);" onclick="clearExpandedPad()">
                 🗑️ Clear All
@@ -1127,11 +1136,20 @@ Format your response like this:
                         ✏️ Scratch Paper (Draw or write your work!)
                     </div>
 
-                    <canvas id="scratchPad"
-                        width="1200"
-                        height="600"
-                        style="border: 0.5vmin solid #FF0000; border-radius: 2vmin; background: white; width: 100%; height: auto; aspect-ratio: 2/1; touch-action: none; cursor: crosshair; display: block;">
-                    </canvas>
+                    <div style="position: relative; width: 100%; aspect-ratio: 2/1;">
+                        <!-- Background canvas (grid/lines/blank) -->
+                        <canvas id="scratchPadBg"
+                            width="1200"
+                            height="600"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0.5vmin solid #FF0000; border-radius: 2vmin; background: white; touch-action: none; pointer-events: none;">
+                        </canvas>
+                        <!-- Drawing canvas (user strokes) -->
+                        <canvas id="scratchPad"
+                            width="1200"
+                            height="600"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0.5vmin solid #FF0000; border-radius: 2vmin; touch-action: none; cursor: crosshair;">
+                        </canvas>
+                    </div>
 
                     <!-- Drawing Tools (below canvas, subtle) -->
                     <div style="background: rgba(255,248,220,0.5); padding: 1.5vmin; border-radius: 1vmin; margin-top: 1vmin; display: flex; flex-wrap: wrap; gap: 1vmin; align-items: center; justify-content: center; border: 0.2vmin solid rgba(255,215,0,0.3);">
@@ -1216,25 +1234,33 @@ Format your response like this:
             buttonGroup.style.display = 'none';
         }
 
-        // Scratch Pad Functions
-        let scratchCanvas, scratchCtx, isDrawing = false;
+        // Scratch Pad Functions - Dual Canvas System
+        let scratchCanvas, scratchCtx, isDrawing = false;  // Drawing layer
+        let scratchBgCanvas, scratchBgCtx;  // Background layer
         let currentPenColor = '#FF0000';
         let currentPenSize = 4;
         let isEraserMode = false;
         let currentBackground = 'blank';
 
         function initScratchPad() {
+            // Initialize drawing canvas (top layer)
             scratchCanvas = document.getElementById('scratchPad');
             if (!scratchCanvas) return;
 
-            scratchCtx = scratchCanvas.getContext('2d');
+            scratchCtx = scratchCanvas.getContext('2d', { willReadFrequently: true });
             scratchCtx.strokeStyle = currentPenColor;
             scratchCtx.lineWidth = currentPenSize;
             scratchCtx.lineCap = 'round';
             scratchCtx.lineJoin = 'round';
 
+            // Initialize background canvas (bottom layer)
+            scratchBgCanvas = document.getElementById('scratchPadBg');
+            if (!scratchBgCanvas) return;
+
+            scratchBgCtx = scratchBgCanvas.getContext('2d');
+
             // Draw initial background
-            drawBackground(scratchCtx, scratchCanvas);
+            drawBackground();
 
             updateToolDisplay();
 
@@ -1250,144 +1276,65 @@ Format your response like this:
             scratchCanvas.addEventListener('touchend', stopDrawing);
         }
 
-        function drawBackground(ctx, canvas) {
-            console.log('drawBackground called, currentBackground:', currentBackground, 'canvas size:', canvas.width, 'x', canvas.height);
-            
-            // FINAL APPROACH: Save strokes, clear fully, draw background, restore strokes
-            
-            // 1. Save all current pixels to temp canvas
-            const tempCanvas = document.createElement('canvas');
-            tempCanvas.width = canvas.width;
-            tempCanvas.height = canvas.height;
-            const tempCtx = tempCanvas.getContext('2d');
-            tempCtx.drawImage(canvas, 0, 0);
-            
-            // 2. Clear canvas to FULLY TRANSPARENT (not white)
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            // 3. Draw fresh white background
-            ctx.fillStyle = 'white';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
-            // 4. Draw grid/lines if needed
+        function drawBackground() {
+            if (!scratchBgCtx || !scratchBgCanvas) return;
+
+            // Clear background canvas
+            scratchBgCtx.clearRect(0, 0, scratchBgCanvas.width, scratchBgCanvas.height);
+
+            // Fill white
+            scratchBgCtx.fillStyle = 'white';
+            scratchBgCtx.fillRect(0, 0, scratchBgCanvas.width, scratchBgCanvas.height);
+
+            // Draw grid or lines if needed
             if (currentBackground === 'grid') {
-                console.log('Drawing fresh grid...');
-                ctx.strokeStyle = '#999999';
-                ctx.lineWidth = 3;
+                scratchBgCtx.strokeStyle = '#999999';
+                scratchBgCtx.lineWidth = 3;
                 const spacing = 40;
-                
-                for (let x = 0; x <= canvas.width; x += spacing) {
-                    ctx.beginPath();
-                    ctx.moveTo(x, 0);
-                    ctx.lineTo(x, canvas.height);
-                    ctx.stroke();
+
+                for (let x = 0; x <= scratchBgCanvas.width; x += spacing) {
+                    scratchBgCtx.beginPath();
+                    scratchBgCtx.moveTo(x, 0);
+                    scratchBgCtx.lineTo(x, scratchBgCanvas.height);
+                    scratchBgCtx.stroke();
                 }
-                
-                for (let y = 0; y <= canvas.height; y += spacing) {
-                    ctx.beginPath();
-                    ctx.moveTo(0, y);
-                    ctx.lineTo(canvas.width, y);
-                    ctx.stroke();
+
+                for (let y = 0; y <= scratchBgCanvas.height; y += spacing) {
+                    scratchBgCtx.beginPath();
+                    scratchBgCtx.moveTo(0, y);
+                    scratchBgCtx.lineTo(scratchBgCanvas.width, y);
+                    scratchBgCtx.stroke();
                 }
-                
-                console.log('Grid drawn!');
             } else if (currentBackground === 'ruled') {
-                console.log('Drawing fresh ruled lines...');
-                ctx.strokeStyle = '#4DA6FF';
-                ctx.lineWidth = 3;
+                scratchBgCtx.strokeStyle = '#4DA6FF';
+                scratchBgCtx.lineWidth = 3;
                 const lineSpacing = 30;
-                
-                for (let y = lineSpacing; y < canvas.height; y += lineSpacing) {
-                    ctx.beginPath();
-                    ctx.moveTo(0, y);
-                    ctx.lineTo(canvas.width, y);
-                    ctx.stroke();
+
+                for (let y = lineSpacing; y < scratchBgCanvas.height; y += lineSpacing) {
+                    scratchBgCtx.beginPath();
+                    scratchBgCtx.moveTo(0, y);
+                    scratchBgCtx.lineTo(scratchBgCanvas.width, y);
+                    scratchBgCtx.stroke();
                 }
-                
-                ctx.strokeStyle = '#FF6B6B';
-                ctx.lineWidth = 4;
-                ctx.beginPath();
-                ctx.moveTo(80, 0);
-                ctx.lineTo(80, canvas.height);
-                ctx.stroke();
-                
-                console.log('Ruled lines drawn!');
-            }
-            
-            // 5. Extract only USER STROKES from saved image (filter out white + old background patterns)
-            const imageData = tempCtx.getImageData(0, 0, tempCanvas.width, tempCanvas.height);
-            const pixels = imageData.data;
-            
-            // Remove white pixels AND background pattern colors
-            for (let i = 0; i < pixels.length; i += 4) {
-                const r = pixels[i];
-                const g = pixels[i + 1];
-                const b = pixels[i + 2];
-                const a = pixels[i + 3];
-                
-                let shouldRemove = false;
-                
-                // Remove white or very light pixels (be aggressive with whites/grays)
-                if (r > 240 && g > 240 && b > 240) {
-                    shouldRemove = true;
-                }
-                
-                // Remove medium gray pixels (grid lines are gray, much darker range)
-                // Gray grid lines are around 153, but allow wide range for anti-aliasing
-                const isGrayish = Math.abs(r - g) < 30 && Math.abs(g - b) < 30 && Math.abs(r - b) < 30;
-                if (isGrayish && r >= 100 && r <= 200 && g >= 100 && g <= 200 && b >= 100 && b <= 200) {
-                    shouldRemove = true;
-                }
-                
-                // Remove light blue pixels (ruled lines)
-                // Blue ruled lines: high blue component, medium green, low red
-                if (b > 200 && g > 100 && g < 200 && r < 150) {
-                    shouldRemove = true;
-                }
-                
-                // Remove light red/pink pixels (margin line)
-                // Red margin: high red, medium green/blue
-                if (r > 200 && g > 80 && g < 150 && b > 80 && b < 150) {
-                    shouldRemove = true;
-                }
-                
-                if (shouldRemove) {
-                    pixels[i + 3] = 0; // Set alpha to 0 (transparent)
-                }
-            }
-            
-            tempCtx.putImageData(imageData, 0, 0);
-            console.log('Filtered out white + old background patterns, keeping only user strokes');
-            
-            // 6. Draw the non-white pixels (strokes only) on top
-            ctx.globalCompositeOperation = 'source-over';
-            ctx.drawImage(tempCanvas, 0, 0);
-            
-            console.log('Strokes restored on top of background!');
-            
-            // Restore pen settings
-            ctx.strokeStyle = currentPenColor;
-            ctx.lineWidth = currentPenSize;
-            if (isEraserMode) {
-                ctx.globalCompositeOperation = 'destination-out';
-            } else {
-                ctx.globalCompositeOperation = 'source-over';
+
+                scratchBgCtx.strokeStyle = '#FF6B6B';
+                scratchBgCtx.lineWidth = 4;
+                scratchBgCtx.beginPath();
+                scratchBgCtx.moveTo(80, 0);
+                scratchBgCtx.lineTo(80, scratchBgCanvas.height);
+                scratchBgCtx.stroke();
             }
         }
 
         function setBackground(type) {
-            console.log('setBackground called with:', type);
             currentBackground = type;
 
-            // Update both canvases
-            if (scratchCtx && scratchCanvas) {
-                console.log('Drawing background on scratchCanvas, size:', scratchCanvas.width, 'x', scratchCanvas.height);
-                drawBackground(scratchCtx, scratchCanvas);
-            } else {
-                console.log('scratchCanvas not ready!');
-            }
-            if (expandedCtx && expandedCanvas) {
-                drawBackground(expandedCtx, expandedCanvas);
+            // Redraw background layer (doesn't affect drawing layer)
+            drawBackground();
+
+            // Update expanded canvas if open
+            if (expandedBgCtx && expandedBgCanvas) {
+                drawExpandedBackground();
             }
 
             // Update button styles
@@ -1562,8 +1509,8 @@ Format your response like this:
 
         function clearScratchPad() {
             if (scratchCtx && scratchCanvas) {
+                // Only clear the drawing layer, background stays
                 scratchCtx.clearRect(0, 0, scratchCanvas.width, scratchCanvas.height);
-                drawBackground(scratchCtx, scratchCanvas);
             }
         }
 
@@ -1614,19 +1561,73 @@ Format your response like this:
             }
         }
 
-        // Expanded Scratch Pad Functions
+        // Expanded Scratch Pad Functions - Dual Canvas
         let expandedCanvas, expandedCtx, isDrawingExpanded = false;
-
+        let expandedBgCanvas, expandedBgCtx;
+        
+        function drawExpandedBackground() {
+            if (!expandedBgCtx || !expandedBgCanvas) return;
+            
+            expandedBgCtx.clearRect(0, 0, expandedBgCanvas.width, expandedBgCanvas.height);
+            expandedBgCtx.fillStyle = 'white';
+            expandedBgCtx.fillRect(0, 0, expandedBgCanvas.width, expandedBgCanvas.height);
+            
+            if (currentBackground === 'grid') {
+                expandedBgCtx.strokeStyle = '#999999';
+                expandedBgCtx.lineWidth = 4;
+                const spacing = 53; // Scale for larger canvas (1600/1200 * 40)
+                
+                for (let x = 0; x <= expandedBgCanvas.width; x += spacing) {
+                    expandedBgCtx.beginPath();
+                    expandedBgCtx.moveTo(x, 0);
+                    expandedBgCtx.lineTo(x, expandedBgCanvas.height);
+                    expandedBgCtx.stroke();
+                }
+                
+                for (let y = 0; y <= expandedBgCanvas.height; y += spacing) {
+                    expandedBgCtx.beginPath();
+                    expandedBgCtx.moveTo(0, y);
+                    expandedBgCtx.lineTo(expandedBgCanvas.width, y);
+                    expandedBgCtx.stroke();
+                }
+            } else if (currentBackground === 'ruled') {
+                expandedBgCtx.strokeStyle = '#4DA6FF';
+                expandedBgCtx.lineWidth = 4;
+                const lineSpacing = 40; // Scale for larger canvas
+                
+                for (let y = lineSpacing; y < expandedBgCanvas.height; y += lineSpacing) {
+                    expandedBgCtx.beginPath();
+                    expandedBgCtx.moveTo(0, y);
+                    expandedBgCtx.lineTo(expandedBgCanvas.width, y);
+                    expandedBgCtx.stroke();
+                }
+                
+                expandedBgCtx.strokeStyle = '#FF6B6B';
+                expandedBgCtx.lineWidth = 5;
+                expandedBgCtx.beginPath();
+                expandedBgCtx.moveTo(106, 0); // Scale margin
+                expandedBgCtx.lineTo(106, expandedBgCanvas.height);
+                expandedBgCtx.stroke();
+            }
+        }
+        
         function expandScratchPad() {
             const modal = document.getElementById('scratchModal');
+
+            // Initialize drawing canvas
             expandedCanvas = document.getElementById('scratchPadExpanded');
-            expandedCtx = expandedCanvas.getContext('2d');
+            expandedCtx = expandedCanvas.getContext('2d', { willReadFrequently: true });
 
-            // Draw background first
-            drawBackground(expandedCtx, expandedCanvas);
+            // Initialize background canvas
+            expandedBgCanvas = document.getElementById('scratchPadExpandedBg');
+            expandedBgCtx = expandedBgCanvas.getContext('2d');
 
-            // Copy current scratch pad content to expanded
+            // Draw background
+            drawExpandedBackground();
+
+            // Copy current drawing to expanded
             if (scratchCanvas) {
+                expandedCtx.clearRect(0, 0, expandedCanvas.width, expandedCanvas.height);
                 expandedCtx.drawImage(scratchCanvas, 0, 0, expandedCanvas.width, expandedCanvas.height);
             }
 
@@ -1672,8 +1673,8 @@ Format your response like this:
 
         function clearExpandedPad() {
             if (expandedCtx && expandedCanvas) {
+                // Only clear drawing layer
                 expandedCtx.clearRect(0, 0, expandedCanvas.width, expandedCanvas.height);
-                drawBackground(expandedCtx, expandedCanvas);
             }
         }
 
