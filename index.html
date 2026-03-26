@@ -1293,7 +1293,7 @@ Format your response like this:
         // Reusable background drawing function
         function drawCanvasBackground(ctx, canvas) {
             if (!ctx || !canvas) return;
-            
+
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = 'white';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -1482,20 +1482,24 @@ Format your response like this:
             e.preventDefault();
             const touch = e.touches[0];
 
-            // Apple Pencil / Stylus detection - ignore palm/hand touches
-            // Only draw if: Apple Pencil OR single finger touch
-            if (e.touches.length > 1) {
-                // Multiple touches = likely palm resting, ignore
-                return;
-            }
-
-            // Check if it's a stylus (Apple Pencil, etc.)
+            // Smart palm rejection: Only active when Apple Pencil is detected
             const isStylus = touch.touchType === 'stylus';
 
-            // If not stylus, check touch size - palm touches are larger
-            if (!isStylus && touch.radiusX && touch.radiusX > 20) {
-                // Large touch = likely palm, ignore
-                return;
+            if (isStylus) {
+                // Using Apple Pencil: Enable strict palm rejection
+                // Ignore multi-touch (palm resting) and large touches
+                if (e.touches.length > 1) {
+                    return; // Multiple touches = palm resting
+                }
+                if (touch.radiusX && touch.radiusX > 20) {
+                    return; // Large touch = palm
+                }
+            } else {
+                // Using finger (iPhone or iPad without Pencil): Allow all touches
+                // Only ignore if clearly multiple fingers at once
+                if (e.touches.length > 1) {
+                    return; // Multi-finger gestures
+                }
             }
 
             const rect = scratchCanvas.getBoundingClientRect();
@@ -1510,12 +1514,13 @@ Format your response like this:
             if (!isDrawing) return;
             e.preventDefault();
 
-            // Same palm rejection logic
+            const touch = e.touches[0];
+
+            // Same palm rejection logic as start
             if (e.touches.length > 1) {
-                return;
+                return; // Multi-touch
             }
 
-            const touch = e.touches[0];
             const rect = scratchCanvas.getBoundingClientRect();
             const x = (touch.clientX - rect.left) * (scratchCanvas.width / rect.width);
             const y = (touch.clientY - rect.top) * (scratchCanvas.height / rect.height);
@@ -1687,18 +1692,25 @@ Format your response like this:
         function handleTouchStartExpanded(e) {
             e.preventDefault();
             const touch = e.touches[0];
-
-            // Apple Pencil / Stylus detection - ignore palm/hand touches
-            if (e.touches.length > 1) {
-                return; // Multiple touches = likely palm
-            }
-
+            
+            // Smart palm rejection: Only active when Apple Pencil is detected
             const isStylus = touch.touchType === 'stylus';
-
-            if (!isStylus && touch.radiusX && touch.radiusX > 20) {
-                return; // Large touch = likely palm
+            
+            if (isStylus) {
+                // Using Apple Pencil: Enable strict palm rejection
+                if (e.touches.length > 1) {
+                    return; // Multiple touches = palm resting
+                }
+                if (touch.radiusX && touch.radiusX > 20) {
+                    return; // Large touch = palm
+                }
+            } else {
+                // Using finger: Allow all touches
+                if (e.touches.length > 1) {
+                    return; // Multi-finger gestures
+                }
             }
-
+            
             const rect = expandedCanvas.getBoundingClientRect();
             const x = (touch.clientX - rect.left) * (expandedCanvas.width / rect.width);
             const y = (touch.clientY - rect.top) * (expandedCanvas.height / rect.height);
@@ -1706,16 +1718,16 @@ Format your response like this:
             expandedCtx.beginPath();
             expandedCtx.moveTo(x, y);
         }
-
+        
         function handleTouchMoveExpanded(e) {
             if (!isDrawingExpanded) return;
             e.preventDefault();
-
-            // Same palm rejection
+            
+            // Same palm rejection logic
             if (e.touches.length > 1) {
                 return;
             }
-
+            
             const touch = e.touches[0];
             const rect = expandedCanvas.getBoundingClientRect();
             const x = (touch.clientX - rect.left) * (expandedCanvas.width / rect.width);
