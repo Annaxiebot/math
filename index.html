@@ -1127,44 +1127,39 @@ Format your response like this:
                         ✏️ Scratch Paper (Draw or write your work!)
                     </div>
 
-                    <!-- Drawing Tools -->
-                    <div style="background: linear-gradient(135deg, #FFF8DC 0%, #FFE4B5 100%); padding: 2vmin; border-radius: 1.5vmin; margin-bottom: 1vmin; display: flex; flex-wrap: wrap; gap: 1vmin; align-items: center; justify-content: center; border: 0.3vmin solid #FFD700;">
-                        <div style="display: flex; align-items: center; gap: 1vmin;">
-                            <label style="font-weight: bold; font-size: clamp(0.9rem, 2vmin, 1.1rem);">🎨 Color:</label>
-                            <button onclick="setPenColor('#FF0000')" style="width: 4vmin; height: 4vmin; background: #FF0000; border: 0.3vmin solid #000; border-radius: 50%; cursor: pointer;"></button>
-                            <button onclick="setPenColor('#000000')" style="width: 4vmin; height: 4vmin; background: #000000; border: 0.3vmin solid #000; border-radius: 50%; cursor: pointer;"></button>
-                            <button onclick="setPenColor('#0000FF')" style="width: 4vmin; height: 4vmin; background: #0000FF; border: 0.3vmin solid #000; border-radius: 50%; cursor: pointer;"></button>
-                            <button onclick="setPenColor('#00AA00')" style="width: 4vmin; height: 4vmin; background: #00AA00; border: 0.3vmin solid #000; border-radius: 50%; cursor: pointer;"></button>
-                            <button onclick="setPenColor('#FF6600')" style="width: 4vmin; height: 4vmin; background: #FF6600; border: 0.3vmin solid #000; border-radius: 50%; cursor: pointer;"></button>
-                            <button onclick="setPenColor('#9C27B0')" style="width: 4vmin; height: 4vmin; background: #9C27B0; border: 0.3vmin solid #000; border-radius: 50%; cursor: pointer;"></button>
-                            <input type="color" id="customColor" value="#FF0000" onchange="setPenColor(this.value)" style="width: 5vmin; height: 4vmin; border: 0.3vmin solid #000; border-radius: 0.5vmin; cursor: pointer;">
-                        </div>
-
-                        <div style="display: flex; align-items: center; gap: 1vmin;">
-                            <label style="font-weight: bold; font-size: clamp(0.9rem, 2vmin, 1.1rem);">📏 Size:</label>
-                            <button onclick="setPenSize(2)" style="padding: 0.8vmin 2vmin; background: white; border: 0.3vmin solid #000; border-radius: 0.8vmin; cursor: pointer; font-size: clamp(0.8rem, 1.8vmin, 1rem);">Thin</button>
-                            <button onclick="setPenSize(4)" style="padding: 0.8vmin 2vmin; background: white; border: 0.3vmin solid #000; border-radius: 0.8vmin; cursor: pointer; font-size: clamp(0.8rem, 1.8vmin, 1rem);">Medium</button>
-                            <button onclick="setPenSize(8)" style="padding: 0.8vmin 2vmin; background: white; border: 0.3vmin solid #000; border-radius: 0.8vmin; cursor: pointer; font-size: clamp(0.8rem, 1.8vmin, 1rem);">Thick</button>
-                        </div>
-
-                        <div style="display: flex; align-items: center; gap: 1vmin;">
-                            <button id="eraserBtn" onclick="toggleEraser()" style="padding: 1vmin 2.5vmin; background: #FFF; border: 0.3vmin solid #000; border-radius: 0.8vmin; cursor: pointer; font-size: clamp(0.9rem, 2vmin, 1.1rem); font-weight: bold;">
-                                🧹 Eraser
-                            </button>
-                            <span id="currentTool" style="font-size: clamp(0.8rem, 1.8vmin, 1rem); color: #666; font-weight: bold;">✏️ Pen (Red, Medium)</span>
-                        </div>
-                    </div>
-
                     <canvas id="scratchPad"
                         width="1200"
                         height="600"
                         style="border: 0.5vmin solid #FF0000; border-radius: 2vmin; background: white; width: 100%; height: auto; aspect-ratio: 2/1; touch-action: none; cursor: crosshair; display: block;">
                     </canvas>
-                    <div style="margin-top: 1vmin; text-align: center;">
-                        <button class="btn" style="background: #FFD700; color: #000; padding: 1vmin 3vmin; margin: 0.5vmin;" onclick="clearScratchPad()">
+
+                    <!-- Drawing Tools (below canvas, subtle) -->
+                    <div style="background: rgba(255,248,220,0.5); padding: 1.5vmin; border-radius: 1vmin; margin-top: 1vmin; display: flex; flex-wrap: wrap; gap: 1vmin; align-items: center; justify-content: center; border: 0.2vmin solid rgba(255,215,0,0.3);">
+                        <div style="display: flex; align-items: center; gap: 0.8vmin;">
+                            <button onclick="setPenColor('#FF0000')" title="Red" style="width: 3.5vmin; height: 3.5vmin; background: #FF0000; border: 0.2vmin solid #999; border-radius: 50%; cursor: pointer;"></button>
+                            <button onclick="setPenColor('#000000')" title="Black" style="width: 3.5vmin; height: 3.5vmin; background: #000000; border: 0.2vmin solid #999; border-radius: 50%; cursor: pointer;"></button>
+                            <button onclick="setPenColor('#0000FF')" title="Blue" style="width: 3.5vmin; height: 3.5vmin; background: #0000FF; border: 0.2vmin solid #999; border-radius: 50%; cursor: pointer;"></button>
+                            <button onclick="setPenColor('#00AA00')" title="Green" style="width: 3.5vmin; height: 3.5vmin; background: #00AA00; border: 0.2vmin solid #999; border-radius: 50%; cursor: pointer;"></button>
+                            <button onclick="setPenColor('#FF6600')" title="Orange" style="width: 3.5vmin; height: 3.5vmin; background: #FF6600; border: 0.2vmin solid #999; border-radius: 50%; cursor: pointer;"></button>
+                            <button onclick="setPenColor('#9C27B0')" title="Purple" style="width: 3.5vmin; height: 3.5vmin; background: #9C27B0; border: 0.2vmin solid #999; border-radius: 50%; cursor: pointer;"></button>
+                        </div>
+
+                        <div style="display: flex; align-items: center; gap: 0.5vmin;">
+                            <button onclick="setPenSize(2)" title="Thin" style="padding: 0.6vmin 1.5vmin; background: white; border: 0.2vmin solid #999; border-radius: 0.5vmin; cursor: pointer; font-size: clamp(0.7rem, 1.6vmin, 0.9rem);">Thin</button>
+                            <button onclick="setPenSize(4)" title="Medium" style="padding: 0.6vmin 1.5vmin; background: white; border: 0.2vmin solid #999; border-radius: 0.5vmin; cursor: pointer; font-size: clamp(0.7rem, 1.6vmin, 0.9rem);">Med</button>
+                            <button onclick="setPenSize(8)" title="Thick" style="padding: 0.6vmin 1.5vmin; background: white; border: 0.2vmin solid #999; border-radius: 0.5vmin; cursor: pointer; font-size: clamp(0.7rem, 1.6vmin, 0.9rem);">Thick</button>
+                        </div>
+
+                        <button id="eraserBtn" onclick="toggleEraser()" title="Eraser" style="padding: 0.6vmin 1.8vmin; background: #FFF; border: 0.2vmin solid #999; border-radius: 0.5vmin; cursor: pointer; font-size: clamp(0.8rem, 1.8vmin, 1rem);">
+                            🧹
+                        </button>
+
+                        <span id="currentTool" style="font-size: clamp(0.7rem, 1.6vmin, 0.9rem); color: #666;">✏️ Red, Med</span>
+
+                        <button class="btn" style="background: #FFD700; color: #000; padding: 0.6vmin 2vmin; margin: 0; font-size: clamp(0.8rem, 1.8vmin, 1rem);" onclick="clearScratchPad()">
                             🗑️ Clear
                         </button>
-                        <button class="btn" style="background: #4CAF50; color: white; padding: 1vmin 3vmin; margin: 0.5vmin;" onclick="expandScratchPad()">
+                        <button class="btn" style="background: #4CAF50; color: white; padding: 0.6vmin 2vmin; margin: 0; font-size: clamp(0.8rem, 1.8vmin, 1rem);" onclick="expandScratchPad()">
                             ⛶ Expand
                         </button>
                     </div>
@@ -1298,10 +1293,10 @@ Format your response like this:
         function updateToolDisplay() {
             const toolDisplay = document.getElementById('currentTool');
             const eraserBtn = document.getElementById('eraserBtn');
-
+            
             if (!toolDisplay) return;
-
-            const sizeNames = {2: 'Thin', 4: 'Medium', 8: 'Thick'};
+            
+            const sizeNames = {2: 'Thin', 4: 'Med', 8: 'Thick'};
             const colorNames = {
                 '#FF0000': 'Red',
                 '#000000': 'Black',
@@ -1310,15 +1305,21 @@ Format your response like this:
                 '#FF6600': 'Orange',
                 '#9C27B0': 'Purple'
             };
-
+            
             if (isEraserMode) {
-                toolDisplay.textContent = '🧹 Eraser (Large)';
-                if (eraserBtn) eraserBtn.style.background = '#FFD700';
+                toolDisplay.textContent = '🧹 Eraser';
+                if (eraserBtn) {
+                    eraserBtn.style.background = '#FFD700';
+                    eraserBtn.style.borderColor = '#FF0000';
+                }
             } else {
                 const colorName = colorNames[currentPenColor] || 'Custom';
                 const sizeName = sizeNames[currentPenSize] || currentPenSize;
-                toolDisplay.textContent = `✏️ Pen (${colorName}, ${sizeName})`;
-                if (eraserBtn) eraserBtn.style.background = '#FFF';
+                toolDisplay.textContent = `✏️ ${colorName}, ${sizeName}`;
+                if (eraserBtn) {
+                    eraserBtn.style.background = '#FFF';
+                    eraserBtn.style.borderColor = '#999';
+                }
             }
         }
 
@@ -1526,18 +1527,18 @@ Format your response like this:
         function handleTouchStartExpanded(e) {
             e.preventDefault();
             const touch = e.touches[0];
-            
+
             // Apple Pencil / Stylus detection - ignore palm/hand touches
             if (e.touches.length > 1) {
                 return; // Multiple touches = likely palm
             }
-            
+
             const isStylus = touch.touchType === 'stylus';
-            
+
             if (!isStylus && touch.radiusX && touch.radiusX > 20) {
                 return; // Large touch = likely palm
             }
-            
+
             const rect = expandedCanvas.getBoundingClientRect();
             const x = (touch.clientX - rect.left) * (expandedCanvas.width / rect.width);
             const y = (touch.clientY - rect.top) * (expandedCanvas.height / rect.height);
@@ -1545,16 +1546,16 @@ Format your response like this:
             expandedCtx.beginPath();
             expandedCtx.moveTo(x, y);
         }
-        
+
         function handleTouchMoveExpanded(e) {
             if (!isDrawingExpanded) return;
             e.preventDefault();
-            
+
             // Same palm rejection
             if (e.touches.length > 1) {
                 return;
             }
-            
+
             const touch = e.touches[0];
             const rect = expandedCanvas.getBoundingClientRect();
             const x = (touch.clientX - rect.left) * (expandedCanvas.width / rect.width);
