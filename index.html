@@ -1288,8 +1288,13 @@ Format your response like this:
 
         // Reusable background drawing function
         function drawCanvasBackground(ctx, canvas) {
-            if (!ctx || !canvas) return;
-
+            if (!ctx || !canvas) {
+                console.log('drawCanvasBackground: ctx or canvas is null!', ctx, canvas);
+                return;
+            }
+            
+            console.log('drawCanvasBackground called, currentBackground:', currentBackground, 'canvas size:', canvas.width, 'x', canvas.height);
+            
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = 'white';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -1592,8 +1597,12 @@ Format your response like this:
             expandedBgCanvas = document.getElementById('scratchPadExpandedBg');
             expandedBgCtx = expandedBgCanvas.getContext('2d');
 
+            console.log('Expanded canvas initialized:', expandedBgCanvas, 'size:', expandedBgCanvas.width, 'x', expandedBgCanvas.height);
+            console.log('Current background:', currentBackground);
+
             // Draw background
             drawExpandedBackground();
+            console.log('After drawExpandedBackground');
 
             // Copy current drawing to expanded
             if (scratchCanvas) {
@@ -1625,7 +1634,7 @@ Format your response like this:
             expandedCanvas.addEventListener('touchstart', handleTouchStartExpanded);
             expandedCanvas.addEventListener('touchmove', handleTouchMoveExpanded);
             expandedCanvas.addEventListener('touchend', stopDrawingExpanded);
-            
+
             // Update UI to reflect current settings
             // Trigger setPenColor to highlight the current color
             setPenColor(currentPenColor);
@@ -1635,7 +1644,7 @@ Format your response like this:
             setBackground(currentBackground);
             // Update eraser button state
             updateToolDisplay();
-            
+
             modal.classList.add('show');
         }
 
