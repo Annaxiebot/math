@@ -1253,27 +1253,29 @@ Format your response like this:
         function drawBackground(ctx, canvas) {
             console.log('drawBackground called, currentBackground:', currentBackground, 'canvas size:', canvas.width, 'x', canvas.height);
             
-            // NEW APPROACH: Draw background BEHIND existing content instead of replacing it
-            // This preserves user's strokes while changing the background
+            // FINAL APPROACH: Save strokes, clear fully, draw background, restore strokes
             
-            // Save current composite operation
-            const oldComposite = ctx.globalCompositeOperation;
+            // 1. Save all current pixels to temp canvas
+            const tempCanvas = document.createElement('canvas');
+            tempCanvas.width = canvas.width;
+            tempCanvas.height = canvas.height;
+            const tempCtx = tempCanvas.getContext('2d');
+            tempCtx.drawImage(canvas, 0, 0);
             
-            // Use destination-over to draw BEHIND existing content
-            ctx.globalCompositeOperation = 'destination-over';
+            // 2. Clear canvas to FULLY TRANSPARENT (not white)
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            // Fill white background (will go behind existing strokes)
+            // 3. Draw fresh white background
             ctx.fillStyle = 'white';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
+            // 4. Draw grid/lines if needed
             if (currentBackground === 'grid') {
-                console.log('Drawing grid lines BEHIND content...');
-                // Draw grid lines - darker and thicker for visibility
-                ctx.strokeStyle = '#999999';  // Medium gray
+                console.log('Drawing fresh grid...');
+                ctx.strokeStyle = '#999999';
                 ctx.lineWidth = 3;
                 const spacing = 40;
                 
-                // Vertical lines
                 for (let x = 0; x <= canvas.width; x += spacing) {
                     ctx.beginPath();
                     ctx.moveTo(x, 0);
@@ -1281,7 +1283,6 @@ Format your response like this:
                     ctx.stroke();
                 }
                 
-                // Horizontal lines
                 for (let y = 0; y <= canvas.height; y += spacing) {
                     ctx.beginPath();
                     ctx.moveTo(0, y);
@@ -1289,15 +1290,13 @@ Format your response like this:
                     ctx.stroke();
                 }
                 
-                console.log('Grid drawn behind content!');
+                console.log('Grid drawn!');
             } else if (currentBackground === 'ruled') {
-                console.log('Drawing ruled lines BEHIND content...');
-                // Draw college ruled lines
+                console.log('Drawing fresh ruled lines...');
                 ctx.strokeStyle = '#4DA6FF';
                 ctx.lineWidth = 3;
                 const lineSpacing = 30;
                 
-                // Horizontal lines
                 for (let y = lineSpacing; y < canvas.height; y += lineSpacing) {
                     ctx.beginPath();
                     ctx.moveTo(0, y);
@@ -1305,7 +1304,6 @@ Format your response like this:
                     ctx.stroke();
                 }
                 
-                // Red margin line
                 ctx.strokeStyle = '#FF6B6B';
                 ctx.lineWidth = 4;
                 ctx.beginPath();
@@ -1313,11 +1311,33 @@ Format your response like this:
                 ctx.lineTo(80, canvas.height);
                 ctx.stroke();
                 
-                console.log('Ruled lines drawn behind content!');
+                console.log('Ruled lines drawn!');
             }
             
-            // Restore composite operation
-            ctx.globalCompositeOperation = oldComposite;
+            // 5. Extract only NON-WHITE pixels from saved image (the actual strokes)
+            const imageData = tempCtx.getImageData(0, 0, tempCanvas.width, tempCanvas.height);
+            const pixels = imageData.data;
+            
+            // Make white pixels transparent
+            for (let i = 0; i < pixels.length; i += 4) {
+                const r = pixels[i];
+                const g = pixels[i + 1];
+                const b = pixels[i + 2];
+                const a = pixels[i + 3];
+                
+                // If pixel is white (or very close to white), make it transparent
+                if (r > 250 && g > 250 && b > 250 && a > 250) {
+                    pixels[i + 3] = 0; // Set alpha to 0
+                }
+            }
+            
+            tempCtx.putImageData(imageData, 0, 0);
+            
+            // 6. Draw the non-white pixels (strokes only) on top
+            ctx.globalCompositeOperation = 'source-over';
+            ctx.drawImage(tempCanvas, 0, 0);
+            
+            console.log('Strokes restored on top of background!');
             
             // Restore pen settings
             ctx.strokeStyle = currentPenColor;
