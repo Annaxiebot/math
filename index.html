@@ -1252,23 +1252,23 @@ Format your response like this:
 
         function drawBackground(ctx, canvas) {
             console.log('drawBackground called, currentBackground:', currentBackground, 'canvas size:', canvas.width, 'x', canvas.height);
-            
+
             // Save current drawing to temp canvas
             const tempCanvas = document.createElement('canvas');
             tempCanvas.width = canvas.width;
             tempCanvas.height = canvas.height;
             const tempCtx = tempCanvas.getContext('2d');
             tempCtx.drawImage(canvas, 0, 0);
-            
+
             // Clear and fill white
             ctx.fillStyle = 'white';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
+
             if (currentBackground === 'grid') {
                 console.log('Drawing grid lines...');
-                // Draw grid lines
-                ctx.strokeStyle = '#D0D0D0';
-                ctx.lineWidth = 2;
+                // Draw grid lines - darker and thicker for visibility
+                ctx.strokeStyle = '#999999';  // Medium gray (was too light)
+                ctx.lineWidth = 3;  // Thicker lines
                 const spacing = 40; // Grid spacing
 
                 // Vertical lines
@@ -1286,12 +1286,14 @@ Format your response like this:
                     ctx.lineTo(canvas.width, y);
                     ctx.stroke();
                 }
-            } else if (currentBackground === 'ruled') {
-                // Draw college ruled lines
-                ctx.strokeStyle = '#B0E0FF';
-                ctx.lineWidth = 2;
-                const lineSpacing = 30; // Line spacing
 
+                console.log('Grid drawn! Lines from 0 to', canvas.width, 'in', spacing, 'px steps');
+            } else if (currentBackground === 'ruled') {
+                // Draw college ruled lines - more visible
+                ctx.strokeStyle = '#4DA6FF';  // Brighter blue
+                ctx.lineWidth = 3;  // Thicker
+                const lineSpacing = 30; // Line spacing
+                
                 // Horizontal lines
                 for (let y = lineSpacing; y < canvas.height; y += lineSpacing) {
                     ctx.beginPath();
@@ -1299,14 +1301,16 @@ Format your response like this:
                     ctx.lineTo(canvas.width, y);
                     ctx.stroke();
                 }
-
+                
                 // Red margin line
-                ctx.strokeStyle = '#FFB0B0';
-                ctx.lineWidth = 3;
+                ctx.strokeStyle = '#FF6B6B';  // Brighter red
+                ctx.lineWidth = 4;  // Thicker
                 ctx.beginPath();
                 ctx.moveTo(80, 0);
                 ctx.lineTo(80, canvas.height);
                 ctx.stroke();
+                
+                console.log('Ruled lines drawn!');
             }
 
             // Restore drawing on top
