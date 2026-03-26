@@ -1480,26 +1480,20 @@ Format your response like this:
 
         function handleTouchStart(e) {
             e.preventDefault();
+            
+            // Reject multi-touch immediately (palm rejection)
+            if (e.touches.length > 1) {
+                return;
+            }
+
             const touch = e.touches[0];
 
-            // Smart palm rejection: Only active when Apple Pencil is detected
-            const isStylus = touch.touchType === 'stylus';
-
-            if (isStylus) {
-                // Using Apple Pencil: Enable strict palm rejection
-                // Ignore multi-touch (palm resting) and large touches
-                if (e.touches.length > 1) {
-                    return; // Multiple touches = palm resting
-                }
-                if (touch.radiusX && touch.radiusX > 20) {
-                    return; // Large touch = palm
-                }
-            } else {
-                // Using finger (iPhone or iPad without Pencil): Allow all touches
-                // Only ignore if clearly multiple fingers at once
-                if (e.touches.length > 1) {
-                    return; // Multi-finger gestures
-                }
+            // Additional palm rejection: Reject large touch areas (palm/side of hand)
+            // Apple Pencil typically has radiusX/radiusY < 5
+            // Finger touches are 10-20
+            // Palm can be 30+
+            if (touch.radiusX && touch.radiusX > 25) {
+                return; // Large touch = palm or side of hand
             }
 
             const rect = scratchCanvas.getBoundingClientRect();
@@ -1514,12 +1508,13 @@ Format your response like this:
             if (!isDrawing) return;
             e.preventDefault();
 
-            const touch = e.touches[0];
-
-            // Same palm rejection logic as start
+            // Reject multi-touch immediately (palm rejection)
             if (e.touches.length > 1) {
-                return; // Multi-touch
+                isDrawing = false; // Stop drawing if palm detected mid-stroke
+                return;
             }
+
+            const touch = e.touches[0];
 
             const rect = scratchCanvas.getBoundingClientRect();
             const x = (touch.clientX - rect.left) * (scratchCanvas.width / rect.width);
@@ -1691,24 +1686,17 @@ Format your response like this:
 
         function handleTouchStartExpanded(e) {
             e.preventDefault();
+            
+            // Reject multi-touch immediately (palm rejection)
+            if (e.touches.length > 1) {
+                return;
+            }
+
             const touch = e.touches[0];
-            
-            // Smart palm rejection: Only active when Apple Pencil is detected
-            const isStylus = touch.touchType === 'stylus';
-            
-            if (isStylus) {
-                // Using Apple Pencil: Enable strict palm rejection
-                if (e.touches.length > 1) {
-                    return; // Multiple touches = palm resting
-                }
-                if (touch.radiusX && touch.radiusX > 20) {
-                    return; // Large touch = palm
-                }
-            } else {
-                // Using finger: Allow all touches
-                if (e.touches.length > 1) {
-                    return; // Multi-finger gestures
-                }
+
+            // Additional palm rejection: Reject large touch areas (palm/side of hand)
+            if (touch.radiusX && touch.radiusX > 25) {
+                return;
             }
             
             const rect = expandedCanvas.getBoundingClientRect();
@@ -1723,8 +1711,9 @@ Format your response like this:
             if (!isDrawingExpanded) return;
             e.preventDefault();
             
-            // Same palm rejection logic
+            // Reject multi-touch immediately (palm rejection)
             if (e.touches.length > 1) {
+                isDrawingExpanded = false; // Stop drawing if palm detected mid-stroke
                 return;
             }
             
