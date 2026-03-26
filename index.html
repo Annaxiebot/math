@@ -1286,54 +1286,56 @@ Format your response like this:
             scratchCanvas.addEventListener('touchend', stopDrawing);
         }
 
-        function drawBackground() {
-            if (!scratchBgCtx || !scratchBgCanvas) return;
+        // Reusable background drawing function
+        function drawCanvasBackground(ctx, canvas) {
+            if (!ctx || !canvas) return;
 
-            // Clear background canvas
-            scratchBgCtx.clearRect(0, 0, scratchBgCanvas.width, scratchBgCanvas.height);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'white';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            // Fill white
-            scratchBgCtx.fillStyle = 'white';
-            scratchBgCtx.fillRect(0, 0, scratchBgCanvas.width, scratchBgCanvas.height);
-
-            // Draw grid or lines if needed
             if (currentBackground === 'grid') {
-                scratchBgCtx.strokeStyle = '#E0E0E0';  // Much lighter gray
-                scratchBgCtx.lineWidth = 2;  // Thinner
-                const spacing = 40;
+                ctx.strokeStyle = '#E0E0E0';
+                ctx.lineWidth = 2;
+                const spacing = Math.round(canvas.width / 30);  // Proportional spacing
 
-                for (let x = 0; x <= scratchBgCanvas.width; x += spacing) {
-                    scratchBgCtx.beginPath();
-                    scratchBgCtx.moveTo(x, 0);
-                    scratchBgCtx.lineTo(x, scratchBgCanvas.height);
-                    scratchBgCtx.stroke();
+                for (let x = 0; x <= canvas.width; x += spacing) {
+                    ctx.beginPath();
+                    ctx.moveTo(x, 0);
+                    ctx.lineTo(x, canvas.height);
+                    ctx.stroke();
                 }
 
-                for (let y = 0; y <= scratchBgCanvas.height; y += spacing) {
-                    scratchBgCtx.beginPath();
-                    scratchBgCtx.moveTo(0, y);
-                    scratchBgCtx.lineTo(scratchBgCanvas.width, y);
-                    scratchBgCtx.stroke();
+                for (let y = 0; y <= canvas.height; y += spacing) {
+                    ctx.beginPath();
+                    ctx.moveTo(0, y);
+                    ctx.lineTo(canvas.width, y);
+                    ctx.stroke();
                 }
             } else if (currentBackground === 'ruled') {
-                scratchBgCtx.strokeStyle = '#E0F0FF';  // Very light blue
-                scratchBgCtx.lineWidth = 2;  // Thinner
-                const lineSpacing = 30;
+                ctx.strokeStyle = '#E0F0FF';
+                ctx.lineWidth = 2;
+                const lineSpacing = Math.round(canvas.height / 20);  // Proportional spacing
 
-                for (let y = lineSpacing; y < scratchBgCanvas.height; y += lineSpacing) {
-                    scratchBgCtx.beginPath();
-                    scratchBgCtx.moveTo(0, y);
-                    scratchBgCtx.lineTo(scratchBgCanvas.width, y);
-                    scratchBgCtx.stroke();
+                for (let y = lineSpacing; y < canvas.height; y += lineSpacing) {
+                    ctx.beginPath();
+                    ctx.moveTo(0, y);
+                    ctx.lineTo(canvas.width, y);
+                    ctx.stroke();
                 }
 
-                scratchBgCtx.strokeStyle = '#FFD5D5';  // Light pink
-                scratchBgCtx.lineWidth = 3;  // Thinner
-                scratchBgCtx.beginPath();
-                scratchBgCtx.moveTo(80, 0);
-                scratchBgCtx.lineTo(80, scratchBgCanvas.height);
-                scratchBgCtx.stroke();
+                ctx.strokeStyle = '#FFD5D5';
+                ctx.lineWidth = 3;
+                const marginX = Math.round(canvas.width / 15);  // Proportional margin
+                ctx.beginPath();
+                ctx.moveTo(marginX, 0);
+                ctx.lineTo(marginX, canvas.height);
+                ctx.stroke();
             }
+        }
+
+        function drawBackground() {
+            drawCanvasBackground(scratchBgCtx, scratchBgCanvas);
         }
 
         function setBackground(type) {
@@ -1576,55 +1578,7 @@ Format your response like this:
         let expandedBgCanvas, expandedBgCtx;
 
         function drawExpandedBackground() {
-            if (!expandedBgCtx || !expandedBgCanvas) {
-                console.log('expandedBg not ready!', expandedBgCtx, expandedBgCanvas);
-                return;
-            }
-            
-            console.log('Drawing expanded background:', currentBackground, expandedBgCanvas.width, 'x', expandedBgCanvas.height);
-            
-            expandedBgCtx.clearRect(0, 0, expandedBgCanvas.width, expandedBgCanvas.height);
-            expandedBgCtx.fillStyle = 'white';
-            expandedBgCtx.fillRect(0, 0, expandedBgCanvas.width, expandedBgCanvas.height);
-            
-            if (currentBackground === 'grid') {
-                console.log('Drawing grid on expanded...');
-                expandedBgCtx.strokeStyle = '#E0E0E0';  // Much lighter gray
-                expandedBgCtx.lineWidth = 2;
-                const spacing = 53; // Scale for larger canvas (1600/1200 * 40)
-
-                for (let x = 0; x <= expandedBgCanvas.width; x += spacing) {
-                    expandedBgCtx.beginPath();
-                    expandedBgCtx.moveTo(x, 0);
-                    expandedBgCtx.lineTo(x, expandedBgCanvas.height);
-                    expandedBgCtx.stroke();
-                }
-
-                for (let y = 0; y <= expandedBgCanvas.height; y += spacing) {
-                    expandedBgCtx.beginPath();
-                    expandedBgCtx.moveTo(0, y);
-                    expandedBgCtx.lineTo(expandedBgCanvas.width, y);
-                    expandedBgCtx.stroke();
-                }
-            } else if (currentBackground === 'ruled') {
-                expandedBgCtx.strokeStyle = '#E0F0FF';  // Very light blue
-                expandedBgCtx.lineWidth = 2;
-                const lineSpacing = 40; // Scale for larger canvas
-
-                for (let y = lineSpacing; y < expandedBgCanvas.height; y += lineSpacing) {
-                    expandedBgCtx.beginPath();
-                    expandedBgCtx.moveTo(0, y);
-                    expandedBgCtx.lineTo(expandedBgCanvas.width, y);
-                    expandedBgCtx.stroke();
-                }
-
-                expandedBgCtx.strokeStyle = '#FFD5D5';  // Light pink
-                expandedBgCtx.lineWidth = 3;
-                expandedBgCtx.beginPath();
-                expandedBgCtx.moveTo(106, 0); // Scale margin
-                expandedBgCtx.lineTo(106, expandedBgCanvas.height);
-                expandedBgCtx.stroke();
-            }
+            drawCanvasBackground(expandedBgCtx, expandedBgCanvas);
         }
 
         function expandScratchPad() {
