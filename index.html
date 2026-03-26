@@ -1097,8 +1097,8 @@ Format your response like this:
                     <div style="font-size: clamp(1.1rem, 2.5vmin, 1.4rem); font-weight: bold; color: #FF0000; margin-bottom: 1vmin;">
                         ✏️ Scratch Paper (Draw or write your work!)
                     </div>
-                    <canvas id="scratchPad" 
-                        width="1200" 
+                    <canvas id="scratchPad"
+                        width="1200"
                         height="600"
                         style="border: 0.5vmin solid #FF0000; border-radius: 2vmin; background: white; width: 100%; height: auto; aspect-ratio: 2/1; touch-action: none; cursor: crosshair; display: block;">
                     </canvas>
@@ -1109,10 +1109,27 @@ Format your response like this:
                         <button class="btn" style="background: #4CAF50; color: white; padding: 1vmin 3vmin; margin: 0.5vmin;" onclick="expandScratchPad()">
                             ⛶ Expand
                         </button>
-                        <button class="btn" style="background: #FF0000; color: white; padding: 1vmin 3vmin; margin: 0.5vmin;" onclick="toggleSolution()">
+                    </div>
+                </div>
+
+                <div style="margin-top: 3vmin; background: linear-gradient(135deg, #FFF8DC 0%, #FFE4B5 100%); padding: 3vmin; border-radius: 2vmin; border: 0.5vmin solid #FF0000;">
+                    <div style="font-size: clamp(1.1rem, 2.5vmin, 1.4rem); font-weight: bold; color: #FF0000; margin-bottom: 2vmin; text-align: center;">
+                        ✍️ Your Answer
+                    </div>
+                    <input type="text"
+                        id="studentAnswer"
+                        placeholder="Type your answer here..."
+                        style="width: 100%; font-size: clamp(1.2rem, 3vmin, 1.8rem); padding: 2vmin; border: 0.3vmin solid #FFD700; border-radius: 1.5vmin; text-align: center; font-weight: bold;"
+                        onkeypress="if(event.key === 'Enter') checkStudentAnswer()">
+                    <div style="margin-top: 2vmin; text-align: center;">
+                        <button class="btn" style="background: #4CAF50; color: white; padding: 2vmin 4vmin; margin: 0.5vmin; font-size: clamp(1.1rem, 2.5vmin, 1.5rem);" onclick="checkStudentAnswer()">
+                            ✓ Check My Answer
+                        </button>
+                        <button class="btn" style="background: #FF0000; color: white; padding: 2vmin 4vmin; margin: 0.5vmin; font-size: clamp(1.1rem, 2.5vmin, 1.5rem);" onclick="toggleSolution()">
                             👀 Show Solution
                         </button>
                     </div>
+                    <div id="answerFeedback" style="margin-top: 2vmin; font-size: clamp(1.1rem, 2.5vmin, 1.4rem); font-weight: bold; text-align: center; min-height: 3vmin;"></div>
                 </div>
 
                 <div id="solutionBox" style="display: none; margin-top: 3vmin; background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%); padding: 3vmin; border-radius: 2vmin; border: 0.5vmin solid #4CAF50;">
@@ -1216,14 +1233,46 @@ Format your response like this:
             }
         }
 
+        function checkStudentAnswer() {
+            const input = document.getElementById('studentAnswer');
+            const feedback = document.getElementById('answerFeedback');
+            const answer = input.value.trim();
+            
+            if (!answer) {
+                feedback.innerHTML = '<span style="color: #FF9800;">Type your answer first! 📝</span>';
+                return;
+            }
+            
+            // Since we don't have the exact answer parsed, we'll encourage them to check the solution
+            feedback.innerHTML = `
+                <div style="background: #E3F2FD; padding: 2vmin; border-radius: 1vmin; border: 0.3vmin solid #2196F3;">
+                    <p style="color: #1976D2; margin-bottom: 1vmin;">
+                        <strong>Great job writing down your answer! 🎉</strong>
+                    </p>
+                    <p style="color: #666; font-size: 0.9em;">
+                        Your answer: <strong>${answer}</strong>
+                    </p>
+                    <p style="color: #666; font-size: 0.9em; margin-top: 1vmin;">
+                        Click "<strong>👀 Show Solution</strong>" below to check if you got it right!
+                    </p>
+                </div>
+            `;
+            
+            // Clear input for next try
+            input.style.background = '#E8F5E9';
+        }
+        
         function toggleSolution() {
             const solutionBox = document.getElementById('solutionBox');
             const btn = event.target;
-
+            
             if (solutionBox.style.display === 'none') {
                 solutionBox.style.display = 'block';
                 btn.textContent = '🙈 Hide Solution';
                 btn.style.background = '#666';
+                
+                // Scroll to solution
+                solutionBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             } else {
                 solutionBox.style.display = 'none';
                 btn.textContent = '👀 Show Solution';
