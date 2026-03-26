@@ -311,49 +311,6 @@
             animation: pulse 1.5s infinite;
         }
 
-        .scratch-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 2000;
-            padding: 2vmin;
-        }
-
-        .scratch-modal.show {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .scratch-modal .canvas-wrapper {
-            position: relative;
-            width: min(1600px, 95vw);
-            height: min(1000px, 80vh);
-            aspect-ratio: 1600/1000;
-        }
-
-        .scratch-modal canvas {
-            width: 100%;
-            height: 100%;
-            border: 0.5vmin solid #FFD700;
-            border-radius: 2vmin;
-        }
-
-        /* Only background canvas should have white background */
-        .scratch-modal #scratchPadExpandedBg {
-            background: white;
-        }
-
-        .scratch-modal-buttons {
-            margin-top: 2vmin;
-            text-align: center;
-        }
-
         *:focus-visible {
             outline: 0.5vmin solid #FFD700;
             outline-offset: 0.5vmin;
@@ -637,68 +594,6 @@
                     </button>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <!-- Expanded Scratch Pad Modal -->
-    <div class="scratch-modal" id="scratchModal">
-        <div style="text-align: center; margin-bottom: 2vmin;">
-            <span style="color: white; font-size: clamp(1.5rem, 3.5vmin, 2.5rem); font-weight: bold;">✏️ Expanded Scratch Pad</span>
-        </div>
-
-        <!-- Drawing Tools for Expanded -->
-        <div style="background: rgba(255,255,255,0.95); padding: 2vmin; border-radius: 1.5vmin; margin-bottom: 2vmin; display: flex; flex-wrap: wrap; gap: 1.5vmin; align-items: center; justify-content: center;">
-            <div style="display: flex; align-items: center; gap: 1vmin;">
-                <label style="font-weight: bold; font-size: clamp(1rem, 2.5vmin, 1.3rem);">🎨 Color:</label>
-                <button data-color="#FF0000" onclick="setPenColor('#FF0000')" style="width: 5vmin; height: 5vmin; background: #FF0000; border: 0.3vmin solid #000; border-radius: 50%; cursor: pointer;"></button>
-                <button data-color="#000000" onclick="setPenColor('#000000')" style="width: 5vmin; height: 5vmin; background: #000000; border: 0.5vmin solid #FFD700; border-radius: 50%; cursor: pointer; box-shadow: 0 0 1vmin rgba(255,215,0,0.8);"></button>
-                <button data-color="#0000FF" onclick="setPenColor('#0000FF')" style="width: 5vmin; height: 5vmin; background: #0000FF; border: 0.3vmin solid #000; border-radius: 50%; cursor: pointer;"></button>
-                <button data-color="#00AA00" onclick="setPenColor('#00AA00')" style="width: 5vmin; height: 5vmin; background: #00AA00; border: 0.3vmin solid #000; border-radius: 50%; cursor: pointer;"></button>
-                <button data-color="#FF6600" onclick="setPenColor('#FF6600')" style="width: 5vmin; height: 5vmin; background: #FF6600; border: 0.3vmin solid #000; border-radius: 50%; cursor: pointer;"></button>
-                <button data-color="#9C27B0" onclick="setPenColor('#9C27B0')" style="width: 5vmin; height: 5vmin; background: #9C27B0; border: 0.3vmin solid #000; border-radius: 50%; cursor: pointer;"></button>
-                <input type="color" value="#FF0000" onchange="setPenColor(this.value)" style="width: 6vmin; height: 5vmin; border: 0.3vmin solid #000; border-radius: 0.5vmin; cursor: pointer;">
-            </div>
-
-            <div style="display: flex; align-items: center; gap: 1vmin;">
-                <label style="font-weight: bold; font-size: clamp(1rem, 2.5vmin, 1.3rem);">📏 Size:</label>
-                <button data-size="2" onclick="setPenSize(2)" style="padding: 1vmin 2.5vmin; background: white; border: 0.3vmin solid #000; border-radius: 0.8vmin; cursor: pointer; font-size: clamp(1rem, 2vmin, 1.2rem);">Thin</button>
-                <button data-size="4" onclick="setPenSize(4)" style="padding: 1vmin 2.5vmin; background: #FFD700; border: 0.3vmin solid #FF0000; border-radius: 0.8vmin; cursor: pointer; font-size: clamp(1rem, 2vmin, 1.2rem); font-weight: bold;">Med</button>
-                <button data-size="8" onclick="setPenSize(8)" style="padding: 1vmin 2.5vmin; background: white; border: 0.3vmin solid #000; border-radius: 0.8vmin; cursor: pointer; font-size: clamp(1rem, 2vmin, 1.2rem);">Thick</button>
-            </div>
-
-            <div style="display: flex; align-items: center; gap: 1vmin;">
-                <label style="font-weight: bold; font-size: clamp(1rem, 2.5vmin, 1.3rem);">📄 Paper:</label>
-                <button data-bg="blank" onclick="setBackground('blank')" style="padding: 1vmin 2.5vmin; background: #FFD700; border: 0.3vmin solid #FF0000; border-radius: 0.8vmin; cursor: pointer; font-size: clamp(1rem, 2vmin, 1.2rem); font-weight: bold;">Blank</button>
-                <button data-bg="grid" onclick="setBackground('grid')" style="padding: 1vmin 2.5vmin; background: white; border: 0.3vmin solid #000; border-radius: 0.8vmin; cursor: pointer; font-size: clamp(1rem, 2vmin, 1.2rem);">Grid</button>
-                <button data-bg="ruled" onclick="setBackground('ruled')" style="padding: 1vmin 2.5vmin; background: white; border: 0.3vmin solid #000; border-radius: 0.8vmin; cursor: pointer; font-size: clamp(1rem, 2vmin, 1.2rem);">Lined</button>
-            </div>
-
-            <button onclick="toggleEraser()" style="padding: 1.5vmin 3vmin; background: #FFF; border: 0.3vmin solid #000; border-radius: 0.8vmin; cursor: pointer; font-size: clamp(1rem, 2.5vmin, 1.3rem); font-weight: bold;">
-                🧹 Eraser
-            </button>
-        </div>
-
-        <div class="canvas-wrapper">
-            <!-- Background canvas -->
-            <canvas id="scratchPadExpandedBg"
-                width="1600"
-                height="1000"
-                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: white; border: 0.5vmin solid #FFD700; border-radius: 2vmin; pointer-events: none;">
-            </canvas>
-            <!-- Drawing canvas -->
-            <canvas id="scratchPadExpanded"
-                width="1600"
-                height="1000"
-                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: crosshair; touch-action: none;">
-            </canvas>
-        </div>
-        <div class="scratch-modal-buttons">
-            <button class="btn" style="background: #FFD700; color: #000; padding: 2vmin 4vmin; margin: 1vmin; font-size: clamp(1.2rem, 3vmin, 1.8rem);" onclick="clearExpandedPad()">
-                🗑️ Clear All
-            </button>
-            <button class="btn" style="background: #FF0000; color: white; padding: 2vmin 4vmin; margin: 1vmin; font-size: clamp(1.2rem, 3vmin, 1.8rem);" onclick="closeExpandedPad()">
-                ✕ Close
-            </button>
         </div>
     </div>
 
@@ -1154,17 +1049,17 @@ Format your response like this:
                         ✏️ Scratch Paper (Draw or write your work!)
                     </div>
 
-                    <div style="position: relative; width: 100%; aspect-ratio: 2/1;">
+                    <div style="position: relative; width: 100%; aspect-ratio: 1/1;">
                         <!-- Background canvas (grid/lines/blank) -->
                         <canvas id="scratchPadBg"
                             width="1200"
-                            height="600"
+                            height="1200"
                             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0.5vmin solid #FF0000; border-radius: 2vmin; background: white; touch-action: none; pointer-events: none;">
                         </canvas>
                         <!-- Drawing canvas (user strokes) -->
                         <canvas id="scratchPad"
                             width="1200"
-                            height="600"
+                            height="1200"
                             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0.5vmin solid #FF0000; border-radius: 2vmin; touch-action: none; cursor: crosshair;">
                         </canvas>
                     </div>
@@ -1198,7 +1093,6 @@ Format your response like this:
                         </button>
 
                         <button onclick="clearScratchPad()" style="padding: 0.5vmin 1vmin; background: #FFD700; color: #000; border: 0.2vmin solid #999; border-radius: 0.5vmin; cursor: pointer; font-size: clamp(0.7rem, 1.6vmin, 0.9rem); white-space: nowrap; font-weight: normal;">🗑️ Clear</button>
-                        <button onclick="expandScratchPad()" style="padding: 0.5vmin 1vmin; background: #4CAF50; color: white; border: 0.2vmin solid #999; border-radius: 0.5vmin; cursor: pointer; font-size: clamp(0.7rem, 1.6vmin, 0.9rem); white-space: nowrap; font-weight: normal;">⛶ Expand</button>
                     </div>
                 </div>
 
@@ -1578,153 +1472,6 @@ Format your response like this:
         }
 
         // Expanded Scratch Pad Functions - Dual Canvas
-        let expandedCanvas, expandedCtx, isDrawingExpanded = false;
-        let expandedBgCanvas, expandedBgCtx;
-
-        function drawExpandedBackground() {
-            drawCanvasBackground(expandedBgCtx, expandedBgCanvas);
-        }
-
-        function expandScratchPad() {
-            const modal = document.getElementById('scratchModal');
-
-            // Initialize drawing canvas
-            expandedCanvas = document.getElementById('scratchPadExpanded');
-            expandedCtx = expandedCanvas.getContext('2d', { willReadFrequently: true });
-
-            // Initialize background canvas
-            expandedBgCanvas = document.getElementById('scratchPadExpandedBg');
-            expandedBgCtx = expandedBgCanvas.getContext('2d');
-
-            // Draw background
-            drawExpandedBackground();
-
-            // Copy current drawing to expanded
-            if (scratchCanvas) {
-                expandedCtx.clearRect(0, 0, expandedCanvas.width, expandedCanvas.height);
-                expandedCtx.drawImage(scratchCanvas, 0, 0, expandedCanvas.width, expandedCanvas.height);
-            }
-
-            // Set up drawing with current tool settings
-            expandedCtx.strokeStyle = currentPenColor;
-            expandedCtx.lineWidth = currentPenSize;
-            expandedCtx.lineCap = 'round';
-            expandedCtx.lineJoin = 'round';
-
-            // Apply eraser mode if active
-            if (isEraserMode) {
-                expandedCtx.globalCompositeOperation = 'destination-out';
-                expandedCtx.lineWidth = currentPenSize * 3;
-            } else {
-                expandedCtx.globalCompositeOperation = 'source-over';
-            }
-
-            // Mouse events
-            expandedCanvas.addEventListener('mousedown', startDrawingExpanded);
-            expandedCanvas.addEventListener('mousemove', drawExpanded);
-            expandedCanvas.addEventListener('mouseup', stopDrawingExpanded);
-            expandedCanvas.addEventListener('mouseout', stopDrawingExpanded);
-
-            // Touch events
-            expandedCanvas.addEventListener('touchstart', handleTouchStartExpanded);
-            expandedCanvas.addEventListener('touchmove', handleTouchMoveExpanded);
-            expandedCanvas.addEventListener('touchend', stopDrawingExpanded);
-
-            // Update UI to reflect current settings
-            // Trigger setPenColor to highlight the current color
-            setPenColor(currentPenColor);
-            // Trigger setPenSize to highlight the current size
-            setPenSize(currentPenSize);
-            // Trigger setBackground to highlight the current background
-            setBackground(currentBackground);
-            // Update eraser button state
-            updateToolDisplay();
-
-            modal.classList.add('show');
-        }
-
-        function closeExpandedPad() {
-            const modal = document.getElementById('scratchModal');
-
-            // Copy expanded content back to small pad
-            if (scratchCtx && expandedCanvas) {
-                scratchCtx.clearRect(0, 0, scratchCanvas.width, scratchCanvas.height);
-                scratchCtx.drawImage(expandedCanvas, 0, 0, scratchCanvas.width, scratchCanvas.height);
-            }
-
-            modal.classList.remove('show');
-        }
-
-        function clearExpandedPad() {
-            if (expandedCtx && expandedCanvas) {
-                // Only clear drawing layer
-                expandedCtx.clearRect(0, 0, expandedCanvas.width, expandedCanvas.height);
-            }
-        }
-
-        function startDrawingExpanded(e) {
-            isDrawingExpanded = true;
-            const rect = expandedCanvas.getBoundingClientRect();
-            const x = (e.clientX - rect.left) * (expandedCanvas.width / rect.width);
-            const y = (e.clientY - rect.top) * (expandedCanvas.height / rect.height);
-            expandedCtx.beginPath();
-            expandedCtx.moveTo(x, y);
-        }
-
-        function drawExpanded(e) {
-            if (!isDrawingExpanded) return;
-            const rect = expandedCanvas.getBoundingClientRect();
-            const x = (e.clientX - rect.left) * (expandedCanvas.width / rect.width);
-            const y = (e.clientY - rect.top) * (expandedCanvas.height / rect.height);
-            expandedCtx.lineTo(x, y);
-            expandedCtx.stroke();
-        }
-
-        function stopDrawingExpanded() {
-            isDrawingExpanded = false;
-        }
-
-        function handleTouchStartExpanded(e) {
-            e.preventDefault();
-            
-            // Reject multi-touch immediately (palm rejection)
-            if (e.touches.length > 1) {
-                return;
-            }
-
-            const touch = e.touches[0];
-
-            // Additional palm rejection: Reject large touch areas (palm/side of hand)
-            if (touch.radiusX && touch.radiusX > 25) {
-                return;
-            }
-            
-            const rect = expandedCanvas.getBoundingClientRect();
-            const x = (touch.clientX - rect.left) * (expandedCanvas.width / rect.width);
-            const y = (touch.clientY - rect.top) * (expandedCanvas.height / rect.height);
-            isDrawingExpanded = true;
-            expandedCtx.beginPath();
-            expandedCtx.moveTo(x, y);
-        }
-        
-        function handleTouchMoveExpanded(e) {
-            if (!isDrawingExpanded) return;
-            e.preventDefault();
-            
-            // Reject multi-touch immediately (palm rejection)
-            if (e.touches.length > 1) {
-                isDrawingExpanded = false; // Stop drawing if palm detected mid-stroke
-                return;
-            }
-            
-            const touch = e.touches[0];
-            const rect = expandedCanvas.getBoundingClientRect();
-            const x = (touch.clientX - rect.left) * (expandedCanvas.width / rect.width);
-            const y = (touch.clientY - rect.top) * (expandedCanvas.height / rect.height);
-            expandedCtx.lineTo(x, y);
-            expandedCtx.stroke();
-        }
-
         function generateQuestion() {
             // This function is now replaced by generateAIProblem
             // Keeping it for compatibility
