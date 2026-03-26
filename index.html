@@ -1347,6 +1347,23 @@ Format your response like this:
         function handleTouchStart(e) {
             e.preventDefault();
             const touch = e.touches[0];
+
+            // Apple Pencil / Stylus detection - ignore palm/hand touches
+            // Only draw if: Apple Pencil OR single finger touch
+            if (e.touches.length > 1) {
+                // Multiple touches = likely palm resting, ignore
+                return;
+            }
+
+            // Check if it's a stylus (Apple Pencil, etc.)
+            const isStylus = touch.touchType === 'stylus';
+
+            // If not stylus, check touch size - palm touches are larger
+            if (!isStylus && touch.radiusX && touch.radiusX > 20) {
+                // Large touch = likely palm, ignore
+                return;
+            }
+
             const rect = scratchCanvas.getBoundingClientRect();
             const x = (touch.clientX - rect.left) * (scratchCanvas.width / rect.width);
             const y = (touch.clientY - rect.top) * (scratchCanvas.height / rect.height);
@@ -1358,6 +1375,12 @@ Format your response like this:
         function handleTouchMove(e) {
             if (!isDrawing) return;
             e.preventDefault();
+
+            // Same palm rejection logic
+            if (e.touches.length > 1) {
+                return;
+            }
+
             const touch = e.touches[0];
             const rect = scratchCanvas.getBoundingClientRect();
             const x = (touch.clientX - rect.left) * (scratchCanvas.width / rect.width);
@@ -1426,18 +1449,18 @@ Format your response like this:
             const modal = document.getElementById('scratchModal');
             expandedCanvas = document.getElementById('scratchPadExpanded');
             expandedCtx = expandedCanvas.getContext('2d');
-            
+
             // Copy current scratch pad content to expanded
             if (scratchCanvas) {
                 expandedCtx.drawImage(scratchCanvas, 0, 0, expandedCanvas.width, expandedCanvas.height);
             }
-            
+
             // Set up drawing with current tool settings
             expandedCtx.strokeStyle = currentPenColor;
             expandedCtx.lineWidth = currentPenSize;
             expandedCtx.lineCap = 'round';
             expandedCtx.lineJoin = 'round';
-            
+
             // Apply eraser mode if active
             if (isEraserMode) {
                 expandedCtx.globalCompositeOperation = 'destination-out';
@@ -1503,6 +1526,18 @@ Format your response like this:
         function handleTouchStartExpanded(e) {
             e.preventDefault();
             const touch = e.touches[0];
+            
+            // Apple Pencil / Stylus detection - ignore palm/hand touches
+            if (e.touches.length > 1) {
+                return; // Multiple touches = likely palm
+            }
+            
+            const isStylus = touch.touchType === 'stylus';
+            
+            if (!isStylus && touch.radiusX && touch.radiusX > 20) {
+                return; // Large touch = likely palm
+            }
+            
             const rect = expandedCanvas.getBoundingClientRect();
             const x = (touch.clientX - rect.left) * (expandedCanvas.width / rect.width);
             const y = (touch.clientY - rect.top) * (expandedCanvas.height / rect.height);
@@ -1510,10 +1545,16 @@ Format your response like this:
             expandedCtx.beginPath();
             expandedCtx.moveTo(x, y);
         }
-
+        
         function handleTouchMoveExpanded(e) {
             if (!isDrawingExpanded) return;
             e.preventDefault();
+            
+            // Same palm rejection
+            if (e.touches.length > 1) {
+                return;
+            }
+            
             const touch = e.touches[0];
             const rect = expandedCanvas.getBoundingClientRect();
             const x = (touch.clientX - rect.left) * (expandedCanvas.width / rect.width);
