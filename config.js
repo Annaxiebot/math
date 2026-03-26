@@ -1,18 +1,16 @@
-// AI Tutor Configuration
-// ⚠️ TEMPORARY - For testing only
-// After Cloudflare Worker is deployed, this will be removed
+// AI Tutor Configuration - Secure Vercel Proxy
 
 const AI_CONFIG = {
-    // Test API key - will move to secure Cloudflare Worker
-    NVIDIA_API_KEY: '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',
+    // API key is now stored securely on Vercel server - not needed here!
+    NVIDIA_API_KEY: '',
     
     // Working model
     MODEL: 'meta/llama-3.1-8b-instruct',
     
-    // Direct to NVIDIA for now - will change to worker URL after deployment
-    INVOKE_URL: 'https://integrate.api.nvidia.com/v1/chat/completions'
+    // Vercel proxy endpoint (secure!)
+    INVOKE_URL: 'https://math-api-proxy1.vercel.app/api/tutor'
 };
 
 function isAITutorAvailable() {
-    return AI_CONFIG.NVIDIA_API_KEY && AI_CONFIG.NVIDIA_API_KEY.length > 0;
+    return true; // Always available via proxy
 }
