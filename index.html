@@ -14,7 +14,7 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-            background: linear-gradient(135deg, #FF0000 0%, #000000 100%);
+            background: linear-gradient(135deg, #C96B73 0%, #1a1a2e 100%);
             min-height: 100vh;
             padding: 2vmin;
             overflow-x: hidden;
@@ -24,14 +24,14 @@
             background: #FFF8DC;
             border-radius: 3vmin;
             padding: 4vmin;
-            box-shadow: 0 2vmin 6vmin rgba(0,0,0,0.5);
+            box-shadow: 0 2vmin 6vmin rgba(0,0,0,0.3);
             max-width: 1400px;
             margin: 0 auto;
-            border: 1vmin solid #FFD700;
+            border: 0.5vmin solid #E8C547;
         }
 
         h1 {
-            color: #FF0000;
+            color: #B5453A;
             font-size: clamp(2rem, 6vmin, 4rem);
             margin-bottom: 1vmin;
             text-align: center;
@@ -52,10 +52,10 @@
             justify-content: space-around;
             margin-bottom: 3vmin;
             padding: 3vmin;
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            background: linear-gradient(135deg, #E8C547 0%, #E8A84C 100%);
             border-radius: 2vmin;
             gap: 2vmin;
-            border: 0.5vmin solid #FF0000;
+            border: 0.3vmin solid #B5453A;
         }
 
         .score-item {
@@ -73,7 +73,7 @@
         .score-value {
             font-size: clamp(1.5rem, 5vmin, 3rem);
             font-weight: bold;
-            color: #FF0000;
+            color: #B5453A;
             text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
         }
 
@@ -82,12 +82,12 @@
             padding: 3vmin;
             border-radius: 2vmin;
             margin-bottom: 3vmin;
-            border: 0.5vmin solid #FF0000;
+            border: 0.3vmin solid #B5453A;
         }
 
         .concept-title {
             font-size: clamp(1.2rem, 3.5vmin, 2rem);
-            color: #FF0000;
+            color: #B5453A;
             margin-bottom: 2vmin;
             font-weight: bold;
         }
@@ -100,14 +100,14 @@
         }
 
         .formula-box {
-            background: #FFD700;
+            background: #E8C547;
             padding: 2vmin;
             border-radius: 1.5vmin;
             margin: 2vmin 0;
             font-size: clamp(1.1rem, 3vmin, 1.6rem);
             font-weight: bold;
             text-align: center;
-            border: 0.3vmin solid #FF0000;
+            border: 0.3vmin solid #B5453A;
             color: #000;
         }
 
@@ -127,7 +127,7 @@
         }
 
         .question-box {
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            background: linear-gradient(135deg, #E8C547 0%, #E8A84C 100%);
             padding: 4vmin;
             border-radius: 2vmin;
             margin-bottom: 3vmin;
@@ -135,7 +135,7 @@
             font-weight: bold;
             color: #000;
             text-align: center;
-            border: 0.5vmin solid #FF0000;
+            border: 0.3vmin solid #B5453A;
             min-height: 15vmin;
             display: flex;
             align-items: center;
@@ -150,7 +150,7 @@
         .answer-input {
             font-size: clamp(2rem, 6vmin, 4rem);
             padding: 2vmin 3vmin;
-            border: 0.5vmin solid #FF0000;
+            border: 0.3vmin solid #B5453A;
             border-radius: 2vmin;
             text-align: center;
             width: min(300px, 50vw);
@@ -162,7 +162,7 @@
 
         .answer-input:focus {
             outline: none;
-            border-color: #FFD700;
+            border-color: #E8C547;
             box-shadow: 0 0 2vmin rgba(255, 215, 0, 0.8);
         }
 
@@ -177,7 +177,7 @@
         .btn {
             font-size: clamp(1.2rem, 3.5vmin, 2rem);
             padding: 3vmin 6vmin;
-            border: 0.5vmin solid #000;
+            border: 0.3vmin solid #000;
             border-radius: 2vmin;
             cursor: pointer;
             font-weight: bold;
@@ -191,7 +191,7 @@
         .btn:hover, .btn:focus {
             transform: translateY(-0.5vmin);
             box-shadow: 0 1vmin 3vmin rgba(0,0,0,0.3);
-            outline: 0.4vmin solid #FFD700;
+            outline: 0.4vmin solid #E8C547;
         }
 
         .btn:active {
@@ -199,12 +199,12 @@
         }
 
         .btn-submit {
-            background: #FF0000;
+            background: #B5453A;
             color: white;
         }
 
         .btn-next {
-            background: #FFD700;
+            background: #E8C547;
             color: #000;
         }
 
@@ -218,11 +218,11 @@
         }
 
         .correct {
-            color: #008000;
+            color: #3A8C3A;
         }
 
         .incorrect {
-            color: #FF0000;
+            color: #B5453A;
         }
 
         .stars {
@@ -246,7 +246,7 @@
         .topic-btn {
             padding: 2vmin 3vmin;
             background: white;
-            border: 0.3vmin solid #FF0000;
+            border: 0.3vmin solid #B5453A;
             border-radius: 1.5vmin;
             cursor: pointer;
             font-size: clamp(0.9rem, 2vmin, 1.2rem);
@@ -256,12 +256,12 @@
         }
 
         .topic-btn.active {
-            background: #FF0000;
+            background: #B5453A;
             color: white;
         }
 
         .topic-btn:hover {
-            background: #FFD700;
+            background: #E8C547;
         }
 
         @media (min-width: 1200px) {
@@ -274,7 +274,7 @@
             }
 
             .btn:focus {
-                outline: 0.6vmin solid #FFD700;
+                outline: 0.6vmin solid #E8C547;
             }
         }
 
@@ -340,7 +340,7 @@
         .scratch-modal canvas {
             width: 100%;
             height: 100%;
-            border: 0.5vmin solid #FFD700;
+            border: 0.5vmin solid #E8C547;
             border-radius: 2vmin;
         }
 
@@ -355,7 +355,7 @@
         }
 
         *:focus-visible {
-            outline: 0.5vmin solid #FFD700;
+            outline: 0.5vmin solid #E8C547;
             outline-offset: 0.5vmin;
         }
 
@@ -380,7 +380,7 @@
             background: #FFF8DC;
             border-radius: 3vmin;
             padding: 4vmin;
-            border: 1vmin solid #FFD700;
+            border: 0.5vmin solid #E8C547;
             margin-bottom: 3vmin;
         }
 
@@ -390,7 +390,7 @@
         }
 
         .tutor-header h2 {
-            color: #FF0000;
+            color: #B5453A;
             font-size: clamp(1.5rem, 4vmin, 2.5rem);
             margin-bottom: 1vmin;
         }
@@ -412,7 +412,7 @@
             min-height: 20vmin;
             font-size: clamp(1rem, 2.5vmin, 1.2rem);
             padding: 2vmin;
-            border: 0.5vmin solid #FF0000;
+            border: 0.3vmin solid #B5453A;
             border-radius: 1.5vmin;
             font-family: inherit;
             resize: vertical;
@@ -422,23 +422,23 @@
             background: linear-gradient(135deg, #FFF8DC 0%, #FFFACD 100%);
             padding: 4vmin;
             border-radius: 2vmin;
-            border: 0.5vmin solid #FF0000;
+            border: 0.3vmin solid #B5453A;
             margin: 2vmin 0;
             font-size: clamp(1.1rem, 2.8vmin, 1.5rem);
             line-height: 1.8;
             max-height: 60vmin;
             overflow-y: auto;
-            box-shadow: 0 0.5vmin 2vmin rgba(255, 0, 0, 0.2);
+            box-shadow: 0 0.5vmin 2vmin rgba(192, 57, 43, 0.15);
         }
 
         .tutor-response h3 {
-            color: #FF0000;
+            color: #B5453A;
             margin: 2vmin 0 1vmin 0;
             font-size: clamp(1.3rem, 3.2vmin, 1.8rem);
         }
 
         .tutor-response strong {
-            color: #FF0000;
+            color: #B5453A;
         }
 
         .tutor-response p {
@@ -459,13 +459,13 @@
             text-align: center;
             padding: 3vmin;
             font-size: clamp(1.2rem, 3vmin, 1.5rem);
-            color: #FF0000;
+            color: #B5453A;
         }
 
         .btn-tutor {
-            background: #FFD700;
+            background: #E8C547;
             color: #000;
-            border: 0.5vmin solid #FF0000;
+            border: 0.3vmin solid #B5453A;
         }
 
         .btn-close {
@@ -501,7 +501,7 @@
                 <label style="font-size: clamp(1rem, 2.5vmin, 1.3rem); font-weight: bold; margin-right: 2vmin;">
                     Grade Level:
                 </label>
-                <select id="gradeLevel" style="font-size: clamp(1rem, 2.5vmin, 1.3rem); padding: 1vmin 2vmin; border-radius: 1vmin; border: 0.3vmin solid #FF0000; background: white;">
+                <select id="gradeLevel" style="font-size: clamp(1rem, 2.5vmin, 1.3rem); padding: 1vmin 2vmin; border-radius: 1vmin; border: 0.3vmin solid #B5453A; background: white;">
                     <option value="3">Grade 3</option>
                     <option value="4">Grade 4</option>
                     <option value="5">Grade 5</option>
@@ -515,7 +515,7 @@
                 <label style="font-size: clamp(1rem, 2.5vmin, 1.3rem); font-weight: bold; margin-right: 2vmin;">
                     Story Context:
                 </label>
-                <select id="storyContext" style="font-size: clamp(1rem, 2.5vmin, 1.3rem); padding: 1vmin 2vmin; border-radius: 1vmin; border: 0.3vmin solid #FF0000; background: white;">
+                <select id="storyContext" style="font-size: clamp(1rem, 2.5vmin, 1.3rem); padding: 1vmin 2vmin; border-radius: 1vmin; border: 0.3vmin solid #B5453A; background: white;">
                     <option value="mickey" selected>Mickey Mouse Adventures 🎀</option>
                     <option value="space">Space & Rockets 🚀</option>
                     <option value="sports">Sports & Games ⚽</option>
@@ -529,7 +529,7 @@
 
             <div id="customContextDiv" style="display: none; margin-top: 2vmin;">
                 <input type="text" id="customContext" placeholder="Describe your story context... (e.g., pirates, dinosaurs, cars)"
-                    style="font-size: clamp(1rem, 2.5vmin, 1.2rem); padding: 1.5vmin; border-radius: 1vmin; border: 0.3vmin solid #FFD700; width: min(400px, 80%); text-align: center;">
+                    style="font-size: clamp(1rem, 2.5vmin, 1.2rem); padding: 1.5vmin; border-radius: 1vmin; border: 0.3vmin solid #E8C547; width: min(400px, 80%); text-align: center;">
             </div>
         </div>
 
@@ -539,8 +539,11 @@
             <button class="topic-btn" onclick="changeTopic('order')">Order of Operations</button>
             <button class="topic-btn" onclick="changeTopic('fractions')">Fractions</button>
             <button class="topic-btn" onclick="changeTopic('area')">Area & Perimeter</button>
-            <button class="topic-btn" style="background: #FFD700; border-color: #FF0000;" onclick="toggleTutorMode()">
+            <button class="topic-btn" style="background: #E8C547; border-color: #B5453A;" onclick="toggleTutorMode()">
                 🎓 Ask AI Tutor Mickey
+            </button>
+            <button class="topic-btn" style="background: linear-gradient(135deg, #5BA65E, #4A9FD9); color: white; border-color: #E8C547; font-size: clamp(1rem, 2.2vmin, 1.3rem);" onclick="startQuest()">
+                🎣 Math Quest
             </button>
         </div>
 
@@ -596,12 +599,12 @@
         <div id="tutorSection" class="tutor-section">
             <div class="tutor-content">
                 <div class="tutor-header">
-                    <h2 style="color: #FF0000; text-align: center; margin-bottom: 2vmin;">🎀 Ask AI Tutor Mickey! 🎀</h2>
+                    <h2 style="color: #B5453A; text-align: center; margin-bottom: 2vmin;">🎀 Ask AI Tutor Mickey! 🎀</h2>
                     <p style="font-size: clamp(0.9rem, 2vmin, 1.1rem); color: #666; text-align: center;">
                         Ask me for custom math practice problems OR customize the app!
                     </p>
                     <div style="text-align: center; margin-bottom: 2vmin;">
-                        <button class="topic-btn" onclick="showVibeCodingHelp()" style="background: #FFD700; font-size: clamp(0.9rem, 2vmin, 1.1rem);">
+                        <button class="topic-btn" onclick="showVibeCodingHelp()" style="background: #E8C547; font-size: clamp(0.9rem, 2vmin, 1.1rem);">
                             🎨 Vibe Coding Help
                         </button>
                     </div>
@@ -638,6 +641,98 @@
                 </div>
             </div>
         </div>
+        <!-- Quest Section -->
+        <div id="questSection" style="display: none; margin-top: 3vmin;">
+            <div style="background: linear-gradient(135deg, #E8F5E9 0%, #B2DFDB 100%); border-radius: 3vmin; padding: 4vmin; border: 0.5vmin solid #5BA65E; margin-bottom: 3vmin;">
+
+                <!-- Quest Header -->
+                <div id="questHeader" style="text-align: center; margin-bottom: 3vmin;">
+                    <h2 style="color: #3D8B40; font-size: clamp(1.5rem, 4vmin, 2.5rem); margin-bottom: 1vmin;">
+                        🎣 Mickey's Fishing Quest 🎣
+                    </h2>
+                    <div id="questLevelDisplay" style="font-size: clamp(1.1rem, 2.5vmin, 1.4rem); color: #333; margin-bottom: 1vmin;"></div>
+                    <div id="questProgress" style="display: flex; justify-content: center; gap: 1.5vmin; margin: 2vmin 0;"></div>
+                    <div style="background: #fff; border-radius: 2vmin; padding: 1.5vmin 3vmin; display: inline-block; border: 0.3vmin solid #5BA65E;">
+                        <span style="font-weight: bold; color: #3D8B40;">Level </span>
+                        <span id="questCurrentLevel" style="font-weight: bold; font-size: clamp(1.2rem, 3vmin, 1.8rem); color: #B5453A;">1</span>
+                        <span style="color: #666;"> / 10</span>
+                    </div>
+                </div>
+
+                <!-- Quest Problem Area -->
+                <div id="questProblemArea" style="display: none;">
+                    <div id="questProblemBox" style="background: white; padding: 4vmin; border-radius: 2vmin; margin-bottom: 3vmin; border: 0.3vmin solid #5BA65E; text-align: center;">
+                        <div id="questProblemLabel" style="font-size: clamp(0.9rem, 2vmin, 1.1rem); color: #666; margin-bottom: 1vmin;"></div>
+                        <div id="questProblemText" style="font-size: clamp(1.5rem, 5vmin, 3rem); font-weight: bold; color: #333; margin-bottom: 2vmin;"></div>
+                        <div id="questHint" style="font-size: clamp(0.9rem, 2vmin, 1.1rem); color: #888; font-style: italic;"></div>
+                    </div>
+                    <div style="text-align: center;">
+                        <input type="text" id="questAnswer" placeholder="Your answer"
+                            style="font-size: clamp(1.5rem, 4vmin, 2.5rem); padding: 2vmin 3vmin; border: 0.3vmin solid #5BA65E; border-radius: 2vmin; text-align: center; width: min(300px, 60vw); font-weight: bold; background: white;"
+                            onkeypress="if(event.key==='Enter') checkQuestAnswer()">
+                        <div style="margin-top: 2vmin;">
+                            <button class="btn" style="background: #5BA65E; color: white; padding: 2vmin 5vmin; font-size: clamp(1.1rem, 2.5vmin, 1.5rem);" onclick="checkQuestAnswer()">
+                                Check Answer ✓
+                            </button>
+                        </div>
+                        <div id="questFeedback" style="margin-top: 2vmin; font-size: clamp(1.1rem, 3vmin, 1.5rem); font-weight: bold; min-height: 5vmin;"></div>
+                    </div>
+                </div>
+
+                <!-- Fishing Game Area -->
+                <div id="fishingGameArea" style="display: none; text-align: center;">
+                    <div style="margin-bottom: 2vmin;">
+                        <span style="font-size: clamp(1.2rem, 3vmin, 1.8rem); font-weight: bold; color: #3D8B40;">
+                            🎉 All problems correct! Time to fish! 🎣
+                        </span>
+                        <div style="font-size: clamp(0.9rem, 2vmin, 1.1rem); color: #666; margin-top: 0.5vmin;">
+                            Click or tap the water to cast your line — catch at least 7 fish to advance!
+                        </div>
+                        <div id="fishingScore" style="font-size: clamp(1rem, 2.5vmin, 1.3rem); font-weight: bold; color: #B5453A; margin-top: 1vmin;"></div>
+                        <div id="fishingTimer" style="font-size: clamp(1rem, 2.5vmin, 1.3rem); font-weight: bold; color: #3D8B40; margin-top: 0.5vmin;"></div>
+                    </div>
+                    <canvas id="fishingCanvas" width="800" height="500"
+                        style="width: min(800px, 90vw); height: auto; border-radius: 2vmin; border: 0.3vmin solid #5BA65E; cursor: pointer; touch-action: none;">
+                    </canvas>
+                    <div id="fishingComplete" style="display: none; margin-top: 2vmin;">
+                        <div id="fishingResults" style="font-size: clamp(1.2rem, 3vmin, 1.6rem); font-weight: bold; color: #3D8B40; margin-bottom: 2vmin;"></div>
+                        <button class="btn" style="background: linear-gradient(135deg, #5BA65E, #4A9FD9); color: white; padding: 2vmin 5vmin; font-size: clamp(1.1rem, 2.5vmin, 1.5rem);" onclick="advanceQuestLevel()">
+                            Next Level →
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quest Complete -->
+                <div id="questComplete" style="display: none; text-align: center; padding: 4vmin;">
+                    <div style="font-size: clamp(3rem, 8vmin, 6rem);">🏆</div>
+                    <h2 style="color: #E8C547; font-size: clamp(1.5rem, 4vmin, 2.5rem); margin: 2vmin 0; text-shadow: 1px 1px 3px rgba(0,0,0,0.3);">
+                        Quest Complete!
+                    </h2>
+                    <div style="font-size: clamp(1.1rem, 2.5vmin, 1.4rem); color: #333; margin-bottom: 3vmin;">
+                        Hot dog! You finished all 10 levels! Mickey and friends are so proud of you!
+                    </div>
+                    <div id="questFinalStats" style="font-size: clamp(1rem, 2.5vmin, 1.3rem); color: #666; margin-bottom: 3vmin;"></div>
+                    <button class="btn" style="background: linear-gradient(135deg, #5BA65E, #4A9FD9); color: white; padding: 2vmin 5vmin;" onclick="resetQuest()">
+                        Play Again! 🔄
+                    </button>
+                    <button class="btn" style="background: #E8C547; color: #000; padding: 2vmin 5vmin; margin-left: 2vmin;" onclick="exitQuest()">
+                        ← Back to Practice
+                    </button>
+                </div>
+
+                <!-- Back button -->
+                <div style="text-align: center; margin-top: 3vmin;">
+                    <button class="btn btn-next" onclick="exitQuest()" style="padding: 2vmin 4vmin;">
+                        ← Back to Practice
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fullscreen Explosion Overlay -->
+    <div id="explosionOverlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:9999; pointer-events:none; overflow:hidden;">
+        <canvas id="explosionCanvas" style="width:100%; height:100%;"></canvas>
     </div>
 
     <!-- Expanded Scratch Pad Modal -->
@@ -650,25 +745,25 @@
         <div style="background: rgba(255,255,255,0.95); padding: 2vmin; border-radius: 1.5vmin; margin-bottom: 2vmin; display: flex; flex-wrap: wrap; gap: 1.5vmin; align-items: center; justify-content: center;">
             <div style="display: flex; align-items: center; gap: 1vmin;">
                 <label style="font-weight: bold; font-size: clamp(1rem, 2.5vmin, 1.3rem);">🎨 Color:</label>
-                <button data-color="#FF0000" onclick="setPenColor('#FF0000')" style="width: 5vmin; height: 5vmin; background: #FF0000; border: 0.3vmin solid #000; border-radius: 50%; cursor: pointer;"></button>
-                <button data-color="#000000" onclick="setPenColor('#000000')" style="width: 5vmin; height: 5vmin; background: #000000; border: 0.5vmin solid #FFD700; border-radius: 50%; cursor: pointer; box-shadow: 0 0 1vmin rgba(255,215,0,0.8);"></button>
+                <button data-color="#B5453A" onclick="setPenColor('#B5453A')" style="width: 5vmin; height: 5vmin; background: #B5453A; border: 0.3vmin solid #000; border-radius: 50%; cursor: pointer;"></button>
+                <button data-color="#000000" onclick="setPenColor('#000000')" style="width: 5vmin; height: 5vmin; background: #000000; border: 0.5vmin solid #E8C547; border-radius: 50%; cursor: pointer; box-shadow: 0 0 1vmin rgba(255,215,0,0.8);"></button>
                 <button data-color="#0000FF" onclick="setPenColor('#0000FF')" style="width: 5vmin; height: 5vmin; background: #0000FF; border: 0.3vmin solid #000; border-radius: 50%; cursor: pointer;"></button>
                 <button data-color="#00AA00" onclick="setPenColor('#00AA00')" style="width: 5vmin; height: 5vmin; background: #00AA00; border: 0.3vmin solid #000; border-radius: 50%; cursor: pointer;"></button>
                 <button data-color="#FF6600" onclick="setPenColor('#FF6600')" style="width: 5vmin; height: 5vmin; background: #FF6600; border: 0.3vmin solid #000; border-radius: 50%; cursor: pointer;"></button>
                 <button data-color="#9C27B0" onclick="setPenColor('#9C27B0')" style="width: 5vmin; height: 5vmin; background: #9C27B0; border: 0.3vmin solid #000; border-radius: 50%; cursor: pointer;"></button>
-                <input type="color" value="#FF0000" onchange="setPenColor(this.value)" style="width: 6vmin; height: 5vmin; border: 0.3vmin solid #000; border-radius: 0.5vmin; cursor: pointer;">
+                <input type="color" value="#B5453A" onchange="setPenColor(this.value)" style="width: 6vmin; height: 5vmin; border: 0.3vmin solid #000; border-radius: 0.5vmin; cursor: pointer;">
             </div>
 
             <div style="display: flex; align-items: center; gap: 1vmin;">
                 <label style="font-weight: bold; font-size: clamp(1rem, 2.5vmin, 1.3rem);">📏 Size:</label>
                 <button data-size="2" onclick="setPenSize(2)" style="padding: 1vmin 2.5vmin; background: white; border: 0.3vmin solid #000; border-radius: 0.8vmin; cursor: pointer; font-size: clamp(1rem, 2vmin, 1.2rem);">Thin</button>
-                <button data-size="4" onclick="setPenSize(4)" style="padding: 1vmin 2.5vmin; background: #FFD700; border: 0.3vmin solid #FF0000; border-radius: 0.8vmin; cursor: pointer; font-size: clamp(1rem, 2vmin, 1.2rem); font-weight: bold;">Med</button>
+                <button data-size="4" onclick="setPenSize(4)" style="padding: 1vmin 2.5vmin; background: #E8C547; border: 0.3vmin solid #B5453A; border-radius: 0.8vmin; cursor: pointer; font-size: clamp(1rem, 2vmin, 1.2rem); font-weight: bold;">Med</button>
                 <button data-size="8" onclick="setPenSize(8)" style="padding: 1vmin 2.5vmin; background: white; border: 0.3vmin solid #000; border-radius: 0.8vmin; cursor: pointer; font-size: clamp(1rem, 2vmin, 1.2rem);">Thick</button>
             </div>
 
             <div style="display: flex; align-items: center; gap: 1vmin;">
                 <label style="font-weight: bold; font-size: clamp(1rem, 2.5vmin, 1.3rem);">📄 Paper:</label>
-                <button data-bg="blank" onclick="setBackground('blank')" style="padding: 1vmin 2.5vmin; background: #FFD700; border: 0.3vmin solid #FF0000; border-radius: 0.8vmin; cursor: pointer; font-size: clamp(1rem, 2vmin, 1.2rem); font-weight: bold;">Blank</button>
+                <button data-bg="blank" onclick="setBackground('blank')" style="padding: 1vmin 2.5vmin; background: #E8C547; border: 0.3vmin solid #B5453A; border-radius: 0.8vmin; cursor: pointer; font-size: clamp(1rem, 2vmin, 1.2rem); font-weight: bold;">Blank</button>
                 <button data-bg="grid" onclick="setBackground('grid')" style="padding: 1vmin 2.5vmin; background: white; border: 0.3vmin solid #000; border-radius: 0.8vmin; cursor: pointer; font-size: clamp(1rem, 2vmin, 1.2rem);">Grid</button>
                 <button data-bg="ruled" onclick="setBackground('ruled')" style="padding: 1vmin 2.5vmin; background: white; border: 0.3vmin solid #000; border-radius: 0.8vmin; cursor: pointer; font-size: clamp(1rem, 2vmin, 1.2rem);">Lined</button>
             </div>
@@ -683,7 +778,7 @@
             <canvas id="scratchPadExpandedBg"
                 width="1600"
                 height="1000"
-                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: white; border: 0.5vmin solid #FFD700; border-radius: 2vmin; pointer-events: none;">
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: white; border: 0.5vmin solid #E8C547; border-radius: 2vmin; pointer-events: none;">
             </canvas>
             <!-- Drawing canvas -->
             <canvas id="scratchPadExpanded"
@@ -693,10 +788,10 @@
             </canvas>
         </div>
         <div class="scratch-modal-buttons">
-            <button class="btn" style="background: #FFD700; color: #000; padding: 2vmin 4vmin; margin: 1vmin; font-size: clamp(1.2rem, 3vmin, 1.8rem);" onclick="clearExpandedPad()">
+            <button class="btn" style="background: #E8C547; color: #000; padding: 2vmin 4vmin; margin: 1vmin; font-size: clamp(1.2rem, 3vmin, 1.8rem);" onclick="clearExpandedPad()">
                 🗑️ Clear All
             </button>
-            <button class="btn" style="background: #FF0000; color: white; padding: 2vmin 4vmin; margin: 1vmin; font-size: clamp(1.2rem, 3vmin, 1.8rem);" onclick="closeExpandedPad()">
+            <button class="btn" style="background: #B5453A; color: white; padding: 2vmin 4vmin; margin: 1vmin; font-size: clamp(1.2rem, 3vmin, 1.8rem);" onclick="closeExpandedPad()">
                 ✕ Close
             </button>
         </div>
@@ -708,6 +803,46 @@
         let streak = 0;
         let currentAnswer = 0;
         let currentTopic = 'equations';
+
+        let questLevel = 1;
+        let questProblemIndex = 0;
+        let questProblems = [];
+        let questCorrectCount = 0;
+        let questTotalFish = 0;
+        let fishingAnimId = null;
+        let fishingTimeLeft = 0;
+        let fishingInterval = null;
+
+        // ========== SAVE / LOAD ==========
+        function saveProgress() {
+            const data = {
+                correct, total, streak, currentTopic,
+                questLevel, questTotalFish,
+                gradeLevel: document.getElementById('gradeLevel')?.value || '6',
+                storyContext: document.getElementById('storyContext')?.value || 'mickey',
+            };
+            try { localStorage.setItem('mickeyMathProgress', JSON.stringify(data)); } catch(e) {}
+        }
+
+        function loadProgress() {
+            try {
+                const raw = localStorage.getItem('mickeyMathProgress');
+                if (!raw) return;
+                const data = JSON.parse(raw);
+                correct = data.correct || 0;
+                total = data.total || 0;
+                streak = data.streak || 0;
+                currentTopic = data.currentTopic || 'equations';
+                questLevel = data.questLevel || 1;
+                questTotalFish = data.questTotalFish || 0;
+                // Restore dropdowns after DOM ready
+                window._savedGradeLevel = data.gradeLevel || '6';
+                window._savedStoryContext = data.storyContext || 'mickey';
+            } catch(e) {}
+        }
+
+        // Load immediately so practice scores are restored
+        loadProgress();
 
         const topics = {
             equations: {
@@ -764,7 +899,7 @@
             explanationBox.innerHTML = `
                 <div style="text-align: center; padding: 4vmin;">
                     <div style="font-size: clamp(3rem, 8vmin, 6rem); animation: bounce 1s infinite;">🤔</div>
-                    <div style="font-size: clamp(1.2rem, 3vmin, 1.8rem); color: #FF0000; font-weight: bold; margin-top: 2vmin;">
+                    <div style="font-size: clamp(1.2rem, 3vmin, 1.8rem); color: #B5453A; font-weight: bold; margin-top: 2vmin;">
                         Mickey is creating your problem...
                     </div>
                     <div style="font-size: clamp(1rem, 2.5vmin, 1.3rem); color: #666; margin-top: 1vmin;">
@@ -893,7 +1028,7 @@
                     <div class="step"><strong>Step 2:</strong> Add the numerators: ${num1} + ${num2} = ${answer}</div>
                     <div class="step"><strong>Step 3:</strong> Keep the denominator: ${den}</div>
                     <div class="step"><strong>Step 4:</strong> Answer: ${answer}/${den}</div>
-                    <div class="step" style="color: #FF0000;"><strong>What is the numerator (top number)?</strong></div>
+                    <div class="step" style="color: #B5453A;"><strong>What is the numerator (top number)?</strong></div>
                 `,
                 question: `Add: ${problem}. What is the numerator?`,
                 answer: answer
@@ -925,8 +1060,8 @@
                         <div class="step"><strong>Step 2:</strong> Find the run: x₂ - x₁ = ${x2} - ${x1} = ${run}</div>
                         <div class="step"><strong>Step 3:</strong> Calculate slope: m = rise/run = ${rise}/${run}</div>
                         <div class="step"><strong>Step 4:</strong> Simplify: m = ${answer}</div>
-                        ${slope > 0 ? '<div class="step" style="color: #008000;">Positive slope → line goes UP! ⬈</div>' : ''}
-                        ${slope < 0 ? '<div class="step" style="color: #FF0000;">Negative slope → line goes DOWN! ⬊</div>' : ''}
+                        ${slope > 0 ? '<div class="step" style="color: #3A8C3A;">Positive slope → line goes UP! ⬈</div>' : ''}
+                        ${slope < 0 ? '<div class="step" style="color: #B5453A;">Negative slope → line goes DOWN! ⬊</div>' : ''}
                         ${slope === 0 ? '<div class="step" style="color: #0000FF;">Zero slope → HORIZONTAL line! ⬌</div>' : ''}
                     `,
                     question: `Find the slope between (${x1}, ${y1}) and (${x2}, ${y2}). Round to 1 decimal.`,
@@ -947,7 +1082,7 @@
                             <div class="step"><strong>Step 1:</strong> Compare to y = mx + b</div>
                             <div class="step"><strong>Step 2:</strong> The number before x is the slope (m)</div>
                             <div class="step"><strong>Step 3:</strong> m = ${m}</div>
-                            ${m > 1 ? '<div class="step" style="color: #008000;">This line is fairly steep going up! ⬈</div>' : ''}
+                            ${m > 1 ? '<div class="step" style="color: #3A8C3A;">This line is fairly steep going up! ⬈</div>' : ''}
                             ${m === 1 ? '<div class="step" style="color: #0000FF;">This is a 45° line going up! ⬈</div>' : ''}
                         `,
                         question: `What is the slope (m) in: y = ${m}x ${b >= 0 ? '+' : ''} ${b}?`,
@@ -1109,7 +1244,7 @@ Format your response like this:
             } catch (error) {
                 console.error('AI Problem Error:', error);
                 document.getElementById('question').innerHTML = `
-                    <span style="color: #FF0000;">Oops! Mickey had trouble creating a problem.</span><br>
+                    <span style="color: #B5453A;">Oops! Mickey had trouble creating a problem.</span><br>
                     <span style="font-size: 0.6em;">Error: ${error.message}</span>
                 `;
             }
@@ -1144,13 +1279,13 @@ Format your response like this:
 
             // Show problem with scratch pad
             explanationBox.innerHTML = `
-                <div class="concept-title" style="color: #FF0000;">🎀 ${topics[currentTopic].name} - Try to solve!</div>
-                <div class="concept-text" style="background: #FFF8DC; padding: 3vmin; border-radius: 2vmin; border: 0.5vmin solid #FFD700;">
+                <div class="concept-title" style="color: #B5453A;">🎀 ${topics[currentTopic].name} - Try to solve!</div>
+                <div class="concept-text" style="background: #FFF8DC; padding: 3vmin; border-radius: 2vmin; border: 0.5vmin solid #E8C547;">
                     ${formattedProblem}
                 </div>
 
                 <div style="margin-top: 3vmin;">
-                    <div style="font-size: clamp(1.1rem, 2.5vmin, 1.4rem); font-weight: bold; color: #FF0000; margin-bottom: 1vmin;">
+                    <div style="font-size: clamp(1.1rem, 2.5vmin, 1.4rem); font-weight: bold; color: #B5453A; margin-bottom: 1vmin;">
                         ✏️ Scratch Paper (Draw or write your work!)
                     </div>
 
@@ -1159,21 +1294,21 @@ Format your response like this:
                         <canvas id="scratchPadBg"
                             width="1200"
                             height="1200"
-                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0.5vmin solid #FF0000; border-radius: 2vmin; background: white; touch-action: none; pointer-events: none;">
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0.3vmin solid #B5453A; border-radius: 2vmin; background: white; touch-action: none; pointer-events: none;">
                         </canvas>
                         <!-- Drawing canvas (user strokes) -->
                         <canvas id="scratchPad"
                             width="1200"
                             height="1200"
-                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0.5vmin solid #FF0000; border-radius: 2vmin; touch-action: none; cursor: crosshair;">
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0.3vmin solid #B5453A; border-radius: 2vmin; touch-action: none; cursor: crosshair;">
                         </canvas>
                     </div>
 
                     <!-- Drawing Tools (below canvas, subtle) -->
                     <div style="background: rgba(255,248,220,0.5); padding: 1.5vmin; border-radius: 1vmin; margin-top: 1vmin; display: flex; flex-wrap: wrap; gap: 1vmin; align-items: center; justify-content: center; border: 0.2vmin solid rgba(255,215,0,0.3);">
                         <div style="display: flex; align-items: center; gap: 0.8vmin;">
-                            <button data-color="#FF0000" onclick="setPenColor('#FF0000')" title="Red" style="width: 3.5vmin; height: 3.5vmin; background: #FF0000; border: 0.2vmin solid #999; border-radius: 50%; cursor: pointer;"></button>
-                            <button data-color="#000000" onclick="setPenColor('#000000')" title="Black" style="width: 3.5vmin; height: 3.5vmin; background: #000000; border: 0.5vmin solid #FFD700; border-radius: 50%; cursor: pointer; box-shadow: 0 0 1vmin rgba(255,215,0,0.8);"></button>
+                            <button data-color="#B5453A" onclick="setPenColor('#B5453A')" title="Red" style="width: 3.5vmin; height: 3.5vmin; background: #B5453A; border: 0.2vmin solid #999; border-radius: 50%; cursor: pointer;"></button>
+                            <button data-color="#000000" onclick="setPenColor('#000000')" title="Black" style="width: 3.5vmin; height: 3.5vmin; background: #000000; border: 0.5vmin solid #E8C547; border-radius: 50%; cursor: pointer; box-shadow: 0 0 1vmin rgba(255,215,0,0.8);"></button>
                             <button data-color="#0000FF" onclick="setPenColor('#0000FF')" title="Blue" style="width: 3.5vmin; height: 3.5vmin; background: #0000FF; border: 0.2vmin solid #999; border-radius: 50%; cursor: pointer;"></button>
                             <button data-color="#00AA00" onclick="setPenColor('#00AA00')" title="Green" style="width: 3.5vmin; height: 3.5vmin; background: #00AA00; border: 0.2vmin solid #999; border-radius: 50%; cursor: pointer;"></button>
                             <button data-color="#FF6600" onclick="setPenColor('#FF6600')" title="Orange" style="width: 3.5vmin; height: 3.5vmin; background: #FF6600; border: 0.2vmin solid #999; border-radius: 50%; cursor: pointer;"></button>
@@ -1182,13 +1317,13 @@ Format your response like this:
 
                         <div style="display: flex; align-items: center; gap: 0.5vmin;">
                             <button data-size="2" onclick="setPenSize(2)" title="Thin" style="padding: 0.6vmin 1.5vmin; background: white; border: 0.2vmin solid #999; border-radius: 0.5vmin; cursor: pointer; font-size: clamp(0.7rem, 1.6vmin, 0.9rem);">Thin</button>
-                            <button data-size="4" onclick="setPenSize(4)" title="Medium" style="padding: 0.6vmin 1.5vmin; background: #FFD700; border: 0.2vmin solid #FF0000; border-radius: 0.5vmin; cursor: pointer; font-size: clamp(0.7rem, 1.6vmin, 0.9rem); font-weight: bold;">Med</button>
+                            <button data-size="4" onclick="setPenSize(4)" title="Medium" style="padding: 0.6vmin 1.5vmin; background: #E8C547; border: 0.2vmin solid #B5453A; border-radius: 0.5vmin; cursor: pointer; font-size: clamp(0.7rem, 1.6vmin, 0.9rem); font-weight: bold;">Med</button>
                             <button data-size="8" onclick="setPenSize(8)" title="Thick" style="padding: 0.6vmin 1.5vmin; background: white; border: 0.2vmin solid #999; border-radius: 0.5vmin; cursor: pointer; font-size: clamp(0.7rem, 1.6vmin, 0.9rem);">Thick</button>
                         </div>
 
                         <div style="display: flex; align-items: center; gap: 0.5vmin;">
                             <span style="font-size: clamp(0.7rem, 1.6vmin, 0.9rem); color: #666; margin-right: 0.3vmin;">Paper:</span>
-                            <button data-bg="blank" onclick="setBackground('blank')" title="Blank" style="padding: 0.6vmin 1.5vmin; background: #FFD700; border: 0.2vmin solid #FF0000; border-radius: 0.5vmin; cursor: pointer; font-size: clamp(0.7rem, 1.6vmin, 0.9rem);">Blank</button>
+                            <button data-bg="blank" onclick="setBackground('blank')" title="Blank" style="padding: 0.6vmin 1.5vmin; background: #E8C547; border: 0.2vmin solid #B5453A; border-radius: 0.5vmin; cursor: pointer; font-size: clamp(0.7rem, 1.6vmin, 0.9rem);">Blank</button>
                             <button data-bg="grid" onclick="setBackground('grid')" title="Grid" style="padding: 0.6vmin 1.5vmin; background: white; border: 0.2vmin solid #999; border-radius: 0.5vmin; cursor: pointer; font-size: clamp(0.7rem, 1.6vmin, 0.9rem);">Grid</button>
                             <button data-bg="ruled" onclick="setBackground('ruled')" title="Ruled Lines" style="padding: 0.6vmin 1.5vmin; background: white; border: 0.2vmin solid #999; border-radius: 0.5vmin; cursor: pointer; font-size: clamp(0.7rem, 1.6vmin, 0.9rem);">Lined</button>
                         </div>
@@ -1198,33 +1333,33 @@ Format your response like this:
                         </button>
 
                         <button onclick="undoScratchPad()" title="Undo last stroke" style="padding: 0.5vmin 1vmin; background: #87CEEB; color: #000; border: 0.2vmin solid #999; border-radius: 0.5vmin; cursor: pointer; font-size: clamp(0.7rem, 1.6vmin, 0.9rem); white-space: nowrap; font-weight: normal;">↶ Undo</button>
-                        <button onclick="clearScratchPad()" style="padding: 0.5vmin 1vmin; background: #FFD700; color: #000; border: 0.2vmin solid #999; border-radius: 0.5vmin; cursor: pointer; font-size: clamp(0.7rem, 1.6vmin, 0.9rem); white-space: nowrap; font-weight: normal;">🗑️ Clear</button>
-                        <button onclick="expandScratchPad()" style="padding: 0.5vmin 1vmin; background: #4CAF50; color: white; border: 0.2vmin solid #999; border-radius: 0.5vmin; cursor: pointer; font-size: clamp(0.7rem, 1.6vmin, 0.9rem); white-space: nowrap; font-weight: normal;">⛶ Expand</button>
+                        <button onclick="clearScratchPad()" style="padding: 0.5vmin 1vmin; background: #E8C547; color: #000; border: 0.2vmin solid #999; border-radius: 0.5vmin; cursor: pointer; font-size: clamp(0.7rem, 1.6vmin, 0.9rem); white-space: nowrap; font-weight: normal;">🗑️ Clear</button>
+                        <button onclick="expandScratchPad()" style="padding: 0.5vmin 1vmin; background: #5BA65E; color: white; border: 0.2vmin solid #999; border-radius: 0.5vmin; cursor: pointer; font-size: clamp(0.7rem, 1.6vmin, 0.9rem); white-space: nowrap; font-weight: normal;">⛶ Expand</button>
                     </div>
                 </div>
 
-                <div style="margin-top: 3vmin; background: linear-gradient(135deg, #FFF8DC 0%, #FFE4B5 100%); padding: 3vmin; border-radius: 2vmin; border: 0.5vmin solid #FF0000;">
-                    <div style="font-size: clamp(1.1rem, 2.5vmin, 1.4rem); font-weight: bold; color: #FF0000; margin-bottom: 2vmin; text-align: center;">
+                <div style="margin-top: 3vmin; background: linear-gradient(135deg, #FFF8DC 0%, #FFE4B5 100%); padding: 3vmin; border-radius: 2vmin; border: 0.3vmin solid #B5453A;">
+                    <div style="font-size: clamp(1.1rem, 2.5vmin, 1.4rem); font-weight: bold; color: #B5453A; margin-bottom: 2vmin; text-align: center;">
                         ✍️ Your Answer
                     </div>
                     <input type="text"
                         id="studentAnswer"
                         placeholder="Type your answer here..."
-                        style="width: 100%; font-size: clamp(1.2rem, 3vmin, 1.8rem); padding: 2vmin; border: 0.3vmin solid #FFD700; border-radius: 1.5vmin; text-align: center; font-weight: bold;"
+                        style="width: 100%; font-size: clamp(1.2rem, 3vmin, 1.8rem); padding: 2vmin; border: 0.3vmin solid #E8C547; border-radius: 1.5vmin; text-align: center; font-weight: bold;"
                         onkeypress="if(event.key === 'Enter') checkStudentAnswer()">
                     <div style="margin-top: 2vmin; text-align: center;">
-                        <button class="btn" style="background: #4CAF50; color: white; padding: 2vmin 4vmin; margin: 0.5vmin; font-size: clamp(1.1rem, 2.5vmin, 1.5rem);" onclick="checkStudentAnswer()">
+                        <button class="btn" style="background: #5BA65E; color: white; padding: 2vmin 4vmin; margin: 0.5vmin; font-size: clamp(1.1rem, 2.5vmin, 1.5rem);" onclick="checkStudentAnswer()">
                             ✓ Check My Answer
                         </button>
-                        <button class="btn" style="background: #FF0000; color: white; padding: 2vmin 4vmin; margin: 0.5vmin; font-size: clamp(1.1rem, 2.5vmin, 1.5rem);" onclick="toggleSolution()">
+                        <button class="btn" style="background: #B5453A; color: white; padding: 2vmin 4vmin; margin: 0.5vmin; font-size: clamp(1.1rem, 2.5vmin, 1.5rem);" onclick="toggleSolution()">
                             👀 Show Solution
                         </button>
                     </div>
                     <div id="answerFeedback" style="margin-top: 2vmin; font-size: clamp(1.1rem, 2.5vmin, 1.4rem); font-weight: bold; text-align: center; min-height: 3vmin;"></div>
                 </div>
 
-                <div id="solutionBox" style="display: none; margin-top: 3vmin; background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%); padding: 3vmin; border-radius: 2vmin; border: 0.5vmin solid #4CAF50;">
-                    <div style="font-size: clamp(1.2rem, 3vmin, 1.6rem); font-weight: bold; color: #2E7D32; margin-bottom: 2vmin;">
+                <div id="solutionBox" style="display: none; margin-top: 3vmin; background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%); padding: 3vmin; border-radius: 2vmin; border: 0.5vmin solid #5BA65E;">
+                    <div style="font-size: clamp(1.2rem, 3vmin, 1.6rem); font-weight: bold; color: #3D8B40; margin-bottom: 2vmin;">
                         ✅ Mickey's Solution
                     </div>
                     <div class="concept-text">
@@ -1362,8 +1497,8 @@ Format your response like this:
             // Update button styles
             document.querySelectorAll('[data-bg]').forEach(btn => {
                 if (btn.dataset.bg === type) {
-                    btn.style.background = '#FFD700';
-                    btn.style.borderColor = '#FF0000';
+                    btn.style.background = '#E8C547';
+                    btn.style.borderColor = '#B5453A';
                 } else {
                     btn.style.background = 'white';
                     btn.style.borderColor = '#999';
@@ -1387,7 +1522,7 @@ Format your response like this:
             document.querySelectorAll('[data-color]').forEach(btn => {
                 if (btn.dataset.color === color) {
                     btn.style.borderWidth = '0.5vmin';
-                    btn.style.borderColor = '#FFD700';
+                    btn.style.borderColor = '#E8C547';
                     btn.style.boxShadow = '0 0 1vmin rgba(255,215,0,0.8)';
                 } else {
                     btn.style.borderWidth = '0.2vmin';
@@ -1407,8 +1542,8 @@ Format your response like this:
             // Highlight selected size button
             document.querySelectorAll('[data-size]').forEach(btn => {
                 if (parseInt(btn.dataset.size) === size) {
-                    btn.style.background = '#FFD700';
-                    btn.style.borderColor = '#FF0000';
+                    btn.style.background = '#E8C547';
+                    btn.style.borderColor = '#B5453A';
                     btn.style.fontWeight = 'bold';
                 } else {
                     btn.style.background = 'white';
@@ -1453,8 +1588,8 @@ Format your response like this:
 
             if (eraserBtn) {
                 if (isEraserMode) {
-                    eraserBtn.style.background = '#FFD700';
-                    eraserBtn.style.borderColor = '#FF0000';
+                    eraserBtn.style.background = '#E8C547';
+                    eraserBtn.style.borderColor = '#B5453A';
                 } else {
                     eraserBtn.style.background = '#FFF';
                     eraserBtn.style.borderColor = '#999';
@@ -1581,8 +1716,8 @@ Format your response like this:
 
             // Since we don't have the exact answer parsed, we'll encourage them to check the solution
             feedback.innerHTML = `
-                <div style="background: #E3F2FD; padding: 2vmin; border-radius: 1vmin; border: 0.3vmin solid #2196F3;">
-                    <p style="color: #1976D2; margin-bottom: 1vmin;">
+                <div style="background: #E3F2FD; padding: 2vmin; border-radius: 1vmin; border: 0.3vmin solid #4A9FD9;">
+                    <p style="color: #3D87C4; margin-bottom: 1vmin;">
                         <strong>Great job writing down your answer! 🎉</strong>
                     </p>
                     <p style="color: #666; font-size: 0.9em;">
@@ -1612,7 +1747,7 @@ Format your response like this:
             } else {
                 solutionBox.style.display = 'none';
                 btn.textContent = '👀 Show Solution';
-                btn.style.background = '#FF0000';
+                btn.style.background = '#B5453A';
             }
         }
 
@@ -1841,6 +1976,7 @@ Format your response like this:
             document.getElementById('correct').textContent = correct;
             document.getElementById('total').textContent = total;
             document.getElementById('streak').textContent = streak;
+            saveProgress();
         }
 
         document.getElementById('answer').addEventListener('keypress', function(e) {
@@ -1866,6 +2002,11 @@ Format your response like this:
         }, false);
 
         // Show welcome message on page load
+        // Restore saved state into UI
+        updateScores();
+        if (window._savedGradeLevel) document.getElementById('gradeLevel').value = window._savedGradeLevel;
+        if (window._savedStoryContext) document.getElementById('storyContext').value = window._savedStoryContext;
+
         showWelcomeMessage();
 
         function showWelcomeMessage() {
@@ -1873,7 +2014,7 @@ Format your response like this:
             const questionBox = document.getElementById('question');
 
             explanationBox.innerHTML = `
-                <div class="concept-title" style="color: #FF0000; text-align: center;">
+                <div class="concept-title" style="color: #B5453A; text-align: center;">
                     🎀 Welcome to Mickey's Math Quest! 🎀
                 </div>
                 <div class="concept-text" style="text-align: center;">
@@ -1885,14 +2026,14 @@ Format your response like this:
                         🎨 Pick a <strong>Story Context</strong> (I'm default!)<br>
                         🎓 Or click <strong>"Ask AI Tutor Mickey"</strong> for custom problems or to customize the app!
                     </p>
-                    <p style="color: #FF0000; font-weight: bold; margin-top: 2vmin;">
+                    <p style="color: #B5453A; font-weight: bold; margin-top: 2vmin;">
                         Gosh, let's have fun learning math! 🌟
                     </p>
                 </div>
             `;
 
             questionBox.innerHTML = `
-                <div style="font-size: clamp(1.5rem, 4vmin, 2.5rem); text-align: center; color: #FF0000;">
+                <div style="font-size: clamp(1.5rem, 4vmin, 2.5rem); text-align: center; color: #B5453A;">
                     👆 Click a topic to start! 👆
                 </div>
             `;
@@ -2024,7 +2165,7 @@ Be enthusiastic, encouraging, and educational!`;
             } catch (error) {
                 console.error('AI Tutor Error:', error);
                 loadingEl.classList.add('hidden');
-                responseEl.innerHTML = `<span style="color: #FF0000;">
+                responseEl.innerHTML = `<span style="color: #B5453A;">
                     Oops! Mickey had trouble: ${error.message}<br><br>
                     Make sure your API key is set correctly in config.js!
                 </span>`;
@@ -2051,13 +2192,18 @@ Be enthusiastic, encouraging, and educational!`;
             } else {
                 customDiv.style.display = 'none';
             }
+            saveProgress();
+        });
+
+        document.getElementById('gradeLevel').addEventListener('change', function() {
+            saveProgress();
         });
 
         // Vibe Coding Functions
         function showVibeCodingHelp() {
             const responseEl = document.getElementById('tutorResponse');
             responseEl.innerHTML = `
-                <h3 style="color: #FF0000;">🎨 Vibe Coding - Customize Your App!</h3>
+                <h3 style="color: #B5453A;">🎨 Vibe Coding - Customize Your App!</h3>
                 <p><strong>Hot dog!</strong> You can change how the app looks! Just ask me in plain English:</p>
 
                 <p><strong>Change Colors:</strong></p>
@@ -2084,7 +2230,7 @@ Be enthusiastic, encouraging, and educational!`;
                     <li>"Make all buttons round"</li>
                 </ul>
 
-                <p><strong style="color: #4CAF50;">💻 You can change ANYTHING!</strong></p>
+                <p><strong style="color: #5BA65E;">💻 You can change ANYTHING!</strong></p>
                 <ul>
                     <li>Any text on the page</li>
                     <li>Any color or style</li>
@@ -2092,9 +2238,9 @@ Be enthusiastic, encouraging, and educational!`;
                     <li>It's YOUR app to customize!</li>
                 </ul>
 
-                <div style="background: #E8F5E9; padding: 2vmin; border-radius: 1.5vmin; margin-top: 2vmin; border: 0.3vmin solid #4CAF50;">
-                    <p style="font-weight: bold; color: #2E7D32; margin-bottom: 1vmin;">🎓 Learn to Code! (Advanced)</p>
-                    <p style="font-size: 0.95em;">You can also type JavaScript code directly! Use <code style="background: white; padding: 0.3vmin 0.8vmin; border-radius: 0.5vmin; color: #FF0000;">document.querySelector()</code> to find elements:</p>
+                <div style="background: #E8F5E9; padding: 2vmin; border-radius: 1.5vmin; margin-top: 2vmin; border: 0.3vmin solid #5BA65E;">
+                    <p style="font-weight: bold; color: #3D8B40; margin-bottom: 1vmin;">🎓 Learn to Code! (Advanced)</p>
+                    <p style="font-size: 0.95em;">You can also type JavaScript code directly! Use <code style="background: white; padding: 0.3vmin 0.8vmin; border-radius: 0.5vmin; color: #B5453A;">document.querySelector()</code> to find elements:</p>
 
                     <p style="margin-top: 1vmin; font-family: monospace; font-size: 0.9em; background: white; padding: 1vmin; border-radius: 0.8vmin;">
                         <strong>Change title:</strong><br>
@@ -2116,7 +2262,7 @@ Be enthusiastic, encouraging, and educational!`;
                     </p>
                 </div>
 
-                <p style="color: #FF0000; margin-top: 2vmin;"><strong>Oh boy!</strong> Just type what you want and I'll make it happen! 🎀</p>
+                <p style="color: #B5453A; margin-top: 2vmin;"><strong>Oh boy!</strong> Just type what you want and I'll make it happen! 🎀</p>
             `;
             responseEl.classList.remove('hidden');
         }
@@ -2199,11 +2345,11 @@ Be encouraging and fun! Use Mickey language (Oh boy!, Gosh!, Hot dog!)`;
                         // Show success
                         loadingEl.classList.add('hidden');
                         responseEl.innerHTML = `
-                            <h3 style="color: #FF0000;">✨ Hot dog! Changes applied! ✨</h3>
+                            <h3 style="color: #B5453A;">✨ Hot dog! Changes applied! ✨</h3>
                             ${mickeyResponse.split('**Code:**')[0]}
                             <p style="margin-top: 2vmin;"><strong>Executed Code:</strong></p>
                             <pre style="background: #f0f0f0; padding: 2vmin; border-radius: 1vmin; overflow-x: auto; font-size: clamp(0.8rem, 2vmin, 1rem);">${jsCode}</pre>
-                            <p style="color: #FF0000; margin-top: 2vmin;"><strong>Gosh!</strong> Don't like it? Just ask me to change it again! 🎨</p>
+                            <p style="color: #B5453A; margin-top: 2vmin;"><strong>Gosh!</strong> Don't like it? Just ask me to change it again! 🎨</p>
                             <p style="color: #666; font-size: 0.9em; margin-top: 1vmin;">💡 Tip: Refresh the page to reset everything!</p>
                         `;
                         responseEl.classList.remove('hidden');
@@ -2218,11 +2364,871 @@ Be encouraging and fun! Use Mickey language (Oh boy!, Gosh!, Hot dog!)`;
                 console.error('Vibe Coding Error:', error);
                 loadingEl.classList.add('hidden');
                 responseEl.innerHTML = `
-                    <span style="color: #FF0000;">Oops! Mickey had trouble with that.</span><br>
+                    <span style="color: #B5453A;">Oops! Mickey had trouble with that.</span><br>
                     <span style="font-size: 0.8em;">Try being more specific, like "Make the background light blue"</span>
                 `;
                 responseEl.classList.remove('hidden');
             }
+        }
+        // ========== QUEST MODE ==========
+        const QUEST_PROBLEMS_PER_LEVEL = 3;
+        const QUEST_MAX_LEVEL = 10;
+
+        // Characters that appear on the boat
+        const mickeyFriends = [
+            { name: 'Mickey', emoji: '🐭' },
+            { name: 'Minnie', emoji: '🎀' },
+            { name: 'Donald', emoji: '🦆' },
+            { name: 'Goofy', emoji: '🐕' },
+            { name: 'Pluto', emoji: '🐶' },
+            { name: 'Daisy', emoji: '🌼' },
+        ];
+
+        // Generate problems scaled to quest level (1-10)
+        function generateQuestProblems(level) {
+            const problems = [];
+            for (let i = 0; i < QUEST_PROBLEMS_PER_LEVEL; i++) {
+                problems.push(generateQuestProblem(level));
+            }
+            return problems;
+        }
+
+        function generateQuestProblem(level) {
+            // Level 1-2: Simple arithmetic
+            // Level 3-4: Multiplication, simple one-step equations
+            // Level 5-6: Two-step equations, basic fractions
+            // Level 7-8: Order of operations, slopes
+            // Level 9-10: Mixed challenging problems
+
+            if (level <= 2) {
+                return genSimpleArithmetic(level);
+            } else if (level <= 4) {
+                return genMultiplicationEquation(level);
+            } else if (level <= 6) {
+                return genTwoStepOrFraction(level);
+            } else if (level <= 8) {
+                return genOrderOfOpsOrSlope(level);
+            } else {
+                return genChallengeProblem(level);
+            }
+        }
+
+        function genSimpleArithmetic(level) {
+            const maxNum = level === 1 ? 20 : 50;
+            const a = Math.floor(Math.random() * maxNum) + 1;
+            const b = Math.floor(Math.random() * maxNum) + 1;
+            if (Math.random() > 0.5) {
+                return { text: `${a} + ${b} = ?`, answer: a + b, hint: 'Add the numbers together!' };
+            } else {
+                const big = Math.max(a, b); const small = Math.min(a, b);
+                return { text: `${big} - ${small} = ?`, answer: big - small, hint: 'Subtract the smaller from the bigger!' };
+            }
+        }
+
+        function genMultiplicationEquation(level) {
+            const maxMul = level === 3 ? 10 : 12;
+            if (Math.random() > 0.5) {
+                const a = Math.floor(Math.random() * maxMul) + 2;
+                const b = Math.floor(Math.random() * maxMul) + 2;
+                return { text: `${a} × ${b} = ?`, answer: a * b, hint: 'Multiply the two numbers!' };
+            } else {
+                const x = Math.floor(Math.random() * 12) + 1;
+                const a = Math.floor(Math.random() * 6) + 2;
+                const result = a * x;
+                return { text: `${a}x = ${result}, x = ?`, answer: x, hint: `Divide ${result} by ${a}` };
+            }
+        }
+
+        function genTwoStepOrFraction(level) {
+            if (Math.random() > 0.5) {
+                const x = Math.floor(Math.random() * 10) + 1;
+                const a = Math.floor(Math.random() * 5) + 2;
+                const b = Math.floor(Math.random() * 15) + 1;
+                const result = a * x + b;
+                return { text: `${a}x + ${b} = ${result}, x = ?`, answer: x, hint: `Subtract ${b}, then divide by ${a}` };
+            } else {
+                const den = level === 5 ? [2, 4, 5][Math.floor(Math.random() * 3)] : [3, 6, 8][Math.floor(Math.random() * 3)];
+                const n1 = Math.floor(Math.random() * (den - 1)) + 1;
+                const n2 = Math.floor(Math.random() * (den - 1)) + 1;
+                return { text: `${n1}/${den} + ${n2}/${den} = ?/${den}`, answer: n1 + n2, hint: 'Add the numerators (top numbers)!' };
+            }
+        }
+
+        function genOrderOfOpsOrSlope(level) {
+            if (Math.random() > 0.5) {
+                const a = Math.floor(Math.random() * 8) + 2;
+                const b = Math.floor(Math.random() * 5) + 1;
+                const c = Math.floor(Math.random() * 8) + 2;
+                const d = Math.floor(Math.random() * 6) + 1;
+                if (level === 7) {
+                    return { text: `${a} + ${b} × ${c} = ?`, answer: a + b * c, hint: 'Remember BEDMAS: multiply first!' };
+                } else {
+                    return { text: `(${a} + ${b}) × ${c} - ${d} = ?`, answer: (a + b) * c - d, hint: 'Brackets first, then multiply, then subtract!' };
+                }
+            } else {
+                const x1 = Math.floor(Math.random() * 5);
+                const y1 = Math.floor(Math.random() * 5);
+                const run = Math.floor(Math.random() * 4) + 1;
+                const rise = Math.floor(Math.random() * 7) - 3;
+                const x2 = x1 + run;
+                const y2 = y1 + rise;
+                const slope = rise / run;
+                const answer = Math.round(slope * 10) / 10;
+                return { text: `Slope of (${x1},${y1}) to (${x2},${y2}) = ?`, answer: answer, hint: 'Slope = (y2-y1)/(x2-x1). Round to 1 decimal.' };
+            }
+        }
+
+        function genChallengeProblem(level) {
+            const type = Math.floor(Math.random() * 4);
+            if (type === 0) {
+                const x = Math.floor(Math.random() * 8) + 2;
+                const a = Math.floor(Math.random() * 4) + 2;
+                const b = Math.floor(Math.random() * 10) + 1;
+                const result = a * (x + b);
+                return { text: `${a}(x + ${b}) = ${result}, x = ?`, answer: x, hint: `Distribute ${a}, then solve for x` };
+            } else if (type === 1) {
+                const a = Math.floor(Math.random() * 5) + 2;
+                const b = Math.floor(Math.random() * 4) + 1;
+                const c = Math.floor(Math.random() * 6) + 2;
+                const d = Math.floor(Math.random() * 3) + 1;
+                const e = Math.floor(Math.random() * 10) + 1;
+                return { text: `${a} × ${b} + ${c} × ${d} - ${e} = ?`, answer: a * b + c * d - e, hint: 'Do multiplications first, then add/subtract' };
+            } else if (type === 2) {
+                const m = Math.floor(Math.random() * 5) + 1;
+                const b = Math.floor(Math.random() * 10) - 3;
+                const x = Math.floor(Math.random() * 6) + 1;
+                return { text: `y = ${m}x + ${b}, find y when x = ${x}`, answer: m * x + b, hint: `Plug in x = ${x} and calculate` };
+            } else {
+                const side = Math.floor(Math.random() * 12) + 3;
+                const side2 = Math.floor(Math.random() * 10) + 2;
+                if (Math.random() > 0.5) {
+                    return { text: `Area of rectangle: ${side} × ${side2} = ?`, answer: side * side2, hint: 'Area = length × width' };
+                } else {
+                    return { text: `Perimeter of rectangle ${side} by ${side2} = ?`, answer: 2 * (side + side2), hint: 'Perimeter = 2 × (length + width)' };
+                }
+            }
+        }
+
+        function startQuest() {
+            // Hide other sections
+            document.getElementById('practiceSection').classList.add('hidden');
+            document.getElementById('tutorSection').classList.remove('show');
+            document.getElementById('questSection').style.display = 'block';
+
+            // Deactivate topic buttons
+            document.querySelectorAll('.topic-btn').forEach(btn => btn.classList.remove('active'));
+
+            showQuestLevel();
+        }
+
+        function exitQuest() {
+            document.getElementById('questSection').style.display = 'none';
+            document.getElementById('practiceSection').classList.remove('hidden');
+            stopFishing();
+        }
+
+        function showQuestLevel() {
+            // Reset problem state
+            questProblemIndex = 0;
+            questCorrectCount = 0;
+            questProblems = generateQuestProblems(questLevel);
+
+            // Update header
+            document.getElementById('questCurrentLevel').textContent = questLevel;
+
+            const levelNames = [
+                '', 'Tadpole Bay', 'Minnow Creek', 'Sunfish Lake', 'Bass River',
+                'Trout Falls', 'Salmon Rapids', 'Swordfish Cove', 'Marlin Deep',
+                'Whale Harbor', 'Golden Catch Lagoon'
+            ];
+            document.getElementById('questLevelDisplay').innerHTML =
+                `<strong>${levelNames[questLevel]}</strong> — Solve ${QUEST_PROBLEMS_PER_LEVEL} problems to go fishing!`;
+
+            // Show progress dots
+            updateQuestProgress();
+
+            // Show problem area, hide fishing & complete
+            document.getElementById('questProblemArea').style.display = 'block';
+            document.getElementById('fishingGameArea').style.display = 'none';
+            document.getElementById('questComplete').style.display = 'none';
+
+            showQuestProblem();
+        }
+
+        function updateQuestProgress() {
+            const container = document.getElementById('questProgress');
+            let html = '';
+            for (let i = 0; i < QUEST_PROBLEMS_PER_LEVEL; i++) {
+                if (i < questCorrectCount) {
+                    html += '<span style="font-size: clamp(1.5rem, 3.5vmin, 2.5rem);">✅</span>';
+                } else if (i === questProblemIndex) {
+                    html += '<span style="font-size: clamp(1.5rem, 3.5vmin, 2.5rem);">🔵</span>';
+                } else {
+                    html += '<span style="font-size: clamp(1.5rem, 3.5vmin, 2.5rem);">⚪</span>';
+                }
+            }
+            container.innerHTML = html;
+        }
+
+        function showQuestProblem() {
+            const p = questProblems[questProblemIndex];
+            document.getElementById('questProblemLabel').textContent = `Problem ${questProblemIndex + 1} of ${QUEST_PROBLEMS_PER_LEVEL}`;
+            document.getElementById('questProblemText').textContent = p.text;
+            document.getElementById('questHint').textContent = '💡 Hint: ' + p.hint;
+            document.getElementById('questAnswer').value = '';
+            document.getElementById('questFeedback').textContent = '';
+            document.getElementById('questAnswer').focus();
+            updateQuestProgress();
+        }
+
+        function checkQuestAnswer() {
+            const input = document.getElementById('questAnswer');
+            const feedback = document.getElementById('questFeedback');
+            const userAnswer = parseFloat(input.value);
+            const p = questProblems[questProblemIndex];
+
+            if (isNaN(userAnswer)) {
+                feedback.innerHTML = '<span style="color: #FF9800;">Type a number! 📝</span>';
+                return;
+            }
+
+            if (Math.abs(userAnswer - p.answer) < 0.01) {
+                questCorrectCount++;
+                questProblemIndex++;
+                updateQuestProgress();
+
+                if (questCorrectCount >= QUEST_PROBLEMS_PER_LEVEL) {
+                    // All correct — start fishing game!
+                    feedback.innerHTML = '<span style="color: #5BA65E;">🎉 Perfect! Time to fish!</span>';
+                    setTimeout(() => {
+                        document.getElementById('questProblemArea').style.display = 'none';
+                        startFishingGame();
+                    }, 1000);
+                } else {
+                    feedback.innerHTML = '<span style="color: #5BA65E;">✅ Correct! Great job!</span>';
+                    setTimeout(() => showQuestProblem(), 800);
+                }
+            } else {
+                feedback.innerHTML = `<span style="color: #B5453A;">Not quite! Try again 💪</span>`;
+                input.value = '';
+                input.focus();
+            }
+        }
+
+        // ========== FISHING GAME ==========
+        const FISH_REQUIRED = 7;
+
+        function startFishingGame() {
+            document.getElementById('fishingGameArea').style.display = 'block';
+            const canvas = document.getElementById('fishingCanvas');
+            const ctx = canvas.getContext('2d');
+
+            let fish = [];
+            let caughtFish = 0;
+            let castLine = null;
+            let bobber = null;
+            let catchAnimation = null;
+            const fishingDuration = 20 + questLevel * 3;
+            fishingTimeLeft = fishingDuration;
+            let gameActive = true;
+
+            // Characters on the boat for this level
+            const boatCrew = [mickeyFriends[0]];
+            if (questLevel >= 2) boatCrew.push(mickeyFriends[1]);
+            if (questLevel >= 4) boatCrew.push(mickeyFriends[2]);
+            if (questLevel >= 6) boatCrew.push(mickeyFriends[3]);
+            if (questLevel >= 8) boatCrew.push(mickeyFriends[4]);
+            if (questLevel >= 10) boatCrew.push(mickeyFriends[5]);
+
+            const fishTypes = ['🐟', '🐠', '🐡', '🦈', '🐙', '🦑', '🦀', '🐚', '🐋', '🐳'];
+            const fishCount = 8 + questLevel;
+
+            // Generate fish
+            for (let i = 0; i < fishCount; i++) {
+                fish.push({
+                    x: Math.random() * 700 + 50,
+                    y: 280 + Math.random() * 180,
+                    speedX: (Math.random() - 0.5) * (1.5 + questLevel * 0.2),
+                    speedY: (Math.random() - 0.5) * 0.5,
+                    emoji: fishTypes[Math.floor(Math.random() * Math.min(fishTypes.length, 3 + questLevel))],
+                    size: 20 + Math.random() * 15,
+                    caught: false
+                });
+            }
+
+            // Generate bombs (more at higher levels)
+            let bombs = [];
+            const bombCount = Math.min(2 + Math.floor(questLevel / 2), 7);
+            for (let i = 0; i < bombCount; i++) {
+                bombs.push({
+                    x: Math.random() * 600 + 100,
+                    y: 290 + Math.random() * 160,
+                    speedX: (Math.random() - 0.5) * (1 + questLevel * 0.15),
+                    speedY: (Math.random() - 0.5) * 0.4,
+                    size: 22 + Math.random() * 8,
+                    hit: false
+                });
+            }
+
+            let explosionAnim = null; // { frame, x, y }
+
+            document.getElementById('fishingScore').textContent = `Fish caught: ${caughtFish} / ${FISH_REQUIRED} needed`;
+            document.getElementById('fishingTimer').textContent = `Time: ${fishingTimeLeft}s`;
+            document.getElementById('fishingComplete').style.display = 'none';
+
+            // --- Pre-render static background to offscreen canvas ---
+            const bgCanvas = document.createElement('canvas');
+            bgCanvas.width = 800;
+            bgCanvas.height = 500;
+            const bgCtx = bgCanvas.getContext('2d');
+
+            // Sky
+            const skyGrad = bgCtx.createLinearGradient(0, 0, 0, 250);
+            skyGrad.addColorStop(0, '#87CEEB');
+            skyGrad.addColorStop(1, '#E0F7FA');
+            bgCtx.fillStyle = skyGrad;
+            bgCtx.fillRect(0, 0, 800, 250);
+
+            // Sun
+            bgCtx.fillStyle = '#E8C547';
+            bgCtx.beginPath();
+            bgCtx.arc(700, 60, 40, 0, Math.PI * 2);
+            bgCtx.fill();
+
+            // Clouds
+            bgCtx.fillStyle = 'rgba(255,255,255,0.8)';
+            function drawCloudOn(c, x, y, r) {
+                c.beginPath();
+                c.arc(x, y, r, 0, Math.PI * 2);
+                c.arc(x + r, y - r * 0.3, r * 0.7, 0, Math.PI * 2);
+                c.arc(x - r * 0.6, y - r * 0.1, r * 0.6, 0, Math.PI * 2);
+                c.arc(x + r * 0.5, y + r * 0.2, r * 0.5, 0, Math.PI * 2);
+                c.fill();
+            }
+            drawCloudOn(bgCtx, 100, 50, 40);
+            drawCloudOn(bgCtx, 300, 80, 30);
+            drawCloudOn(bgCtx, 550, 40, 35);
+
+            // Water
+            const waterGrad = bgCtx.createLinearGradient(0, 250, 0, 500);
+            waterGrad.addColorStop(0, '#3D87C4');
+            waterGrad.addColorStop(0.5, '#3578B5');
+            waterGrad.addColorStop(1, '#2A5A94');
+            bgCtx.fillStyle = waterGrad;
+            bgCtx.fillRect(0, 250, 800, 250);
+
+            // Boat
+            bgCtx.fillStyle = '#8B4513';
+            bgCtx.beginPath();
+            bgCtx.moveTo(320, 240);
+            bgCtx.lineTo(480, 240);
+            bgCtx.lineTo(460, 260);
+            bgCtx.lineTo(340, 260);
+            bgCtx.closePath();
+            bgCtx.fill();
+            bgCtx.strokeStyle = '#5D3A1A';
+            bgCtx.lineWidth = 2;
+            bgCtx.stroke();
+
+            // Mast
+            bgCtx.strokeStyle = '#5D3A1A';
+            bgCtx.lineWidth = 3;
+            bgCtx.beginPath();
+            bgCtx.moveTo(400, 240);
+            bgCtx.lineTo(400, 160);
+            bgCtx.stroke();
+
+            // Flag
+            bgCtx.fillStyle = '#B5453A';
+            bgCtx.beginPath();
+            bgCtx.moveTo(400, 160);
+            bgCtx.lineTo(430, 170);
+            bgCtx.lineTo(400, 180);
+            bgCtx.closePath();
+            bgCtx.fill();
+
+            // Crew on boat
+            bgCtx.font = '24px serif';
+            bgCtx.textAlign = 'center';
+            const crewSpacing = 30;
+            const crewStartX = 400 - ((boatCrew.length - 1) * crewSpacing) / 2;
+            boatCrew.forEach((c, i) => {
+                bgCtx.fillText(c.emoji, crewStartX + i * crewSpacing, 235);
+            });
+
+            // Level label
+            bgCtx.fillStyle = 'rgba(0,0,0,0.5)';
+            bgCtx.font = 'bold 14px sans-serif';
+            bgCtx.textAlign = 'left';
+            bgCtx.fillText(`Level ${questLevel}`, 10, 490);
+
+            // --- Pre-render fish emoji to offscreen canvases ---
+            const fishCanvases = fish.map(f => {
+                const fc = document.createElement('canvas');
+                const pad = 4;
+                fc.width = f.size + pad * 2;
+                fc.height = f.size + pad * 2;
+                const fctx = fc.getContext('2d');
+                fctx.font = `${f.size}px serif`;
+                fctx.textAlign = 'center';
+                fctx.textBaseline = 'middle';
+                fctx.fillText(f.emoji, fc.width / 2, fc.height / 2);
+                return fc;
+            });
+
+            // Pre-render bomb canvases
+            const bombCanvases = bombs.map(b => {
+                const bc = document.createElement('canvas');
+                const pad = 4;
+                bc.width = b.size + pad * 2;
+                bc.height = b.size + pad * 2;
+                const bctx = bc.getContext('2d');
+                bctx.font = `${b.size}px serif`;
+                bctx.textAlign = 'center';
+                bctx.textBaseline = 'middle';
+                bctx.fillText('💣', bc.width / 2, bc.height / 2);
+                return bc;
+            });
+
+            // Pre-render catch animation emoji
+            const catchEmojiCanvases = {};
+            fishTypes.forEach(emoji => {
+                const c = document.createElement('canvas');
+                c.width = 48; c.height = 48;
+                const cc = c.getContext('2d');
+                cc.font = '40px serif';
+                cc.textAlign = 'center';
+                cc.textBaseline = 'middle';
+                cc.fillText(emoji, 24, 24);
+                catchEmojiCanvases[emoji] = c;
+            });
+
+            // Timer
+            fishingInterval = setInterval(() => {
+                fishingTimeLeft--;
+                document.getElementById('fishingTimer').textContent = `Time: ${fishingTimeLeft}s`;
+                if (fishingTimeLeft <= 0) {
+                    gameActive = false;
+                    endFishing(caughtFish);
+                }
+            }, 1000);
+
+            // Click/tap to cast
+            function handleCast(e) {
+                if (!gameActive || castLine) return;
+                const rect = canvas.getBoundingClientRect();
+                const scaleX = canvas.width / rect.width;
+                const scaleY = canvas.height / rect.height;
+                let clientX, clientY;
+                if (e.touches) {
+                    e.preventDefault();
+                    clientX = e.touches[0].clientX;
+                    clientY = e.touches[0].clientY;
+                } else {
+                    clientX = e.clientX;
+                    clientY = e.clientY;
+                }
+                const x = (clientX - rect.left) * scaleX;
+                const y = (clientY - rect.top) * scaleY;
+
+                if (y < 250) return;
+
+                castLine = { fromX: 400, fromY: 160, toX: x, toY: y, progress: 0 };
+                bobber = { x: x, y: y, time: 0 };
+            }
+
+            canvas.addEventListener('click', handleCast);
+            canvas.addEventListener('touchstart', handleCast);
+
+            // Simple wave offset for cheap animated waves
+            let waveOffset = 0;
+
+            function drawFrame() {
+                // Blit cached background
+                ctx.drawImage(bgCanvas, 0, 0);
+
+                // Animated waves (fewer, wider steps)
+                waveOffset += 0.03;
+                ctx.strokeStyle = 'rgba(255,255,255,0.15)';
+                ctx.lineWidth = 1.5;
+                for (let wy = 265; wy < 500; wy += 40) {
+                    ctx.beginPath();
+                    for (let wx = 0; wx < 800; wx += 20) {
+                        ctx.lineTo(wx, wy + Math.sin(wx / 50 + waveOffset + wy / 25) * 3);
+                    }
+                    ctx.stroke();
+                }
+
+                // Draw fish (using pre-rendered canvases)
+                for (let i = 0; i < fish.length; i++) {
+                    const f = fish[i];
+                    if (f.caught) continue;
+                    f.x += f.speedX;
+                    f.y += f.speedY;
+                    if (f.x < 20 || f.x > 780) f.speedX *= -1;
+                    if (f.y < 270 || f.y > 480) f.speedY *= -1;
+                    f.x = Math.max(20, Math.min(780, f.x));
+                    f.y = Math.max(270, Math.min(480, f.y));
+
+                    const fc = fishCanvases[i];
+                    ctx.drawImage(fc, f.x - fc.width / 2, f.y - fc.height / 2);
+                }
+
+                // Draw bombs
+                for (let i = 0; i < bombs.length; i++) {
+                    const b = bombs[i];
+                    if (b.hit) continue;
+                    b.x += b.speedX;
+                    b.y += b.speedY;
+                    if (b.x < 30 || b.x > 770) b.speedX *= -1;
+                    if (b.y < 275 || b.y > 475) b.speedY *= -1;
+                    b.x = Math.max(30, Math.min(770, b.x));
+                    b.y = Math.max(275, Math.min(475, b.y));
+
+                    const bc = bombCanvases[i];
+                    ctx.drawImage(bc, b.x - bc.width / 2, b.y - bc.height / 2);
+                }
+
+                // If bomb was hit, trigger fullscreen explosion and stop game loop
+                if (explosionAnim) {
+                    gameActive = false;
+                    clearInterval(fishingInterval);
+                    cancelAnimationFrame(fishingAnimId);
+                    fishingInterval = null;
+                    fishingAnimId = null;
+                    canvas.removeEventListener('click', handleCast);
+                    canvas.removeEventListener('touchstart', handleCast);
+                    triggerFullscreenExplosion();
+                    return;
+                }
+
+                // Fishing line & bobber
+                if (castLine) {
+                    castLine.progress = Math.min(1, castLine.progress + 0.06);
+                    const cx = castLine.fromX + (castLine.toX - castLine.fromX) * castLine.progress;
+                    const cy = castLine.fromY + (castLine.toY - castLine.fromY) * castLine.progress;
+
+                    ctx.strokeStyle = '#666';
+                    ctx.lineWidth = 1.5;
+                    ctx.beginPath();
+                    ctx.moveTo(castLine.fromX, castLine.fromY);
+                    ctx.lineTo(cx, cy);
+                    ctx.stroke();
+
+                    if (castLine.progress >= 1) {
+                        bobber.time++;
+                        const bobY = castLine.toY + Math.sin(bobber.time / 10) * 3;
+                        ctx.fillStyle = '#B5453A';
+                        ctx.beginPath();
+                        ctx.arc(castLine.toX, bobY - 5, 6, 0, Math.PI * 2);
+                        ctx.fill();
+                        ctx.fillStyle = 'white';
+                        ctx.beginPath();
+                        ctx.arc(castLine.toX, bobY - 5, 3, Math.PI, 0);
+                        ctx.fill();
+
+                        // Check for catch
+                        for (let i = 0; i < fish.length; i++) {
+                            const f = fish[i];
+                            if (f.caught) continue;
+                            const dx = f.x - castLine.toX;
+                            const dy = f.y - bobY;
+                            if (dx * dx + dy * dy < 35 * 35) {
+                                f.caught = true;
+                                caughtFish++;
+                                document.getElementById('fishingScore').textContent =
+                                    `Fish caught: ${caughtFish} / ${FISH_REQUIRED} needed ${f.emoji}`;
+                                catchAnimation = { emoji: f.emoji, x: castLine.toX, y: bobY, frame: 0 };
+                                castLine = null;
+                                bobber = null;
+
+                                // Auto-advance when enough fish caught
+                                if (caughtFish >= FISH_REQUIRED) {
+                                    gameActive = false;
+                                    clearInterval(fishingInterval);
+                                    canvas.removeEventListener('click', handleCast);
+                                    canvas.removeEventListener('touchstart', handleCast);
+                                    questTotalFish += caughtFish;
+                                    // Brief delay so they see the last catch animation
+                                    setTimeout(() => {
+                                        cancelAnimationFrame(fishingAnimId);
+                                        fishingInterval = null;
+                                        fishingAnimId = null;
+                                        if (questLevel >= QUEST_MAX_LEVEL) {
+                                            showQuestComplete();
+                                        } else {
+                                            advanceQuestLevel();
+                                        }
+                                    }, 1200);
+                                }
+                                break;
+                            }
+                        }
+
+                        // Check for bomb hit
+                        if (castLine) {
+                            for (let i = 0; i < bombs.length; i++) {
+                                const b = bombs[i];
+                                if (b.hit) continue;
+                                const dx = b.x - castLine.toX;
+                                const dy = b.y - bobY;
+                                if (dx * dx + dy * dy < 35 * 35) {
+                                    b.hit = true;
+                                    explosionAnim = { frame: 0, x: b.x, y: b.y };
+                                    castLine = null;
+                                    bobber = null;
+                                    break;
+                                }
+                            }
+                        }
+
+                        if (bobber && bobber.time > 60) {
+                            castLine = null;
+                            bobber = null;
+                        }
+                    }
+                }
+
+                // Catch animation (using pre-rendered emoji)
+                if (catchAnimation) {
+                    catchAnimation.frame++;
+                    catchAnimation.y -= 3;
+                    const alpha = Math.max(0, 1 - catchAnimation.frame / 30);
+                    if (alpha > 0) {
+                        ctx.globalAlpha = alpha;
+                        const ec = catchEmojiCanvases[catchAnimation.emoji];
+                        if (ec) {
+                            ctx.drawImage(ec, catchAnimation.x - 24, catchAnimation.y - 24);
+                        }
+                        ctx.globalAlpha = 1;
+                    }
+                    if (catchAnimation.frame > 30) catchAnimation = null;
+                }
+
+                if (gameActive) {
+                    fishingAnimId = requestAnimationFrame(drawFrame);
+                }
+            }
+
+            fishingAnimId = requestAnimationFrame(drawFrame);
+
+            function endFishing(caught) {
+                clearInterval(fishingInterval);
+                cancelAnimationFrame(fishingAnimId);
+                fishingInterval = null;
+                fishingAnimId = null;
+                questTotalFish += caught;
+
+                canvas.removeEventListener('click', handleCast);
+                canvas.removeEventListener('touchstart', handleCast);
+
+                // Timer ran out without enough fish
+                document.getElementById('fishingComplete').innerHTML = `
+                    <div style="font-size: clamp(1.2rem, 3vmin, 1.6rem); font-weight: bold; color: #B5453A; margin-bottom: 2vmin;">
+                        🎣 You caught ${caught} fish, but you need ${FISH_REQUIRED} to advance!<br>Try again — you can do it! 💪
+                    </div>
+                    <button class="btn" style="background: linear-gradient(135deg, #5BA65E, #4A9FD9); color: white; padding: 2vmin 5vmin; font-size: clamp(1.1rem, 2.5vmin, 1.5rem);" onclick="retryFishing()">
+                        🎣 Fish Again!
+                    </button>
+                `;
+                document.getElementById('fishingComplete').style.display = 'block';
+            }
+        }
+
+        function retryFishing() {
+            stopFishing();
+            startFishingGame();
+        }
+
+        function restartQuestLevel() {
+            stopFishing();
+            document.getElementById('fishingGameArea').style.display = 'none';
+            document.getElementById('fishingComplete').style.display = 'none';
+            showQuestLevel();
+        }
+
+        function triggerFullscreenExplosion() {
+            const overlay = document.getElementById('explosionOverlay');
+            const eCanvas = document.getElementById('explosionCanvas');
+            overlay.style.display = 'block';
+
+            // Size canvas to full viewport
+            eCanvas.width = window.innerWidth * 2;
+            eCanvas.height = window.innerHeight * 2;
+            eCanvas.style.width = '100%';
+            eCanvas.style.height = '100%';
+            const ex = eCanvas.getContext('2d');
+            const W = eCanvas.width;
+            const H = eCanvas.height;
+            const cx = W / 2;
+            const cy = H / 2;
+
+            // Pre-render debris emoji
+            const debrisEmoji = ['💥', '🔥', '💫', '✨', '☠️', '💣', '🧨', '💀'];
+            const debrisCanvases = debrisEmoji.map(e => {
+                const c = document.createElement('canvas');
+                c.width = 80; c.height = 80;
+                const dc = c.getContext('2d');
+                dc.font = '60px serif';
+                dc.textAlign = 'center';
+                dc.textBaseline = 'middle';
+                dc.fillText(e, 40, 40);
+                return c;
+            });
+
+            // Generate particles
+            const particles = [];
+            for (let i = 0; i < 30; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const speed = 4 + Math.random() * 12;
+                particles.push({
+                    x: cx, y: cy,
+                    vx: Math.cos(angle) * speed,
+                    vy: Math.sin(angle) * speed,
+                    dc: debrisCanvases[i % debrisCanvases.length],
+                    scale: 0.5 + Math.random() * 1,
+                    rot: Math.random() * Math.PI * 2,
+                    rotSpeed: (Math.random() - 0.5) * 0.3
+                });
+            }
+
+            let frame = 0;
+            const maxFrames = 90;
+            let shakeInterval = null;
+
+            // Shake the whole page
+            shakeInterval = setInterval(() => {
+                if (frame < 30) {
+                    const intensity = 15 * (1 - frame / 30);
+                    const sx = (Math.random() - 0.5) * intensity;
+                    const sy = (Math.random() - 0.5) * intensity;
+                    document.body.style.transform = `translate(${sx}px, ${sy}px)`;
+                } else {
+                    document.body.style.transform = '';
+                    clearInterval(shakeInterval);
+                }
+            }, 16);
+
+            function drawExplosionFrame() {
+                frame++;
+                ex.clearRect(0, 0, W, H);
+                const progress = frame / maxFrames;
+
+                // Flash for first frames
+                if (frame <= 10) {
+                    ex.fillStyle = frame % 2 === 0 ? 'rgba(255,80,0,0.95)' : 'rgba(255,255,0,0.95)';
+                    ex.fillRect(0, 0, W, H);
+                }
+
+                // Expanding fireball
+                if (frame < 50) {
+                    const radius = (frame / 50) * Math.max(W, H);
+                    const grad = ex.createRadialGradient(cx, cy, 0, cx, cy, radius);
+                    const alpha = Math.max(0, 1 - frame / 50);
+                    grad.addColorStop(0, `rgba(255,200,50,${alpha})`);
+                    grad.addColorStop(0.3, `rgba(255,80,0,${alpha * 0.8})`);
+                    grad.addColorStop(0.6, `rgba(200,0,0,${alpha * 0.5})`);
+                    grad.addColorStop(1, 'rgba(0,0,0,0)');
+                    ex.fillStyle = grad;
+                    ex.fillRect(0, 0, W, H);
+                }
+
+                // Debris particles
+                for (const p of particles) {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.vy += 0.15; // gravity
+                    p.rot += p.rotSpeed;
+                    const alpha = Math.max(0, 1 - progress);
+                    if (alpha <= 0) continue;
+                    ex.save();
+                    ex.globalAlpha = alpha;
+                    ex.translate(p.x, p.y);
+                    ex.rotate(p.rot);
+                    ex.scale(p.scale, p.scale);
+                    ex.drawImage(p.dc, -40, -40);
+                    ex.restore();
+                }
+                ex.globalAlpha = 1;
+
+                // "BOOM!" text
+                if (frame > 5 && frame < 55) {
+                    const textAlpha = frame < 40 ? 1 : Math.max(0, (55 - frame) / 15);
+                    const fontSize = Math.min(W / 4, 60 + frame * 2);
+                    ex.globalAlpha = textAlpha;
+                    ex.font = `bold ${fontSize}px sans-serif`;
+                    ex.textAlign = 'center';
+                    ex.textBaseline = 'middle';
+                    ex.strokeStyle = '#000';
+                    ex.lineWidth = fontSize / 10;
+                    ex.strokeText('BOOM!', cx, cy);
+                    ex.fillStyle = '#FFF';
+                    ex.fillText('BOOM!', cx, cy);
+                    ex.globalAlpha = 1;
+                }
+
+                // Fade to black
+                if (frame > 60) {
+                    ex.fillStyle = `rgba(0,0,0,${(frame - 60) / 30})`;
+                    ex.fillRect(0, 0, W, H);
+                }
+
+                if (frame < maxFrames) {
+                    requestAnimationFrame(drawExplosionFrame);
+                } else {
+                    // Done — clean up and show restart
+                    document.body.style.transform = '';
+                    overlay.style.display = 'none';
+
+                    document.getElementById('fishingComplete').innerHTML = `
+                        <div style="font-size: clamp(1.2rem, 3vmin, 1.6rem); font-weight: bold; color: #B5453A; margin-bottom: 2vmin;">
+                            💣💥 Oh no! You hit a bomb!<br>Back to the start of Level ${questLevel}!
+                        </div>
+                        <button class="btn" style="background: linear-gradient(135deg, #B5453A, #D4645A); color: white; padding: 2vmin 5vmin; font-size: clamp(1.1rem, 2.5vmin, 1.5rem);" onclick="restartQuestLevel()">
+                            Try Level ${questLevel} Again 💪
+                        </button>
+                    `;
+                    document.getElementById('fishingComplete').style.display = 'block';
+                }
+            }
+
+            requestAnimationFrame(drawExplosionFrame);
+        }
+
+        function stopFishing() {
+            if (fishingInterval) { clearInterval(fishingInterval); fishingInterval = null; }
+            if (fishingAnimId) { cancelAnimationFrame(fishingAnimId); fishingAnimId = null; }
+        }
+
+        function advanceQuestLevel() {
+            stopFishing();
+            questLevel++;
+            saveProgress();
+            if (questLevel > QUEST_MAX_LEVEL) {
+                showQuestComplete();
+            } else {
+                showQuestLevel();
+            }
+        }
+
+        function showQuestComplete() {
+            stopFishing();
+            document.getElementById('questProblemArea').style.display = 'none';
+            document.getElementById('fishingGameArea').style.display = 'none';
+            document.getElementById('questComplete').style.display = 'block';
+            document.getElementById('questFinalStats').innerHTML =
+                `🐟 Total fish caught: <strong>${questTotalFish}</strong><br>` +
+                `📊 Levels completed: <strong>${QUEST_MAX_LEVEL}</strong><br>` +
+                `🧮 Problems solved: <strong>${QUEST_MAX_LEVEL * QUEST_PROBLEMS_PER_LEVEL}</strong>`;
+            saveProgress();
+        }
+
+        function resetQuest() {
+            stopFishing();
+            questLevel = 1;
+            questTotalFish = 0;
+            saveProgress();
+            showQuestLevel();
         }
     </script>
     <script src="config.js"></script>
